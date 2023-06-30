@@ -1,6 +1,6 @@
 ﻿namespace TestesDaDonaMariana.Dominio.ModuloDiciplina
 {
-    public interface IRepositorioDiciplina : IRepositorio<Diciplina>
+    public interface IRepositorioDisciplina : IRepositorio<Disciplina>
     {
     }
 }

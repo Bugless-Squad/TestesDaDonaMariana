@@ -1,16 +1,16 @@
 ﻿
 using TestesDaDonaMariana.Dominio.Compartilhado;
 
-namespace TestesDaDonaMariana.Dominio.ModuloDiciplina
+namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
 {
-    public class Diciplina : EntidadeBase<Diciplina>
+    public class Disciplina : EntidadeBase<Disciplina>
     {
-        public Diciplina()
+        public Disciplina()
         {
             
         }
 
-        public override void AtualizarInformacoes(Diciplina registroAtualizado)
+        public override void AtualizarInformacoes(Disciplina registroAtualizado)
         {
             throw new NotImplementedException();
         }

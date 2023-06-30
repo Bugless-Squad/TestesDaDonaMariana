@@ -1,12 +1,12 @@
-using TestesDaDonaMariana.Dominio.ModuloDiciplina;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
-using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDiciplina;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste;
-using TestesDaDonaMariana.WinApp.ModuloDiciplina;
+using TestesDaDonaMariana.WinApp.ModuloDisciplina;
 using TestesDaDonaMariana.WinApp.ModuloMateria;
 using TestesDaDonaMariana.WinApp.ModuloQuestao;
 using TestesDaDonaMariana.WinApp.ModuloTeste;

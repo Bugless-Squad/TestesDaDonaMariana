@@ -2,34 +2,34 @@
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDiciplina
 {
-    public class RepositorioDiciplinaSql : IRepositorioDiciplina
+    public class RepositorioDisciplinaSql : IRepositorioDisciplina
     {
-        public void Editar(Diciplina registroSelecionado, Diciplina registroAtualizado)
+        public void Editar(Disciplina registroSelecionado, Disciplina registroAtualizado)
         {
             throw new NotImplementedException();
         }
 
-        public void Editar(int id, Diciplina registro)
+        public void Editar(int id, Disciplina registro)
         {
             throw new NotImplementedException();
         }
 
-        public void Excluir(Diciplina registro)
+        public void Excluir(Disciplina registro)
         {
             throw new NotImplementedException();
         }
 
-        public void Inserir(Diciplina novoRegistro)
+        public void Inserir(Disciplina novoRegistro)
         {
             throw new NotImplementedException();
         }
 
-        public Diciplina SelecionarPorId(int id)
+        public Disciplina SelecionarPorId(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Diciplina> SelecionarTodos()
+        public List<Disciplina> SelecionarTodos()
         {
             throw new NotImplementedException();
         }
