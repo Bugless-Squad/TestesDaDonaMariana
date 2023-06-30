@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesDaDonaMariana.WinApp", "TestesDaDonaMariana.WinApp\TestesDaDonaMariana.WinApp.csproj", "{12FD98CE-48E9-487C-A0DF-252144A04A26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Apresentação", "1 - Apresentação", "{3372D591-D629-4020-A388-FE547E279528}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Dominio", "2 - Dominio", "{56A12C88-9EAC-49D9-8254-7139B947D75E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infraestrutura", "3 - Infraestrutura", "{A196E49D-68DA-48E9-BED0-99B24BAD2268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesDaDonaMariana.Dominio", "TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj", "{C1753A5E-4983-4332-945A-F89D08BF01DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesDaDonaMariana.Infra.Dados.Sql", "TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj", "{5DC68A9A-F96C-444F-A664-6CF850CFF093}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12FD98CE-48E9-487C-A0DF-252144A04A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12FD98CE-48E9-487C-A0DF-252144A04A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12FD98CE-48E9-487C-A0DF-252144A04A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12FD98CE-48E9-487C-A0DF-252144A04A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC68A9A-F96C-444F-A664-6CF850CFF093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC68A9A-F96C-444F-A664-6CF850CFF093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC68A9A-F96C-444F-A664-6CF850CFF093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC68A9A-F96C-444F-A664-6CF850CFF093}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12FD98CE-48E9-487C-A0DF-252144A04A26} = {3372D591-D629-4020-A388-FE547E279528}
+		{C1753A5E-4983-4332-945A-F89D08BF01DA} = {56A12C88-9EAC-49D9-8254-7139B947D75E}
+		{5DC68A9A-F96C-444F-A664-6CF850CFF093} = {A196E49D-68DA-48E9-BED0-99B24BAD2268}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB8E88F6-FBB0-4D6E-98A8-8B9FC459CFC1}
+	EndGlobalSection
+EndGlobal
