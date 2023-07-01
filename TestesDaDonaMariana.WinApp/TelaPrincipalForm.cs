@@ -52,7 +52,7 @@ namespace TestesDaDonaMariana.WinApp
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioAluguel, repositorioCliente);
+            controlador = new ControladorMateria();
 
             ConfigurarTelaPrincipal(controlador);
         }

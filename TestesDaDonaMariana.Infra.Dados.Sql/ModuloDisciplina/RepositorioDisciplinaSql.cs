@@ -1,6 +1,6 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloDiciplina;
+﻿
 
-namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDiciplina
+namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
     public class RepositorioDisciplinaSql : IRepositorioDisciplina
     {
