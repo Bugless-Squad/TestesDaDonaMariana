@@ -1,4 +1,4 @@
-﻿namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
+﻿namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
     public class ControladorQuestao
     {
