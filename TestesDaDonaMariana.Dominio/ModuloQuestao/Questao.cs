@@ -1,16 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestesDaDonaMariana.Dominio.ModuloDiciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
     public class Questao : EntidadeBase<Questao>
     {
+        public List<Alternativa> alternativas { get; set; }
+        public Diciplina diciplina { get; set; }    
+        public Materia materia { get; set; }    
+        public string enunciado { get; set; }    
+        public string gabarito { get; set; }
+
         public Questao()
         {
-            
+
+        }
+
+        public Questao(Diciplina diciplina, Materia materia, string enunciado, string gabarito)
+        {
+            this.diciplina = diciplina;
+            this.materia = materia;
+            this.enunciado = enunciado;
+            this.gabarito = gabarito;
+            this.alternativas = new();
         }
 
         public override void AtualizarInformacoes(Questao registroAtualizado)

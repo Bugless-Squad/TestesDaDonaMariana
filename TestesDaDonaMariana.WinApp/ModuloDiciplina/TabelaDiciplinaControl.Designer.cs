@@ -1,4 +1,4 @@
-﻿namespace TestesDaDonaMariana.WinApp.ModuloTeste
+﻿namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
 {
     partial class TabelaDiciplinaControl
     {

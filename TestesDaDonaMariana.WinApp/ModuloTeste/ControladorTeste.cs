@@ -1,6 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloTeste;
 
-namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
+namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
     public class ControladorTeste
     {
