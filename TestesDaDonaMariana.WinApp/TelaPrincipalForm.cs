@@ -1,12 +1,12 @@
-using TestesDaDonaMariana.Dominio.ModuloDiciplina;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
-using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDiciplina;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste;
-using TestesDaDonaMariana.WinApp.ModuloDiciplina;
+using TestesDaDonaMariana.WinApp.ModuloDisciplina;
 using TestesDaDonaMariana.WinApp.ModuloMateria;
 using TestesDaDonaMariana.WinApp.ModuloQuestao;
 using TestesDaDonaMariana.WinApp.ModuloTeste;
@@ -17,7 +17,7 @@ namespace TestesDaDonaMariana.WinApp
     {
         private ControladorBase controlador;
 
-        //private IRepositorioDiciplina = new();
+        //private IRepositorioDisciplina = new();
         //private IRepositorioMateria = new();
         //private IRepositorioQuestao = new();
         //private IRepositorioTeste = new();
@@ -43,30 +43,30 @@ namespace TestesDaDonaMariana.WinApp
             lableRodape.Text = status;
         }
 
-        private void DiciplinasMenuItem_Click(object sender, EventArgs e)
+        private void DisciplinasMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorDiciplina(repositorioDiciplina, repositorioMateria);
+            //controlador = new ControladorDisciplina(repositorioDisciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorMateria(repositorioMateria, repositorioDiciplina);
+            //controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void questoesMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorQuestao(repositorioQuestoes, repositorioDiciplina, repositorioMateria);
+            //controlador = new ControladorQuestao(repositorioQuestoes, repositorioDisciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void testesMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorTeste(repositorioTeste, repositorioQuestoes, repositorioDiciplina, repositorioMateria);
+            //controlador = new ControladorTeste(repositorioTeste, repositorioQuestoes, repositorioDisciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }

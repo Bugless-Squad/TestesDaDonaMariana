@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
             pictureBox1 = new PictureBox();
-            DiciplinasMenuItem = new ToolStripMenuItem();
+            DisciplinasMenuItem = new ToolStripMenuItem();
             panelRegistros = new Panel();
             toolStrip1 = new ToolStrip();
             btnHome = new ToolStripButton();
@@ -73,13 +73,13 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // DiciplinasMenuItem
+            // DisciplinasMenuItem
             // 
-            DiciplinasMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DiciplinasMenuItem.Name = "DiciplinasMenuItem";
-            DiciplinasMenuItem.Size = new Size(75, 19);
-            DiciplinasMenuItem.Text = "Disciplinas";
-            DiciplinasMenuItem.Click += DiciplinasMenuItem_Click;
+            DisciplinasMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DisciplinasMenuItem.Name = "DisciplinasMenuItem";
+            DisciplinasMenuItem.Size = new Size(75, 19);
+            DisciplinasMenuItem.Text = "Disciplinas";
+            DisciplinasMenuItem.Click += DisciplinasMenuItem_Click;
             // 
             // panelRegistros
             // 
@@ -298,7 +298,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { DiciplinasMenuItem, materiasMenuItem, questoesMenuItem, testesMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { DisciplinasMenuItem, materiasMenuItem, questoesMenuItem, testesMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(8, 3, 0, 3);
@@ -358,7 +358,7 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private ToolStripMenuItem DiciplinasMenuItem;
+        private ToolStripMenuItem DisciplinasMenuItem;
         private Panel panelRegistros;
         private ToolStrip toolStrip1;
         private ToolStripButton btnHome;
