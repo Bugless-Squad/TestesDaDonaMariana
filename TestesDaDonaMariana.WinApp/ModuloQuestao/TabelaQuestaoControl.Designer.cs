@@ -1,6 +1,6 @@
-﻿namespace TestesDaDonaMariana.WinApp.ModuloTeste
+﻿namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
-    partial class TabelaDiciplinaControl
+    partial class TabelaQuestaoControl
     {
         /// <summary> 
         /// Required designer variable.

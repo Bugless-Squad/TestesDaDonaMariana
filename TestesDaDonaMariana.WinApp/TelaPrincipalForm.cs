@@ -45,28 +45,28 @@ namespace TestesDaDonaMariana.WinApp
 
         private void DiciplinasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioAluguel, repositorioCliente);
+            //controlador = new ControladorDiciplina(repositorioDiciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioAluguel, repositorioCliente);
+            //controlador = new ControladorMateria(repositorioMateria, repositorioDiciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void questoesMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioAluguel, repositorioCliente);
+            //controlador = new ControladorQuestao(repositorioQuestoes, repositorioDiciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void testesMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorCliente(repositorioAluguel, repositorioCliente);
+            //controlador = new ControladorTeste(repositorioTeste, repositorioQuestoes, repositorioDiciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
