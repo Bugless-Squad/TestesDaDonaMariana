@@ -1,4 +1,4 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloDiciplina;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
@@ -6,7 +6,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
     public class Questao : EntidadeBase<Questao>
     {
         public List<Alternativa> alternativas { get; set; }
-        public Diciplina diciplina { get; set; }    
+        public Disciplina diciplina { get; set; }    
         public Materia materia { get; set; }    
         public string enunciado { get; set; }    
         public string gabarito { get; set; }
@@ -16,7 +16,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 
         }
 
-        public Questao(Diciplina diciplina, Materia materia, string enunciado, string gabarito)
+        public Questao(Disciplina diciplina, Materia materia, string enunciado, string gabarito)
         {
             this.diciplina = diciplina;
             this.materia = materia;

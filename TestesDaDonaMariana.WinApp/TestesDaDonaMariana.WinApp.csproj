@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ModuloDiciplina\TabelaDiciplinaControl.cs">
+    <Compile Update="ModuloDisciplina\TabelaDisciplinaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloMateria\TabelaMateriaControl.cs">
