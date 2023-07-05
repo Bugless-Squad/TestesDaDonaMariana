@@ -1,22 +1,47 @@
-﻿using TestesDaDonaMariana.Dominio.Compartilhado;
+﻿using System.Drawing;
+using TestesDaDonaMariana.Dominio.Compartilhado;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.Dominio.ModuloMateria
 {
     public class Materia : EntidadeBase<Materia>
     {
+        public string titulo { get; set; }
+        public Disciplina disciplina { get; set; }
+        public OpcoesSerieEnum opcoesSerie { get; set; }
+
+        public Questao questao { get; set; }  //qtdCadastrada
         public Materia()
         {
-            
+        }
+
+        public Materia( int id, string titulo,Disciplina disciplina, OpcoesSerieEnum serie)
+        {
+            this.id = id;
+            this.titulo = titulo;
+            //this.disciplina = disciplina;
+            this.opcoesSerie = serie;
         }
 
         public override void AtualizarInformacoes(Materia registroAtualizado)
         {
-            throw new NotImplementedException();
+            this.titulo = registroAtualizado.titulo;
+          //  this.disciplina = registroAtualizado.disciplina;
+            this.opcoesSerie = registroAtualizado.opcoesSerie;
         }
 
         public override string Validar()
         {
-            throw new NotImplementedException();
+
+            if (titulo == null)
+                return $"Você deve inserir um titulo!";
+            if (disciplina == null)
+                return $"Você deve selecionar uma disciplina!";
+            if (opcoesSerie == null)
+                return $"Você deve selecionar uma serie!";
+
+            return "";
         }
     }
 }
