@@ -43,7 +43,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             foreach (var materia in materias)
             {
-                grid.Rows.Add(materia.id, materia.titulo, materia.disciplina, materia.opcoesSerie, materia.questao);
+                grid.Rows.Add(materia.id, materia.titulo, materia.disciplina, materia.serie, materia.questao);
             }
         }
     }

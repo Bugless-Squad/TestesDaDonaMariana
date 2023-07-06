@@ -117,6 +117,7 @@
             // 
             // labelTipoDoCadastro
             // 
+            labelTipoDoCadastro.Enabled = false;
             labelTipoDoCadastro.Name = "labelTipoDoCadastro";
             labelTipoDoCadastro.Size = new Size(76, 22);
             labelTipoDoCadastro.Text = "                       ";
@@ -419,7 +420,7 @@
             Controls.Add(toolStrip1);
             Name = "TelaMateriaForm";
             ShowIcon = false;
-            Text = "Testes Dona MAriana";
+            Text = "   Testes Dona Mariana";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             menuStrip1.ResumeLayout(false);

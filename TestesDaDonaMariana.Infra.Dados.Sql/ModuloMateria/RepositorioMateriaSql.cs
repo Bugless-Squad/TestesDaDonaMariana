@@ -1,35 +1,76 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 {
-    public class RepositorioMateriaSql : IRepositorioMateria
+    public class RepositorioMateriaSql : RepositorioBaseSql<Materia, MapeadorMateria>, IRepositorioMateria
     {
+        private const string enderecoBanco = @"Data Source = (LocalDB)\MSSqlLocalDB;Initial Catalog = FestasInfantis; Integrated Security = True; Pooling=False";
+
+        protected override string sqlInserir => @"INSERT INTO[DBO].[TBMATERIA]
+                                                    (
+                                                        [NOME]
+                                                       ,[DISCIPLINA_ID]
+                                                       ,[SERIE]
+                                                    )
+                                                 VALUES
+                                                    (
+                                                        @NOME
+                                                       ,@DISCIPLINA_ID
+                                                       ,@SERIE
+                                                    );
+                                                 SELECT SCOPE_IDENTITY();";
+
+        protected override string sqlEditar => @"UPDATE[TBMATERIA]
+                                               SET
+                                                   [NOME] = @NOME
+                                                  ,[DISCIPLINA_ID] = @DISCIPLINA_ID
+                                                  ,[SERIE] = @SERIE
+                                             WHERE [ID] = @ID;";
+
+        protected override string sqlExcluir => @"DELETE FROM [TBMATERIA]
+	                                                WHERE 
+		                                                [ID] = @ID";
+
+        protected override string sqlSelecionarTodos => @"SELECT 
+	                                                        M.[ID]        MATERIA_ID 
+	                                                       ,M.[NOME]      MATERIA_NOME
+	                                                       ,M.[DISCIPLINA_ID]  DISCIPLINA_ID
+                                                           ,M.[SERIE]     MATERIA_SERIE
+                                                           ,D.[NOME]        DISCIPLINA_NOME
+                                                        FROM 
+	                                                        [TBMATERIA] AS M
+                                                        INNER JOIN [TBDISCIPLINA] AS D
+                                                                ON M.[DISCIPLINA_ID] = D.ID";
+
+        protected override string sqlSelecionarPorId => @"SELECT 
+	                                                    M.[ID]        MATERIA_ID 
+	                                                   ,M.[NOME]      MATERIA_NOME
+	                                                   ,M.[DISCIPLINA_ID]  DISCIPLINA_ID
+                                                       ,M.[SERIE]     MATERIA_SERIE
+                                                       ,D.[NOME]      DISCIPLINA_NOME
+                                                    FROM 
+	                                                    [TBMATERIA] AS M
+                                                    INNER JOIN [TBDISCIPLINA] AS D
+                                                            ON M.[DISCIPLINA_ID] = D.ID
+                                                    WHERE 
+                                                        M.[ID] = @ID";
+
+        public override List<Materia> SelecionarTodos()
+        {
+            List<Materia> materias = base.SelecionarTodos();
+
+            return materias;
+        }
+
+        public override Materia SelecionarPorId(int id)
+        {
+            Materia materia = base.SelecionarPorId(id);
+
+            return materia;
+        }
+
         public void Editar(Materia registroSelecionado, Materia registroAtualizado)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Editar(int id, Materia registro)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Excluir(Materia registro)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Inserir(Materia novoRegistro)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Materia SelecionarPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Materia> SelecionarTodos()
         {
             throw new NotImplementedException();
         }

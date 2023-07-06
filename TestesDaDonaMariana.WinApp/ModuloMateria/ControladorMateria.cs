@@ -1,18 +1,19 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
     public class ControladorMateria : ControladorBase
     {
-        //IRepositorioDisciplina repositorioDisciplina;
+        IRepositorioDisciplina repositorioDisciplina;
         IRepositorioMateria repositorioMateria;
         IRepositorioTeste repositorioTeste;
         TabelaMateriaControl tabelaMaterias;
 
         public ControladorMateria(  IRepositorioMateria repositorioMateria)
         {
-          //this.repositorioDisciplina = repositorioDisciplina;
+            this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
 
         }
@@ -45,9 +46,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
         public override void Editar()
         {
-            Materia materiaSelecionads = ObterMateriaSelecionado();
+            Materia materiaSelecionada = ObterMateriaSelecionado();
 
-            if (materiaSelecionads == null)
+            if (materiaSelecionada == null)
             {
                 MessageBox.Show($"Selecione a Materia primeiro!",
                     "Edição da Materia",

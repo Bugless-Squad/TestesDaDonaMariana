@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloMateria
@@ -28,10 +29,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         {
             int id = Convert.ToInt32(txtId.Text);
             string titulo = txtTitulo.Text;
-            string disciplina = cmbDisciplina.Text;
-            string serie = cmbSerie.Text;
-
-            return new();
+            Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
+            int serie = (int)cmbSerie.SelectedItem;
+            
+            return new Materia(id,titulo,disciplina, serie);
         }
         private void carregarOpcaoSerie()
         {
@@ -50,10 +51,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             materia = ObterMateria();
             string status = "";
 
-            if (materia.Where(i => item.id != itemSelecionado?.id).Any(x => x.titulo == materia.titulo))
-                status = "Já existe uma materia cadastrada com esse nome!";
-            else
-                status = materia.Validar();
+            //if (materia.Where(i => materia.id != MateriaSelecionado?.id).Any(x => x.titulo == materia.titulo))
+            //    status = "Já existe uma materia cadastrada com esse nome!";
+            //else
+            //    status = materia.Validar();
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
 
@@ -67,4 +68,4 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         }
     }
 }
-}
+

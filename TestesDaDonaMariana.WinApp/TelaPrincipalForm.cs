@@ -17,7 +17,7 @@ namespace TestesDaDonaMariana.WinApp
     {
         private ControladorBase controlador;
 
-        //private IRepositorioDisciplina = new();
+        private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaSql();
         private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
         //private IRepositorioQuestao = new();
         //private IRepositorioTeste = new();
@@ -45,7 +45,7 @@ namespace TestesDaDonaMariana.WinApp
 
         private void DisciplinasMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorDisciplina(repositorioDisciplina, repositorioMateria);
+            controlador = new ControladorDisciplina(repositorioDisciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }
