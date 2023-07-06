@@ -1,47 +1,59 @@
-﻿using System.Drawing;
-using TestesDaDonaMariana.Dominio.Compartilhado;
-using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.Dominio.ModuloMateria
 {
+    [Serializable]
     public class Materia : EntidadeBase<Materia>
     {
         public string titulo { get; set; }
         public Disciplina disciplina { get; set; }
-        public OpcoesSerieEnum serie { get; set; }
+        public OpcoesSeriesEnum serie { get; set; }
+        public List<Questao> questoes { get; set; }  
+        public int? qtdQuestoesMateria { get { return questoes?.Count(); } }
 
-        public Questao questao { get; set; }  //qtdCadastrada
         public Materia()
         {
+
         }
 
-        public Materia( int id, string titulo,Disciplina disciplina, int serie)
+        public Materia( int id, string titulo, Disciplina disciplina, OpcoesSeriesEnum serie)
         {
             this.id = id;
             this.titulo = titulo;
             this.disciplina = disciplina;
-            this.serie = (OpcoesSerieEnum)serie;
+            this.serie = serie;
         }
 
         public override void AtualizarInformacoes(Materia registroAtualizado)
         {
-            this.titulo = registroAtualizado.titulo;
-            this.disciplina = registroAtualizado.disciplina;
-            this.serie = registroAtualizado.serie;
+            titulo = registroAtualizado.titulo;
+            disciplina = registroAtualizado.disciplina;
+            serie = registroAtualizado.serie;
         }
 
         public override string Validar()
         {
+            Validador valida = new();
 
-            if (titulo == null)
-                return $"Você deve inserir um titulo!";
+            if (valida.ValidaString(titulo))
+                return $"Você deve escrever um título!";
+
+            if (titulo.Length <= 4)
+                return $"O título da matéria deve conter no mínimo 5 caracteres!";
+
             if (disciplina == null)
                 return $"Você deve selecionar uma disciplina!";
-            if (serie == null)
-                return $"Você deve selecionar uma serie!";
+
+            if (serie == OpcoesSeriesEnum.Nenhuma)
+                return $"Você deve selecionar uma série!";
 
             return "";
+        }
+
+        public override string ToString()
+        {
+            return titulo;
         }
     }
 }

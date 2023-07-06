@@ -11,18 +11,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         IRepositorioTeste repositorioTeste;
         TabelaMateriaControl tabelaMaterias;
 
-        public ControladorMateria(  IRepositorioMateria repositorioMateria)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
         {
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
 
         }
-        public override string ToolTipInserir => "Realizar adição de Matéria";
-
+        public override string ToolTipInserir => "Cadastrar Matéria";
         public override string ToolTipEditar => "Editar Matéria Existente";
-
         public override string ToolTipExcluir => "Excluir Matéria Existente";
-
         public override string ToolTipHome => "Voltar a tela inicial";
 
         public override bool HomeHabilitado => true;
@@ -32,12 +29,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
         public override void Inserir()
         {
-            TelaMateriaForm telaMateria = new TelaMateriaForm();
-            DialogResult opcaoEscolhida = telaMateria.ShowDialog();
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
-                Materia materia = telaMateria.ObterMateria();
+                Materia materia = tela.ObterMateria();
+
                 repositorioMateria.Inserir(materia);
 
                 CarregarMaterias();
@@ -56,6 +53,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
                     MessageBoxIcon.Exclamation);
 
                 return;
+            }
+
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+
+            tela.ConfigurarTela(materiaSelecionada);
+
+            DialogResult opcaoEscolhida = tela.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Materia cliente = tela.ObterMateria();
+
+                repositorioMateria.Editar(materiaSelecionada, cliente);
+
+                CarregarMaterias();
             }
         }
 
@@ -108,8 +120,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Materias";
-        }
-    
+        }    
 
         private void CarregarMaterias()
         {
@@ -117,6 +128,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             tabelaMaterias.AtualizarRegistros(materias);
         }
+
         private Materia ObterMateriaSelecionado()
         {
             int id = tabelaMaterias.ObterNumeroItemSelecionado();

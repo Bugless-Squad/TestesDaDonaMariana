@@ -2,6 +2,7 @@ using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
+using TestesDaDonaMariana.Infra.Dados.Json.Compartilhado;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
@@ -17,10 +18,12 @@ namespace TestesDaDonaMariana.WinApp
     {
         private ControladorBase controlador;
 
-        private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaSql();
-        private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
-        //private IRepositorioQuestao = new();
-        private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
+        static ContextoDeDados contextoDeDados = new(carregarDados: true);
+
+        private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaJson(contextoDeDados);
+        private IRepositorioMateria repositorioMateria = new RepositorioMateriaJson(contextoDeDados);
+        private IRepositorioQuestao repositorioQuestao = new RepositorioQuestaoJson(contextoDeDados);
+        private IRepositorioTeste repositorioTeste = new RepositorioTesteJson(contextoDeDados);
 
 
         public TelaPrincipalForm()
@@ -52,14 +55,14 @@ namespace TestesDaDonaMariana.WinApp
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMateria(repositorioMateria);
+            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void questoesMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorQuestao(repositorioQuestoes, repositorioDisciplina, repositorioMateria);
+            controlador = new ControladorQuestao(repositorioQuestao, repositorioDisciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }

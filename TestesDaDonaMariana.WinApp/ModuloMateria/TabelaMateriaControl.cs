@@ -19,13 +19,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Titulo", HeaderText = "Titulo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Título", HeaderText = "Título"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Serie", HeaderText = "Serie"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Série", HeaderText = "Série"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero de Questões Cadastradas", HeaderText = "Numero de Questões Cadastradas"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade de Questões", HeaderText = "Quantidade de Questões"},
 
             };
 
@@ -43,7 +43,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             foreach (var materia in materias)
             {
-                grid.Rows.Add(materia.id, materia.titulo, materia.disciplina, materia.serie, materia.questao);
+                grid.Rows.Add(materia.id, materia.titulo, materia.disciplina, materia.serie, materia.qtdQuestoesMateria.HasValue ? materia.qtdQuestoesMateria : "0");
             }
         }
     }

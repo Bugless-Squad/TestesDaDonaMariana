@@ -13,26 +13,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             this.repositorioTeste = repositorioTeste;
         }
 
-        public override string ToolTipInserir => "Realizar adição de Teste";
-
-       // public override string ToolTipEditar => "Editar Matéria Existente";
-       // public override string ToolTipDuplicar => "Duplicar Teste Existente";
-
-        public override string ToolTipExcluir => "Excluir Matéria Existente";
-
+        public override string ToolTipInserir => "Cadastrar Teste";
+        public override string ToolTipEditar => "Duplicar Teste Existente";
+        public override string ToolTipExcluir => "Excluir Teste Existente";
         public override string ToolTipHome => "Voltar a tela inicial";
 
         public override bool HomeHabilitado => true;
         public override bool InserirHabilitado => true;
-     //   public override bool EditarHabilitado => true;
+        public override bool EditarHabilitado => true;
         public override bool ExcluirHabilitado => true;
 
         public override void Inserir()
         {
-            TelaCadastroTesteForm telaTeste = new TelaCadastroTesteForm();
-            DialogResult opcaoEscolhida = telaTeste.ShowDialog();
+            TelaCadastroTesteForm telaTeste = new();
 
-            if (opcaoEscolhida == DialogResult.OK)
+            if (telaTeste.ShowDialog() == DialogResult.OK)
             {
                 Teste teste = telaTeste.ObterTeste();
                 repositorioTeste.Inserir(teste);
@@ -54,9 +49,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         public override void Excluir()
         {
             throw new NotImplementedException();
-        }
-
-       
+        }       
 
         public override UserControl ObterListagem()
         {
@@ -65,7 +58,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         public override string ObterTipoCadastro()
         {
-            throw new NotImplementedException();
+            return "Cadastro de Testes";
         }
     }
 }

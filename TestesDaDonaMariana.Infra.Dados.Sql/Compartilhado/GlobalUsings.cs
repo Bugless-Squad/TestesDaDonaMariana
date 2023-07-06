@@ -1,1 +1,1 @@
-﻿//global using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
+﻿global using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;

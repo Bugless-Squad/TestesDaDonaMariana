@@ -7,8 +7,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
     public class Disciplina : EntidadeBase<Disciplina>
     {
         public string nome { get; set; }
+        public List<Materia> materias { get; set; }
 
-        public List<Materia> Items { get; set; }
         public Disciplina()
         {
             
@@ -33,15 +33,14 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
                 return $"Você deve escrever uma disciplina!";
 
             if (nome.Length <= 4)
-                return $"O titulo deve conter no mínimo 5 caracteres!";
+                return $"O nome da disciplina deve conter no mínimo 5 caracteres!";
 
             return "";
         }
 
-        public void AdicionarItem(Materia item)
+        public override string ToString()
         {
-            if (Items.Contains(item) == false)
-                Items.Add(item);
+            return nome;
         }
     }
 }

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj" />
+    <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Json\TestesDaDonaMariana.Infra.Dados.Json.csproj" />
     <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj" />
   </ItemGroup>
 
