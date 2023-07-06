@@ -31,8 +31,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             string titulo = txtTitulo.Text;
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
             int serie = (int)cmbSerie.SelectedItem;
-            
-            return new Materia(id,titulo,disciplina, serie);
+
+            return new Materia(id, titulo, disciplina, serie);
         }
         private void carregarOpcaoSerie()
         {
