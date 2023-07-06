@@ -5,8 +5,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
     public class Questao : EntidadeBase<Questao>
     {
-        public List<Alternativa> alternativas { get; set; }
-        public Disciplina diciplina { get; set; }    
+        public List<Alternativa> alternativas { get; set; } 
         public Materia materia { get; set; }    
         public string enunciado { get; set; }    
         public string gabarito { get; set; }
@@ -16,18 +15,21 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 
         }
 
-        public Questao(Disciplina diciplina, Materia materia, string enunciado, string gabarito)
+        public Questao(int id, Materia materia, string enunciado, string gabarito)
         {
-            this.diciplina = diciplina;
+            this.id = id;
             this.materia = materia;
             this.enunciado = enunciado;
             this.gabarito = gabarito;
-            this.alternativas = new();
+            alternativas = new();
         }
 
         public override void AtualizarInformacoes(Questao registroAtualizado)
         {
-            throw new NotImplementedException();
+            materia = registroAtualizado.materia;
+            enunciado = registroAtualizado.enunciado;
+            gabarito = registroAtualizado.gabarito;
+            alternativas = registroAtualizado.alternativas;
         }
 
         public override string Validar()

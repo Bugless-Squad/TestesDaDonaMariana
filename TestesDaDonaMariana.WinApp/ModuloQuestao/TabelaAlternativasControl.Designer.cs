@@ -1,6 +1,6 @@
 ﻿namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
-    partial class TabelaQuestaoControl
+    partial class TabelaAlternativasControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            grid = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)grid).BeginInit();
+            gridAlternativas = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridAlternativas).BeginInit();
             SuspendLayout();
             // 
-            // grid
+            // gridAlternativas
             // 
-            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.Dock = DockStyle.Fill;
-            grid.Location = new Point(0, 0);
-            grid.Name = "grid";
-            grid.RowTemplate.Height = 25;
-            grid.Size = new Size(558, 423);
-            grid.TabIndex = 1;
+            gridAlternativas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAlternativas.Dock = DockStyle.Fill;
+            gridAlternativas.Location = new Point(0, 0);
+            gridAlternativas.Name = "gridAlternativas";
+            gridAlternativas.RowTemplate.Height = 25;
+            gridAlternativas.Size = new Size(849, 596);
+            gridAlternativas.TabIndex = 1;
             // 
-            // TabelaQuestaoControl
+            // TabelaAlternativasControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(grid);
-            Name = "TabelaQuestaoControl";
-            Size = new Size(558, 423);
-            ((System.ComponentModel.ISupportInitialize)grid).EndInit();
+            Controls.Add(gridAlternativas);
+            Name = "TabelaAlternativasControl";
+            Size = new Size(849, 596);
+            ((System.ComponentModel.ISupportInitialize)gridAlternativas).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView grid;
+        private DataGridView gridAlternativas;
     }
 }

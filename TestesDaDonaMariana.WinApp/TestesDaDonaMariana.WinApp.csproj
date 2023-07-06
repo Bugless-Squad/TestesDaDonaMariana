@@ -20,6 +20,7 @@
     <Compile Update="ModuloMateria\TabelaMateriaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ModuloQuestao\TabelaAlternativasControl.cs" />
     <Compile Update="ModuloQuestao\TabelaQuestaoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
