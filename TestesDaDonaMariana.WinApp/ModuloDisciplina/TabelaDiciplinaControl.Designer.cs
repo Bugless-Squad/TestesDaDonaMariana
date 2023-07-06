@@ -1,6 +1,6 @@
 ﻿namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
 {
-    partial class TabelaDiciplinaControl
+    partial class TabelaDisciplinaControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,10 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            grid = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)grid).BeginInit();
+            SuspendLayout();
+            // 
+            // grid
+            // 
+            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            grid.Dock = DockStyle.Fill;
+            grid.Location = new Point(0, 0);
+            grid.Name = "grid";
+            grid.RowTemplate.Height = 25;
+            grid.Size = new Size(784, 480);
+            grid.TabIndex = 1;
+            // 
+            // TabelaDisciplinaControl
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(grid);
+            Name = "TabelaDisciplinaControl";
+            Size = new Size(784, 480);
+            ((System.ComponentModel.ISupportInitialize)grid).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView grid;
     }
 }

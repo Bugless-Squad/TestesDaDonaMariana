@@ -17,10 +17,10 @@ namespace TestesDaDonaMariana.WinApp
     {
         private ControladorBase controlador;
 
-        //private IRepositorioDisciplina = new();
-        //private IRepositorioMateria = new();
+        private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaSql();
+        private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
         //private IRepositorioQuestao = new();
-        //private IRepositorioTeste = new();
+        private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
 
 
         public TelaPrincipalForm()
@@ -45,14 +45,14 @@ namespace TestesDaDonaMariana.WinApp
 
         private void DisciplinasMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorDisciplina(repositorioDisciplina, repositorioMateria);
+            controlador = new ControladorDisciplina(repositorioDisciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina);
+            controlador = new ControladorMateria(repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -66,7 +66,7 @@ namespace TestesDaDonaMariana.WinApp
 
         private void testesMenuItem_Click(object sender, EventArgs e)
         {
-            //controlador = new ControladorTeste(repositorioTeste, repositorioQuestoes, repositorioDisciplina, repositorioMateria);
+            controlador = new ControladorTeste(repositorioTeste);
 
             ConfigurarTelaPrincipal(controlador);
         }

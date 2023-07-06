@@ -1,14 +1,14 @@
-﻿namespace TestesDaDonaMariana.WinApp
+﻿namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 {
-    partial class TelaPrincipalForm
+    partial class TelaDisciplinaForm
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,15 +23,17 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
-            pictureBox1 = new PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaDisciplinaForm));
+            menuStrip1 = new MenuStrip();
             DisciplinasMenuItem = new ToolStripMenuItem();
-            panelRegistros = new Panel();
+            materiasMenuItem = new ToolStripMenuItem();
+            questoesMenuItem = new ToolStripMenuItem();
+            testesMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
             btnHome = new ToolStripButton();
             toolStripSeparator0 = new ToolStripSeparator();
@@ -52,26 +54,28 @@
             labelTipoDoCadastro = new ToolStripLabel();
             rodape = new StatusStrip();
             lableRodape = new ToolStripStatusLabel();
-            menuStrip1 = new MenuStrip();
-            materiasMenuItem = new ToolStripMenuItem();
-            questoesMenuItem = new ToolStripMenuItem();
-            testesMenuItem = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelRegistros.SuspendLayout();
+            panel1 = new Panel();
+            btnGravar = new Button();
+            btnCancelar = new Button();
+            txtTitulo = new TextBox();
+            txtId = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
+            menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             rodape.SuspendLayout();
-            menuStrip1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // pictureBox1
+            // menuStrip1
             // 
-            pictureBox1.Location = new Point(-1, -1);
-            pictureBox1.Margin = new Padding(4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1184, 586);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { DisciplinasMenuItem, materiasMenuItem, questoesMenuItem, testesMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Padding = new Padding(8, 3, 0, 3);
+            menuStrip1.Size = new Size(800, 25);
+            menuStrip1.TabIndex = 5;
+            menuStrip1.Text = "menuStrip1";
             // 
             // DisciplinasMenuItem
             // 
@@ -79,26 +83,32 @@
             DisciplinasMenuItem.Name = "DisciplinasMenuItem";
             DisciplinasMenuItem.Size = new Size(75, 19);
             DisciplinasMenuItem.Text = "Disciplinas";
-            DisciplinasMenuItem.Click += DisciplinasMenuItem_Click;
             // 
-            // panelRegistros
+            // materiasMenuItem
             // 
-            panelRegistros.BorderStyle = BorderStyle.FixedSingle;
-            panelRegistros.Controls.Add(pictureBox1);
-            panelRegistros.Dock = DockStyle.Fill;
-            panelRegistros.Location = new Point(0, 60);
-            panelRegistros.Margin = new Padding(4);
-            panelRegistros.Name = "panelRegistros";
-            panelRegistros.Size = new Size(1188, 579);
-            panelRegistros.TabIndex = 7;
+            materiasMenuItem.Name = "materiasMenuItem";
+            materiasMenuItem.Size = new Size(64, 19);
+            materiasMenuItem.Text = "Matérias";
+            // 
+            // questoesMenuItem
+            // 
+            questoesMenuItem.Name = "questoesMenuItem";
+            questoesMenuItem.Size = new Size(68, 19);
+            questoesMenuItem.Text = "Questões";
+            // 
+            // testesMenuItem
+            // 
+            testesMenuItem.Name = "testesMenuItem";
+            testesMenuItem.Size = new Size(50, 19);
+            testesMenuItem.Text = "Testes";
             // 
             // toolStrip1
             // 
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, toolStripSeparator4, btnVisualizar, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
             toolStrip1.Location = new Point(0, 25);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1188, 35);
-            toolStrip1.TabIndex = 6;
+            toolStrip1.Size = new Size(800, 25);
+            toolStrip1.TabIndex = 7;
             toolStrip1.Text = "toolStrip1";
             // 
             // btnHome
@@ -113,7 +123,6 @@
             btnHome.Text = "Home";
             btnHome.ToolTipText = "Botão Home indisponível.";
             btnHome.Visible = false;
-            btnHome.Click += btnHome_Click;
             // 
             // toolStripSeparator0
             // 
@@ -132,7 +141,6 @@
             btnConfigDesconto.Padding = new Padding(6);
             btnConfigDesconto.Size = new Size(32, 32);
             btnConfigDesconto.Visible = false;
-            btnConfigDesconto.Click += btnConfigDesconto_Click;
             // 
             // toolStripSeparator1
             // 
@@ -152,7 +160,6 @@
             btnInserir.Size = new Size(32, 32);
             btnInserir.Text = "Inserir";
             btnInserir.Visible = false;
-            btnInserir.Click += btnInserir_Click;
             // 
             // btnEditar
             // 
@@ -166,7 +173,6 @@
             btnEditar.Size = new Size(32, 32);
             btnEditar.Text = "Editar";
             btnEditar.Visible = false;
-            btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
             // 
@@ -180,7 +186,6 @@
             btnExcluir.Size = new Size(32, 32);
             btnExcluir.Text = "Excluir";
             btnExcluir.Visible = false;
-            btnExcluir.Click += btnExcluir_Click;
             // 
             // toolStripSeparator2
             // 
@@ -199,7 +204,6 @@
             btnAdicionarItens.Padding = new Padding(6);
             btnAdicionarItens.Size = new Size(32, 32);
             btnAdicionarItens.Visible = false;
-            btnAdicionarItens.Click += btnAdicionarItens_Click;
             // 
             // btnRemoverItens
             // 
@@ -212,7 +216,6 @@
             btnRemoverItens.Padding = new Padding(6);
             btnRemoverItens.Size = new Size(32, 32);
             btnRemoverItens.Visible = false;
-            btnRemoverItens.Click += btnRemoverItens_Click;
             // 
             // toolStripSeparator3
             // 
@@ -231,7 +234,6 @@
             btnFinalizarPgto.Padding = new Padding(6);
             btnFinalizarPgto.Size = new Size(32, 32);
             btnFinalizarPgto.Visible = false;
-            btnFinalizarPgto.Click += btnFinalizarPgto_Click;
             // 
             // toolStripSeparator4
             // 
@@ -251,7 +253,6 @@
             btnVisualizar.Size = new Size(32, 32);
             btnVisualizar.Text = "Visualizar";
             btnVisualizar.Visible = false;
-            btnVisualizar.Click += btnVisualizar_Click;
             // 
             // btnFiltrar
             // 
@@ -265,7 +266,6 @@
             btnFiltrar.Size = new Size(32, 32);
             btnFiltrar.Text = "Filtrar";
             btnFiltrar.Visible = false;
-            btnFiltrar.Click += btnFiltrar_Click;
             // 
             // toolStripSeparator5
             // 
@@ -282,11 +282,11 @@
             // rodape
             // 
             rodape.Items.AddRange(new ToolStripItem[] { lableRodape });
-            rodape.Location = new Point(0, 639);
+            rodape.Location = new Point(0, 424);
             rodape.Name = "rodape";
             rodape.Padding = new Padding(1, 0, 18, 0);
-            rodape.Size = new Size(1188, 26);
-            rodape.TabIndex = 5;
+            rodape.Size = new Size(800, 26);
+            rodape.TabIndex = 10;
             rodape.Text = "statusStrip1";
             // 
             // lableRodape
@@ -296,70 +296,102 @@
             lableRodape.Size = new Size(50, 21);
             lableRodape.Text = "          ";
             // 
-            // menuStrip1
+            // panel1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { DisciplinasMenuItem, materiasMenuItem, questoesMenuItem, testesMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 3, 0, 3);
-            menuStrip1.Size = new Size(1188, 25);
-            menuStrip1.TabIndex = 4;
-            menuStrip1.Text = "menuStrip1";
+            panel1.Controls.Add(btnGravar);
+            panel1.Controls.Add(btnCancelar);
+            panel1.Controls.Add(txtTitulo);
+            panel1.Controls.Add(txtId);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(97, 92);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(607, 266);
+            panel1.TabIndex = 19;
             // 
-            // materiasMenuItem
+            // btnGravar
             // 
-            materiasMenuItem.Name = "materiasMenuItem";
-            materiasMenuItem.Size = new Size(64, 19);
-            materiasMenuItem.Text = "Matérias";
-            materiasMenuItem.Click += materiasMenuItem_Click;
+            btnGravar.Location = new Point(336, 190);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(101, 34);
+            btnGravar.TabIndex = 10;
+            btnGravar.Text = "Gravar";
+            btnGravar.UseVisualStyleBackColor = true;
             // 
-            // questoesMenuItem
+            // btnCancelar
             // 
-            questoesMenuItem.Name = "questoesMenuItem";
-            questoesMenuItem.Size = new Size(68, 19);
-            questoesMenuItem.Text = "Questões";
-            questoesMenuItem.Click += questoesMenuItem_Click;
+            btnCancelar.Location = new Point(447, 190);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(87, 34);
+            btnCancelar.TabIndex = 9;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // testesMenuItem
+            // txtTitulo
             // 
-            testesMenuItem.Name = "testesMenuItem";
-            testesMenuItem.Size = new Size(50, 19);
-            testesMenuItem.Text = "Testes";
-            testesMenuItem.Click += testesMenuItem_Click;
+            txtTitulo.Location = new Point(123, 78);
+            txtTitulo.Name = "txtTitulo";
+            txtTitulo.Size = new Size(411, 23);
+            txtTitulo.TabIndex = 5;
             // 
-            // TelaPrincipalForm
+            // txtId
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
+            txtId.Location = new Point(123, 39);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(100, 23);
+            txtId.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label2.Location = new Point(32, 81);
+            label2.Name = "label2";
+            label2.Size = new Size(85, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Disciplina:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label1.Location = new Point(90, 42);
+            label1.Name = "label1";
+            label1.Size = new Size(27, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Id:";
+            // 
+            // TelaTesteForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1188, 665);
-            Controls.Add(panelRegistros);
-            Controls.Add(toolStrip1);
+            ClientSize = new Size(800, 450);
+            Controls.Add(panel1);
             Controls.Add(rodape);
+            Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4);
-            Name = "TelaPrincipalForm";
+            Name = "TelaTesteForm";
             ShowIcon = false;
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "   Testes Dona Mariana";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelRegistros.ResumeLayout(false);
-            panelRegistros.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             rodape.ResumeLayout(false);
             rodape.PerformLayout();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private MenuStrip menuStrip1;
         private ToolStripMenuItem DisciplinasMenuItem;
-        private Panel panelRegistros;
+        private ToolStripMenuItem materiasMenuItem;
+        private ToolStripMenuItem questoesMenuItem;
+        private ToolStripMenuItem testesMenuItem;
         private ToolStrip toolStrip1;
         private ToolStripButton btnHome;
         private ToolStripSeparator toolStripSeparator0;
@@ -380,9 +412,12 @@
         private ToolStripLabel labelTipoDoCadastro;
         private StatusStrip rodape;
         private ToolStripStatusLabel lableRodape;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem materiasMenuItem;
-        private ToolStripMenuItem questoesMenuItem;
-        private ToolStripMenuItem testesMenuItem;
+        private Panel panel1;
+        private Button btnGravar;
+        private Button btnCancelar;
+        private TextBox txtTitulo;
+        private TextBox txtId;
+        private Label label2;
+        private Label label1;
     }
 }
