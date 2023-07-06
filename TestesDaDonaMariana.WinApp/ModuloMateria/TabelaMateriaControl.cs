@@ -12,7 +12,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
         }
-
         private DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[]

@@ -17,8 +17,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
         {
             InitializeComponent();
         }
-
-        internal Disciplina ObterDisciplina()
+        public Disciplina ObterDisciplina()
         {
             int id = Convert.ToInt32(txtId.Text);
             string nome = txtTitulo.Text;

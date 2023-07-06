@@ -45,7 +45,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             cmbSerie.SelectedIndex = 0;
 
         }
-
         private void btnGravar_Click(object sender, EventArgs e)
         {
             materia = ObterMateria();

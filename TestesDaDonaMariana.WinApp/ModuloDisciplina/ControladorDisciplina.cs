@@ -44,7 +44,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 CarregarDisciplinas();
             }
         }
-
         public override void Editar()
         {
             Disciplina disciplinaSelecionada = ObterDisciplinaSelecionado();
@@ -59,14 +58,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 return;
             }
         }
-
         private Disciplina ObterDisciplinaSelecionado()
         {
             int id = tabelaDisciplina.ObterNumeroDisciplinaSelecionado();
 
             return repositorioDisciplina.SelecionarPorId(id);
         }
-
         public override void Excluir()
         {
             Disciplina disciplina = ObterDisciplinaSelecionado();
@@ -102,7 +99,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 CarregarDisciplinas();
             }
         }
-
         public override UserControl ObterListagem()
         {
             if (tabelaDisciplina == null)
