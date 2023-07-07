@@ -35,6 +35,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             {
                 Materia materia = tela.ObterMateria();
 
+                materia.disciplina.materias.Add(materia);
+
                 repositorioMateria.Inserir(materia);
 
                 CarregarMaterias();
@@ -63,9 +65,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Materia cliente = tela.ObterMateria();
+                Materia materia = tela.ObterMateria();
 
-                repositorioMateria.Editar(materiaSelecionada, cliente);
+                materia.disciplina.materias.Remove(materiaSelecionada);
+
+                materia.disciplina.materias.Add(materia);
+
+                repositorioMateria.Editar(materiaSelecionada, materia);
 
                 CarregarMaterias();
             }

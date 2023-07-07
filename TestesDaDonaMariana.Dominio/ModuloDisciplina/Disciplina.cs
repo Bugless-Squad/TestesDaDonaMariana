@@ -18,6 +18,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
         {
             this.id = id;
             this.nome = nome;
+            materias = new();
         }
 
         public override void AtualizarInformacoes(Disciplina registroAtualizado)

@@ -34,14 +34,17 @@
             label7 = new Label();
             label4 = new Label();
             txtEnunciado = new TextBox();
-            panelItensTema = new Panel();
+            panelAlternativas = new Panel();
             btnCancelar = new Button();
             btnGravar = new Button();
             label1 = new Label();
             btnAdicionar = new Button();
-            txtNumero = new TextBox();
+            txtAlternativa = new TextBox();
             cmbDisciplina = new ComboBox();
             label2 = new Label();
+            btnRemover = new Button();
+            btnSelecionarAlternativaCorreta = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // cmbMaterias
@@ -106,12 +109,12 @@
             txtEnunciado.Size = new Size(395, 171);
             txtEnunciado.TabIndex = 76;
             // 
-            // panelItensTema
+            // panelAlternativas
             // 
-            panelItensTema.Location = new Point(112, 330);
-            panelItensTema.Name = "panelItensTema";
-            panelItensTema.Size = new Size(395, 153);
-            panelItensTema.TabIndex = 78;
+            panelAlternativas.Location = new Point(112, 330);
+            panelAlternativas.Name = "panelAlternativas";
+            panelAlternativas.Size = new Size(395, 159);
+            panelAlternativas.TabIndex = 78;
             // 
             // btnCancelar
             // 
@@ -119,10 +122,10 @@
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnCancelar.ImageAlign = ContentAlignment.BottomRight;
-            btnCancelar.Location = new Point(413, 490);
+            btnCancelar.Location = new Point(413, 570);
             btnCancelar.Margin = new Padding(4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 41);
+            btnCancelar.Size = new Size(94, 52);
             btnCancelar.TabIndex = 80;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextImageRelation = TextImageRelation.TextAboveImage;
@@ -134,10 +137,10 @@
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnGravar.ImageAlign = ContentAlignment.BottomRight;
-            btnGravar.Location = new Point(313, 490);
+            btnGravar.Location = new Point(313, 570);
             btnGravar.Margin = new Padding(4);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(94, 41);
+            btnGravar.Size = new Size(94, 52);
             btnGravar.TabIndex = 79;
             btnGravar.Text = "Gravar";
             btnGravar.TextImageRelation = TextImageRelation.TextAboveImage;
@@ -148,11 +151,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(10, 295);
+            label1.Location = new Point(18, 295);
             label1.Name = "label1";
-            label1.Size = new Size(96, 20);
+            label1.Size = new Size(88, 20);
             label1.TabIndex = 82;
-            label1.Text = "Alternativas:";
+            label1.Text = "Alternativa:";
             // 
             // btnAdicionar
             // 
@@ -163,14 +166,15 @@
             btnAdicionar.TabIndex = 81;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
-            // txtNumero
+            // txtAlternativa
             // 
-            txtNumero.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNumero.Location = new Point(112, 295);
-            txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(295, 29);
-            txtNumero.TabIndex = 83;
+            txtAlternativa.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtAlternativa.Location = new Point(112, 295);
+            txtAlternativa.Name = "txtAlternativa";
+            txtAlternativa.Size = new Size(193, 29);
+            txtAlternativa.TabIndex = 83;
             // 
             // cmbDisciplina
             // 
@@ -193,19 +197,54 @@
             label2.TabIndex = 84;
             label2.Text = "Disciplina:";
             // 
+            // btnRemover
+            // 
+            btnRemover.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRemover.Location = new Point(313, 295);
+            btnRemover.Name = "btnRemover";
+            btnRemover.Size = new Size(94, 29);
+            btnRemover.TabIndex = 86;
+            btnRemover.Text = "Remover";
+            btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
+            // 
+            // btnSelecionarAlternativaCorreta
+            // 
+            btnSelecionarAlternativaCorreta.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSelecionarAlternativaCorreta.Location = new Point(313, 495);
+            btnSelecionarAlternativaCorreta.Name = "btnSelecionarAlternativaCorreta";
+            btnSelecionarAlternativaCorreta.Size = new Size(194, 52);
+            btnSelecionarAlternativaCorreta.TabIndex = 87;
+            btnSelecionarAlternativaCorreta.Text = "Selecionar alternativa correta";
+            btnSelecionarAlternativaCorreta.UseVisualStyleBackColor = true;
+            btnSelecionarAlternativaCorreta.Click += btnSelecionarAlternativaCorreta_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(10, 330);
+            label3.Name = "label3";
+            label3.Size = new Size(96, 20);
+            label3.TabIndex = 88;
+            label3.Text = "Alternativas:";
+            // 
             // TelaQuestaoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(537, 559);
+            ClientSize = new Size(537, 645);
+            Controls.Add(label3);
+            Controls.Add(btnSelecionarAlternativaCorreta);
+            Controls.Add(btnRemover);
             Controls.Add(cmbDisciplina);
             Controls.Add(label2);
-            Controls.Add(txtNumero);
+            Controls.Add(txtAlternativa);
             Controls.Add(label1);
             Controls.Add(btnAdicionar);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
-            Controls.Add(panelItensTema);
+            Controls.Add(panelAlternativas);
             Controls.Add(label4);
             Controls.Add(txtEnunciado);
             Controls.Add(cmbMaterias);
@@ -226,13 +265,16 @@
         private Label label7;
         private Label label4;
         private TextBox txtEnunciado;
-        private Panel panelItensTema;
+        private Panel panelAlternativas;
         private Button btnCancelar;
         private Button btnGravar;
         private Label label1;
         private Button btnAdicionar;
-        private TextBox txtNumero;
+        private TextBox txtAlternativa;
         private ComboBox cmbDisciplina;
         private Label label2;
+        private Button btnRemover;
+        private Button btnSelecionarAlternativaCorreta;
+        private Label label3;
     }
 }

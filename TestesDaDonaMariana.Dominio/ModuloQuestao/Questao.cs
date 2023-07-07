@@ -1,6 +1,5 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
-using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
@@ -34,9 +33,35 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             alternativas = registroAtualizado.alternativas;
         }
 
+        public void AdicionarAlternativas(List<Alternativa> alternativasParaAdicionar)
+        {
+            foreach (Alternativa a in alternativasParaAdicionar)
+            {
+                if (alternativas.Contains(a))
+                    return;
+
+                alternativas.Add(a);
+            }
+        }
+        
+        public void RemoverAlternativas(List<Alternativa> alternativasParaRemover)
+        {
+            foreach (Alternativa a in alternativasParaRemover)
+            {
+                alternativas.Remove(a);
+            }
+
+        }
+
         public override string Validar()
         {
             Validador valida = new();
+
+            if (disciplina == null)
+                return $"Você deve selecionar uma disciplina!"; 
+            
+            if (materia == null)
+                return $"Você deve selecionar uma matéria!";
 
             if (valida.ValidaString(enunciado))
                 return $"Você deve escrever um enunciado para sua questão!";
@@ -44,11 +69,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             if (enunciado.Length < 14)
                 return $"O enunciado deve conter ao menos 15 caracteres!";
 
-            if (disciplina == null)
-                return $"Você deve selecionar uma disciplina!"; 
-            
-            if (materia == null)
-                return $"Você deve selecionar uma matéria!";
+            if (alternativas.Count() < 2)
+                return $"Você deve adicionar ao menos duas alternativas!";
 
             return "";
         }

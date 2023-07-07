@@ -1,10 +1,9 @@
-﻿using ControleDeFestasInfantis.Dominio.ModuloAluguel;
-using System.Web;
-
-namespace TestesDaDonaMariana.Dominio.ModuloQuestao
+﻿namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
     public class Alternativa
     {
+        public int id { get; set; }
+        public int idContador { get; set; }
         public string texto { get; set; }
         public AlternativaCorretaEnum alternativaCorreta { get; set; }
 
@@ -17,6 +16,16 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
         {
             this.texto = texto;
             alternativaCorreta = AlternativaCorretaEnum.Errada;
+        }
+
+        public string Validar()
+        {
+            Validador valida = new();
+
+            if (valida.ValidaString(texto))
+                return $"Você deve escrever uma alternativa!";
+
+            return "";
         }
     }
 }

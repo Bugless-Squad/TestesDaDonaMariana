@@ -39,8 +39,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
             if (valida.ValidaString(titulo))
                 return $"Você deve escrever um título!";
 
-            if (titulo.Length <= 4)
-                return $"O título da matéria deve conter no mínimo 5 caracteres!";
+            if (titulo.Length <= 2)
+                return $"O título da matéria deve conter no mínimo 3 caracteres!";
 
             if (disciplina == null)
                 return $"Você deve selecionar uma disciplina!";

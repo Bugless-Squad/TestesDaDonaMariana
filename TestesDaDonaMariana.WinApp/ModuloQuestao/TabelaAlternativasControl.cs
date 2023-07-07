@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using TestesDaDonaMariana.Dominio.ModuloQuestao;
+﻿using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
@@ -19,6 +18,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         {
             var colunas = new DataGridViewColumn[]
             {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Numero da Alternativa", HeaderText = "Numero da Alternativa"},
+                
                 new DataGridViewTextBoxColumn { DataPropertyName = "Descrição", HeaderText = "Descrição"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = " ", HeaderText = " "}
@@ -38,7 +39,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             foreach (var alternativa in alternativas)
             {
-                gridAlternativas.Rows.Add(alternativa.texto, alternativa.alternativaCorreta);
+                gridAlternativas.Rows.Add(alternativa.id, alternativa.texto, alternativa.alternativaCorreta);
             }
         }
 

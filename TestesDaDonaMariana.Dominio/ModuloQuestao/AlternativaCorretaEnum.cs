@@ -1,4 +1,4 @@
-﻿namespace ControleDeFestasInfantis.Dominio.ModuloAluguel
+﻿namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
     public enum AlternativaCorretaEnum
     {

@@ -8,7 +8,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         private IRepositorioQuestao repositorioQuestao;
         private IRepositorioDisciplina repositorioDisciplina;
         private TabelaQuestaoControl tabelaQuestao;
-        private TabelaAlternativasControl tabelaAlternativasQuestao;
 
         public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioDisciplina repositorioDisciplina)
         {
@@ -28,13 +27,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         public override void Inserir()
         {
-            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            Questao questao = new();
+
+            TelaQuestaoForm tela = new(questao, repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
             DialogResult opcaoEscolhida = tela.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Questao questao = tela.ObterQuestao();
+                questao = tela.ObterQuestao();
 
                 repositorioQuestao.Inserir(questao);
 
@@ -56,7 +57,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 return;
             }
 
-            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaQuestaoForm tela = new(questaoSelecionada, repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
             tela.ConfigurarTela(questaoSelecionada);
 
