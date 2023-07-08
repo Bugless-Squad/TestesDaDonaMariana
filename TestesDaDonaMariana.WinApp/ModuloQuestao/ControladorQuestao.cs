@@ -59,7 +59,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
-            tela.ConfigurarTela(questaoSelecionada);
+            tela.ConfigurarTelaEdicao(questaoSelecionada);
 
             DialogResult opcaoEscolhida = tela.ShowDialog();
 

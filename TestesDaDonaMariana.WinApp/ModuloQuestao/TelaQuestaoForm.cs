@@ -1,18 +1,18 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
     public partial class TelaQuestaoForm : Form
     {
         Questao questao { get; set; }
-        Questao questaoSelecionada { get; set; }
         List<Questao> questoes { get; set; }
-        List<Alternativa> alternativasParaAdicionar { get; set; }
+        Questao questaoSelecionada { get; set; }
         List<Alternativa> alternativasParaRemover { get; set; }
+        List<Alternativa> alternativasParaAdicionar { get; set; }
         TabelaAlternativasControl tabelaAlternativas { get; set; }
+        List<Alternativa> alternativas { get { return alternativasParaAdicionar.Except(alternativasParaRemover).ToList(); } }
 
         public TelaQuestaoForm(List<Questao> questoes, List<Disciplina> disciplinas)
         {
@@ -48,18 +48,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             Alternativa alternativaCorreta = (Alternativa)cmbAlternativas.SelectedItem;
 
-            List<Alternativa> alternativas = (alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            List<Alternativa> alternativas = this.alternativas;
 
             return new(id, disciplina, materia, enunciado, alternativaCorreta, alternativas);
         }
 
-        public void ConfigurarTela(Questao questaoSelecionada)
+        public void ConfigurarTelaEdicao(Questao questaoSelecionada)
         {
             this.questaoSelecionada = questaoSelecionada;
 
             this.alternativasParaAdicionar = questaoSelecionada.alternativas;
 
+            CarregarAlternativas(alternativasParaAdicionar);
+
             btnRemover.Enabled = true;
+
             cmbAlternativas.Enabled = true;
 
             txtId.Text = questaoSelecionada.id.ToString().Trim();
@@ -76,6 +79,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 questao.alternativas = new();
 
             questao = ObterQuestao();
+
+            alternativasParaAdicionar = questao.alternativas;
 
             string status = "";
 
@@ -111,13 +116,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             alternativasParaAdicionar.Add(alternativa);
 
-            tabelaAlternativas.AtualizarRegistros(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            tabelaAlternativas.AtualizarRegistros(this.alternativas);
 
             txtAlternativa.Text = "";
 
             cmbAlternativas.Enabled = true;
 
-            CarregarAlternativas(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            CarregarAlternativas(this.alternativas);
+
+            questao.alternativas = alternativasParaAdicionar;
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
@@ -128,7 +135,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             string status = "";
 
-            if (alternativasParaAdicionar.Except(alternativasParaRemover).Count() == 0)
+            if (this.alternativas.Count() == 0)
                 status = $"Você deve adicionar uma alternativa primeiro!";
 
             if (id == 0)
@@ -138,9 +145,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             alternativasParaRemover.Add(alternativa);
 
-            tabelaAlternativas.AtualizarRegistros(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            tabelaAlternativas.AtualizarRegistros(this.alternativas);
 
-            CarregarAlternativas(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            CarregarAlternativas(this.alternativas);
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -210,9 +217,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         private void cmbAlternativas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (alternativasParaAdicionar.Except(alternativasParaRemover).ToList().Any(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta))
+            if (VerificarSeExisteAlternativaCorreta())
             {
-                foreach (Alternativa a in alternativasParaAdicionar.Except(alternativasParaRemover).ToList())
+                foreach (Alternativa a in this.alternativas)
                 {
                     a.alternativaCorreta = AlternativaCorretaEnum.Errada;
                 }
@@ -220,7 +227,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             ((Alternativa)cmbAlternativas.SelectedItem).alternativaCorreta = AlternativaCorretaEnum.Correta;
 
-            tabelaAlternativas.AtualizarRegistros(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            tabelaAlternativas.AtualizarRegistros(this.alternativas);
+        }
+
+        private bool VerificarSeExisteAlternativaCorreta()
+        {
+            return this.alternativas.Any(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta);
         }
 
         private void txtAlternativa_KeyPress(object sender, KeyPressEventArgs e)

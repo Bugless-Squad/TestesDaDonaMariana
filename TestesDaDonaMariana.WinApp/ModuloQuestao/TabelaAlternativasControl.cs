@@ -7,7 +7,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         public TabelaAlternativasControl()
         {
             InitializeComponent();
-            //ConfigurarGridZebradoAlternativas(gridAlternativas);
             gridAlternativas.ConfigurarGridZebrado();
             gridAlternativas.ConfigurarGridSomenteLeitura();
             gridAlternativas.Columns.AddRange(ObterColunas());
@@ -23,7 +22,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Texto", HeaderText = "Texto"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "_________", HeaderText = "_________"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""}
             };
 
             return colunas;
@@ -42,33 +41,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 gridAlternativas.Rows.Add(alternativa.id, alternativa.texto, alternativa.alternativaCorreta);
             }
-        }
-
-        public static void ConfigurarGridZebradoAlternativas(DataGridView grid)
-        {
-            Font font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-
-            DataGridViewCellStyle linhaEscura = new DataGridViewCellStyle
-            {
-                BackColor = Color.RosyBrown,
-                Font = font,
-                ForeColor = Color.Black,
-                SelectionBackColor = Color.Green,
-                SelectionForeColor = Color.Black
-            };
-
-            grid.AlternatingRowsDefaultCellStyle = linhaEscura;
-
-            DataGridViewCellStyle linhaClara = new DataGridViewCellStyle
-            {
-                BackColor = Color.White,
-                Font = font,
-                ForeColor = Color.Black,
-                SelectionBackColor = Color.Green,
-                SelectionForeColor = Color.Black
-            };
-
-            grid.RowsDefaultCellStyle = linhaClara;
         }
     }
 }
