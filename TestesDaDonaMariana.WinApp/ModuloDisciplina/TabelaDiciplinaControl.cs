@@ -20,7 +20,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade de Matérias", HeaderText = "Quantidade de Matérias"}
 
             };
 
@@ -37,7 +39,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
 
             foreach (var disciplina in disciplinas)
             {
-                grid.Rows.Add(disciplina.id, disciplina.nome);
+                grid.Rows.Add(disciplina.id, disciplina.nome, disciplina.qtdMaterias);
             }
         }
 

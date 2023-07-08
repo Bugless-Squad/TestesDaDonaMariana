@@ -7,6 +7,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
     public class Disciplina : EntidadeBase<Disciplina>
     {
         public string nome { get; set; }
+        public int? qtdMaterias { get { return materias?.Count(); } }
         public List<Materia> materias { get; set; }
 
         public Disciplina()

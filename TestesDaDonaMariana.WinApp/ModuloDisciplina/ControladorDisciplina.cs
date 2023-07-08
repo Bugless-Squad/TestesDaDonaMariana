@@ -8,11 +8,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
     public class ControladorDisciplina : ControladorBase
     {
         IRepositorioDisciplina repositorioDisciplina;
+        IRepositorioMateria repositorioMateria;
         TabelaDisciplinaControl tabelaDisciplina;
 
-        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina)
+        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
         {
             this.repositorioDisciplina = repositorioDisciplina;
+            this.repositorioMateria = repositorioMateria;
         }
 
         public override string ToolTipInserir => "Cadastrar Disciplina";
@@ -80,15 +82,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
                 return;
             }
-            //if (repositorioTeste.SelecionarTodos().Any(x => x.materias.Any(i => i.id == materia.id)))
-            //{
-            //    MessageBox.Show($"Não é possivel remover essa materia possui vinculo com ao menos um teste!",
-            //        "Exclusão de Itens",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Exclamation);
+            if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina == disciplina))
+            {
+                MessageBox.Show($"Não é possivel remover essa disciplina pois ela possuí vinculo com ao menos uma matéria!",
+                    "Exclusão de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-            //    return;
-            //}
+                return;
+            }
 
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o item {disciplina.nome}?",
                 "Exclusão de Disciplina",

@@ -48,14 +48,14 @@ namespace TestesDaDonaMariana.WinApp
 
         private void DisciplinasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorDisciplina(repositorioDisciplina);
+            controlador = new ControladorDisciplina(repositorioDisciplina, repositorioMateria);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void materiasMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina);
+            controlador = new ControladorMateria(repositorioMateria, repositorioDisciplina, repositorioQuestao);
 
             ConfigurarTelaPrincipal(controlador);
         }

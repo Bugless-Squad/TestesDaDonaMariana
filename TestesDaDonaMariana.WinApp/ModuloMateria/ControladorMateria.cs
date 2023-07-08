@@ -1,6 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
-using TestesDaDonaMariana.Dominio.ModuloTeste;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
@@ -8,13 +8,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
     {
         IRepositorioDisciplina repositorioDisciplina;
         IRepositorioMateria repositorioMateria;
-        IRepositorioTeste repositorioTeste;
+        IRepositorioQuestao repositorioQuestao;
         TabelaMateriaControl tabelaMaterias;
 
-        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina, IRepositorioQuestao repositorioQuestao)
         {
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
+            this.repositorioQuestao = repositorioQuestao;
 
         }
         public override string ToolTipInserir => "Cadastrar Matéria";
@@ -90,15 +91,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 return;
             }
-            //if (repositorioTeste.SelecionarTodos().Any(x => x.materias.Any(i => i.id == materia.id)))
-            //{
-            //    MessageBox.Show($"Não é possivel remover essa materia possui vinculo com ao menos um teste!",
-            //        "Exclusão de Itens",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Exclamation);
+            if (repositorioQuestao.SelecionarTodos().Any(x => x.materia == materia))
+            {
+                MessageBox.Show($"Não é possivel remover essa materia pois ela possuí vinculo com ao menos uma questão!",
+                    "Exclusão de Itens",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-            //    return;
-            //}
+                return;
+            }
 
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o item {materia.titulo}?",
                 "Exclusão de Materia",

@@ -35,6 +35,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 Questao questao = tela.ObterQuestao();
 
+                questao.materia.questoes.Add(questao);
+
                 repositorioQuestao.Inserir(questao);
 
                 CarregarQuestoes();
@@ -64,6 +66,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (opcaoEscolhida == DialogResult.OK)
             {
                 Questao questao = tela.ObterQuestao();
+
+                questao.materia.questoes.Remove(questaoSelecionada);
+
+                questao.materia.questoes.Add(questao);
 
                 repositorioQuestao.Editar(questaoSelecionada, questao);
 
