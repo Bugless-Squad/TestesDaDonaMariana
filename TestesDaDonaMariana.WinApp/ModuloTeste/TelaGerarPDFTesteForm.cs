@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
-    public partial class TelaGerarTesteForm : Form
+    public partial class TelaGerarPDFTesteForm : Form
     {
-        public TelaGerarTesteForm()
+        public TelaGerarPDFTesteForm()
         {
             InitializeComponent();
         }

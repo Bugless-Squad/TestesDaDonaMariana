@@ -23,6 +23,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             this.materia = materia;
             this.enunciado = enunciado;
             this.gabarito = gabarito;
+            alternativas = new();
         }
 
         public override void AtualizarInformacoes(Questao registroAtualizado)

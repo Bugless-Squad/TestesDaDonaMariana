@@ -7,7 +7,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         public TabelaAlternativasControl()
         {
             InitializeComponent();
-            ConfigurarGridZebradoAlternativas(gridAlternativas);
+            //ConfigurarGridZebradoAlternativas(gridAlternativas);
+            gridAlternativas.ConfigurarGridZebrado();
             gridAlternativas.ConfigurarGridSomenteLeitura();
             gridAlternativas.Columns.AddRange(ObterColunas());
 
@@ -18,11 +19,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero da Alternativa", HeaderText = "Numero da Alternativa"},
-                
-                new DataGridViewTextBoxColumn { DataPropertyName = "Descrição", HeaderText = "Descrição"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Número da Alternativa", HeaderText = "Número da Alternativa"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = " ", HeaderText = " "}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Texto", HeaderText = "Texto"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "_________", HeaderText = "_________"}
             };
 
             return colunas;
@@ -41,6 +42,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 gridAlternativas.Rows.Add(alternativa.id, alternativa.texto, alternativa.alternativaCorreta);
             }
+
+            TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
         public static void ConfigurarGridZebradoAlternativas(DataGridView grid)

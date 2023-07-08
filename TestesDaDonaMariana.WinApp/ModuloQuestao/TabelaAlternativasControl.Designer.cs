@@ -39,16 +39,19 @@
             gridAlternativas.Location = new Point(0, 0);
             gridAlternativas.Name = "gridAlternativas";
             gridAlternativas.RowTemplate.Height = 25;
-            gridAlternativas.Size = new Size(849, 596);
+            gridAlternativas.Size = new Size(395, 182);
             gridAlternativas.TabIndex = 1;
             // 
             // TabelaAlternativasControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             Controls.Add(gridAlternativas);
+            MaximumSize = new Size(395, 182);
+            MinimumSize = new Size(395, 182);
             Name = "TabelaAlternativasControl";
-            Size = new Size(849, 596);
+            Size = new Size(395, 182);
             ((System.ComponentModel.ISupportInitialize)gridAlternativas).EndInit();
             ResumeLayout(false);
         }

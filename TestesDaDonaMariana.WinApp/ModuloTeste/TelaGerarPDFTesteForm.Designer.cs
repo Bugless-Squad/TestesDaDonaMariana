@@ -1,6 +1,6 @@
 ﻿namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
-    partial class TelaGerarTesteForm
+    partial class TelaGerarPDFTesteForm
     {
         /// <summary>
         /// Required designer variable.

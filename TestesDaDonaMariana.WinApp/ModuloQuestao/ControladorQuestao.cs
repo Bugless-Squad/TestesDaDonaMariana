@@ -27,15 +27,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         public override void Inserir()
         {
-            Questao questao = new();
-
-            TelaQuestaoForm tela = new(questao, repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
             DialogResult opcaoEscolhida = tela.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                questao = tela.ObterQuestao();
+                Questao questao = tela.ObterQuestao();
 
                 repositorioQuestao.Inserir(questao);
 
@@ -57,7 +55,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 return;
             }
 
-            TelaQuestaoForm tela = new(questaoSelecionada, repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
             tela.ConfigurarTela(questaoSelecionada);
 
@@ -122,7 +120,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         public override string ObterTipoCadastro()
         {
-            return "Cadastro de Cliente";
+            return "Cadastro de Questões";
         }
 
         private void CarregarQuestoes()

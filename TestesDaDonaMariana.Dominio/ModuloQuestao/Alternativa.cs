@@ -27,5 +27,10 @@
 
             return "";
         }
+
+        public override string ToString()
+        {
+            return texto;
+        }
     }
 }
