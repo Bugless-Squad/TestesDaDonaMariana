@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj" />
+    <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Json\TestesDaDonaMariana.Infra.Dados.Json.csproj" />
     <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj" />
   </ItemGroup>
 
@@ -20,6 +21,7 @@
     <Compile Update="ModuloMateria\TabelaMateriaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ModuloQuestao\TabelaAlternativasControl.cs" />
     <Compile Update="ModuloQuestao\TabelaQuestaoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

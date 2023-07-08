@@ -1,37 +1,85 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+﻿using Microsoft.Win32;
+using System.Data.SqlClient;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
+using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
-    public class RepositorioDisciplinaSql : IRepositorioDisciplina
+    public class RepositorioDisciplinaSql : RepositorioBaseSql<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
     {
+        private const string enderecoBanco = @"Data Source = (LocalDB)\MSSqlLocalDB;Initial Catalog = FestasInfantis; Integrated Security = True; Pooling=False";
+
+        protected override string sqlInserir => @"INSERT INTO [TBDISCIPLINA] 
+	                                            (
+		                                            [NOME]
+	                                            )
+	                                            VALUES 
+	                                            (
+		                                            @NOME
+	                                            );                 
+
+                                            SELECT SCOPE_IDENTITY();";
+
+        protected override string sqlEditar => @"UPDATE [TBDISCIPLINA] 
+                                                SET
+                                                    [NOME] = @NOME
+                                                WHERE
+                                                    [ID] = @ID";
+
+        protected override string sqlExcluir => @"DELETE FROM [TBDISCIPLINA]
+	                                                WHERE 
+		                                                [ID] = @ID";
+
+        protected override string sqlSelecionarTodos => @"SELECT 
+	                                                    [ID]        DISCIPLINA_ID 
+	                                                   ,[NOME]      DISCIPLINA_NOME
+                                                    FROM 
+	                                                    [TBDISCIPLINA]";
+
+        protected override string sqlSelecionarPorId => @"SELECT 
+	                                                    [ID]        DISCIPLINA_ID 
+	                                                   ,[NOME]      DISCIPLINA_NOME
+                                                    FROM 
+	                                                    [TBDISCIPLINA] 
+                                                    WHERE 
+                                                        [ID] = @ID";
+
         public void Editar(Disciplina registroSelecionado, Disciplina registroAtualizado)
         {
-            throw new NotImplementedException();
-        }
+            //FALTA COISA AQUI
 
-        public void Editar(int id, Disciplina registro)
-        {
-            throw new NotImplementedException();
-        }
+            ////obter a conexão com o banco e abrir ela
+            //SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            //conexaoComBanco.Open();
 
-        public void Excluir(Disciplina registro)
-        {
-            throw new NotImplementedException();
-        }
+            ////cria um comando e relaciona com a conexão aberta
+            //SqlCommand comandoEditar = conexaoComBanco.CreateCommand();
+            //comandoEditar.CommandText = sqlEditar;
 
-        public void Inserir(Disciplina novoRegistro)
-        {
-            throw new NotImplementedException();
+            ////adiciona os parâmetros no comando
+            //ConfigurarParametros(comandoEditar, registro);
+
+            ////executa o comando
+            //comandoEditar.ExecuteNonQuery();
+
+            ////encerra a conexão
+            //conexaoComBanco.Close();
         }
 
         public Disciplina SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            Disciplina disciplina = base.SelecionarPorId(id);
+
+            return disciplina;
         }
 
         public List<Disciplina> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            List<Disciplina> disciplinas = base.SelecionarTodos();
+
+            return disciplinas;
         }
     }
 }
