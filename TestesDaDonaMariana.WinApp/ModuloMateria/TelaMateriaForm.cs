@@ -10,7 +10,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         Materia materiaSelecionada { get; set; }
         private List<Materia> materias { get; set; }
 
-        public TelaMateriaForm(List<Materia> materias, List<Disciplina> disciplinas)
+        public TelaMateriaForm(List<Materia> materias, List<Disciplina> disciplinas, List<OpcoesSeriesEnum> series)
         {
             InitializeComponent();
 
@@ -18,7 +18,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             CarregarDisciplinas(disciplinas);
 
-            CarregarOpcaoSerie();
+            CarregarOpcaoSerie(series);
 
             this.materias = materias;
         }
@@ -32,7 +32,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
 
-            OpcoesSeriesEnum serie = (OpcoesSeriesEnum)cmbSerie.SelectedItem;
+            string serie = (string)cmbSerie.SelectedItem;
 
             return new Materia(id, titulo, disciplina, serie);
         }
@@ -55,16 +55,26 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             }
         }
 
-        private void CarregarOpcaoSerie()
+        private void CarregarOpcaoSerie(List<OpcoesSeriesEnum> series)
         {
-            OpcoesSeriesEnum[] serie = Enum.GetValues<OpcoesSeriesEnum>();
+            cmbSerie.Items.Clear();
 
-            foreach (OpcoesSeriesEnum opcaoSerie in serie)
+            List<string> seriesFormatados = new();
+
+            series.ForEach(s =>
             {
-                cmbSerie.Items.Add(opcaoSerie);
-            }
+                int serie = (int)s;
+                string serieFormatada = $"{serie}º ano";
 
-            cmbSerie.SelectedIndex = 0;
+                if (s >= OpcoesSeriesEnum.Primeira_Serie_EM && s <= OpcoesSeriesEnum.Terceira_Serie_EM)
+                {
+                    serie -= 10;
+                    serieFormatada = $"{serie}º ano Ensino Médio";
+                }
+
+                seriesFormatados.Add(serieFormatada);
+            });
+            seriesFormatados.ForEach(a => cmbSerie.Items.Add(a));
         }
 
         private void btnGravar_Click(object sender, EventArgs e)

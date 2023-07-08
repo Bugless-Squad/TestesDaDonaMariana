@@ -11,11 +11,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         IRepositorioQuestao repositorioQuestao;
         TabelaMateriaControl tabelaMaterias;
 
+        private List<OpcoesSeriesEnum> seriesEnum;
+
         public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina, IRepositorioQuestao repositorioQuestao)
         {
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
             this.repositorioQuestao = repositorioQuestao;
+
+            seriesEnum = new List<OpcoesSeriesEnum>(Enum.GetValues(typeof(OpcoesSeriesEnum)).Cast<OpcoesSeriesEnum>());
 
         }
         public override string ToolTipInserir => "Cadastrar Matéria";
@@ -30,7 +34,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
         public override void Inserir()
         {
-            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), seriesEnum);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -58,7 +62,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
                 return;
             }
 
-            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), seriesEnum);
 
             tela.ConfigurarTela(materiaSelecionada);
 
