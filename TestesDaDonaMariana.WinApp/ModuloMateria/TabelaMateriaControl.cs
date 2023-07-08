@@ -25,7 +25,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Serie", HeaderText = "Serie"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero de Questões Cadastradas", HeaderText = "Numero de Questões Cadastradas"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Qde Questões Cadastradas", HeaderText = "Qde Questões Cadastradas"},
 
             };
 

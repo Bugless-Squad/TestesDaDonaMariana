@@ -16,15 +16,18 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
             comando.Parameters.AddWithValue("@SERIE", registro.serie);
         }
 
-        public override Materia ConverterRegistro(SqlDataReader leitorRegistros)
+        public override Materia ConverterRegistro(SqlDataReader leitor)
         {
-            int id = Convert.ToInt32(leitorRegistros["MATERIA_ID"]);
-            string nome = Convert.ToString(leitorRegistros["MATERIA_NOME"]);
-            int serie = Convert.ToInt32(leitorRegistros["MATERIA_SERIE"]);
+            int id = Convert.ToInt32(leitor["MATERIA_ID"]);
+            string nome = Convert.ToString(leitor["MATERIA_NOME"]);
+            //    int serie = Convert.ToInt32(leitorRegistros["MATERIA_SERIE"]);
 
-            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
+            string serie = leitor["MATERIA_SERIE"].ToString();
+
+            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitor);
 
             return new Materia(id, nome, disciplina, serie);
+            // return new();
         }
 
     }

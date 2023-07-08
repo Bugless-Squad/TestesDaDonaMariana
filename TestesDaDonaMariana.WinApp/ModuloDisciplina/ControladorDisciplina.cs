@@ -7,21 +7,20 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 {
     public class ControladorDisciplina : ControladorBase
     {
+
         IRepositorioDisciplina repositorioDisciplina;
-        IRepositorioMateria repositorioMateria;
         TabelaDisciplinaControl tabelaDisciplina;
 
         public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina)
         {
             this.repositorioDisciplina = repositorioDisciplina;
-            //   this.repositorioMateria = repositorioMateria;
         }
 
-        public override string ToolTipInserir => "Realizar adição de Matéria";
+        public override string ToolTipInserir => "Realizar adição de Diciplina";
 
-        public override string ToolTipEditar => "Editar Matéria Existente";
+        public override string ToolTipEditar => "Editar Diciplina Existente";
 
-        public override string ToolTipExcluir => "Excluir Matéria Existente";
+        public override string ToolTipExcluir => "Excluir Diciplina Existente";
 
         public override string ToolTipHome => "Voltar a tela inicial";
 
@@ -32,13 +31,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         public override void Inserir()
         {
+            TelaDisciplinaForm tela = new(repositorioDisciplina.SelecionarTodos());
 
-            TelaDisciplinaForm telaDisciplina = new TelaDisciplinaForm();
-            DialogResult opcaoEscolhida = telaDisciplina.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
-                Disciplina disciplina = telaDisciplina.ObterDisciplina();
+                Disciplina disciplina = tela.ObterDisciplina();
+
                 repositorioDisciplina.Inserir(disciplina);
 
                 CarregarDisciplinas();
@@ -47,29 +45,36 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         public override void Editar()
         {
-            Disciplina disciplinaSelecionada = ObterDisciplinaSelecionado();
+            Disciplina disciplinaSelecionada = ObterDisciplinaSelecionada();
 
             if (disciplinaSelecionada == null)
             {
-                MessageBox.Show($"Selecione a Disciplina primeiro!",
-                    "Edição da Disciplina",
+                MessageBox.Show($"Selecione uma disciplina primeiro!",
+                    "Edição de Disciplina",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
+
+            TelaDisciplinaForm tela = new(repositorioDisciplina.SelecionarTodos());
+
+            tela.ConfigurarTela(disciplinaSelecionada);
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                Disciplina disciplina = tela.ObterDisciplina();
+
+                repositorioDisciplina.Editar(disciplinaSelecionada, disciplina);
+
+                CarregarDisciplinas();
+            }
         }
 
-        private Disciplina ObterDisciplinaSelecionado()
-        {
-            int id = tabelaDisciplina.ObterNumeroDisciplinaSelecionado();
-
-            return repositorioDisciplina.SelecionarPorId(id);
-        }
-
+     
         public override void Excluir()
         {
-            Disciplina disciplina = ObterDisciplinaSelecionado();
+            Disciplina disciplina = ObterDisciplinaSelecionada();
 
             if (disciplina == null)
             {
@@ -128,6 +133,5 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
             return repositorioDisciplina.SelecionarPorId(id);
         }
-
     }
 }

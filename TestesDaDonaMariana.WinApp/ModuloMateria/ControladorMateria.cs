@@ -11,7 +11,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         IRepositorioTeste repositorioTeste;
         TabelaMateriaControl tabelaMaterias;
 
-        public ControladorMateria(  IRepositorioMateria repositorioMateria)
+        public ControladorMateria(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina)
         {
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
@@ -32,12 +32,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
         public override void Inserir()
         {
-            TelaMateriaForm telaMateria = new TelaMateriaForm();
-            DialogResult opcaoEscolhida = telaMateria.ShowDialog();
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
-            if (opcaoEscolhida == DialogResult.OK)
+
+            if (tela.ShowDialog() == DialogResult.OK)
             {
-                Materia materia = telaMateria.ObterMateria();
+                Materia materia = tela.ObterMateria();
+
                 repositorioMateria.Inserir(materia);
 
                 CarregarMaterias();
@@ -57,6 +58,22 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 return;
             }
+
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+
+
+            tela.ConfigurarTela(materiaSelecionada);
+
+            DialogResult opcaoEscolhida = tela.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Materia cliente = tela.ObterMateria();
+
+                repositorioMateria.Editar(materiaSelecionada, cliente);
+
+                CarregarMaterias();
+            }
         }
 
         public override void Excluir()
@@ -72,16 +89,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 return;
             }
-            //if (repositorioTeste.SelecionarTodos().Any(x => x.materias.Any(i => i.id == materia.id)))
-            //{
-            //    MessageBox.Show($"Não é possivel remover essa materia possui vinculo com ao menos um teste!",
-            //        "Exclusão de Itens",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Exclamation);
-
-            //    return;
-            //}
-
+          
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o item {materia.titulo}?",
                 "Exclusão de Materia",
                 MessageBoxButtons.OKCancel,
@@ -122,6 +130,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             int id = tabelaMaterias.ObterNumeroItemSelecionado();
 
             return repositorioMateria.SelecionarPorId(id);
+        }
+
+        private List<Disciplina> CarregarDisciplinas()
+        {
+            return repositorioDisciplina.SelecionarTodos();
         }
     }
 }

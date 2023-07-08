@@ -35,10 +35,10 @@
             label2 = new Label();
             label1 = new Label();
             panel1 = new Panel();
-            label4 = new Label();
-            label3 = new Label();
-            comboBox1 = new ComboBox();
             groupBox1 = new GroupBox();
+            comboBox1 = new ComboBox();
+            label3 = new Label();
+            label4 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,6 +70,7 @@
             // 
             txtId.Location = new Point(123, 39);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 4;
             // 
@@ -110,15 +111,22 @@
             panel1.Size = new Size(738, 473);
             panel1.TabIndex = 19;
             // 
-            // label4
+            // groupBox1
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            label4.Location = new Point(21, 120);
-            label4.Name = "label4";
-            label4.Size = new Size(85, 20);
-            label4.TabIndex = 3;
-            label4.Text = "Disciplina:";
+            groupBox1.Location = new Point(123, 209);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(564, 185);
+            groupBox1.TabIndex = 17;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Questões";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(123, 160);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(564, 23);
+            comboBox1.TabIndex = 16;
             // 
             // label3
             // 
@@ -130,22 +138,15 @@
             label3.TabIndex = 15;
             label3.Text = "Materia:";
             // 
-            // comboBox1
+            // label4
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(123, 160);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(564, 23);
-            comboBox1.TabIndex = 16;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(123, 209);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(564, 185);
-            groupBox1.TabIndex = 17;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Questões";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            label4.Location = new Point(21, 120);
+            label4.Name = "label4";
+            label4.Size = new Size(85, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Disciplina:";
             // 
             // TelaVisualizacaoTesteForm
             // 

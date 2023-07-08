@@ -86,10 +86,10 @@
             panelRegistros.BorderStyle = BorderStyle.FixedSingle;
             panelRegistros.Controls.Add(pictureBox1);
             panelRegistros.Dock = DockStyle.Fill;
-            panelRegistros.Location = new Point(0, 60);
+            panelRegistros.Location = new Point(0, 50);
             panelRegistros.Margin = new Padding(4);
             panelRegistros.Name = "panelRegistros";
-            panelRegistros.Size = new Size(1188, 579);
+            panelRegistros.Size = new Size(1188, 589);
             panelRegistros.TabIndex = 7;
             // 
             // toolStrip1
@@ -97,7 +97,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, toolStripSeparator4, btnVisualizar, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
             toolStrip1.Location = new Point(0, 25);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1188, 35);
+            toolStrip1.Size = new Size(1188, 25);
             toolStrip1.TabIndex = 6;
             toolStrip1.Text = "toolStrip1";
             // 

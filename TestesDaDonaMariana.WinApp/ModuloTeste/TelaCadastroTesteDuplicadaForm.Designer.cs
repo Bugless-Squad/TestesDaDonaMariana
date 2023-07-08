@@ -116,7 +116,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, toolStripSeparator4, btnVisualizar, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
             toolStrip1.Location = new Point(0, 25);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 35);
+            toolStrip1.Size = new Size(800, 25);
             toolStrip1.TabIndex = 8;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -279,13 +279,13 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 35);
+            toolStripSeparator5.Size = new Size(6, 25);
             toolStripSeparator5.Visible = false;
             // 
             // labelTipoDoCadastro
             // 
             labelTipoDoCadastro.Name = "labelTipoDoCadastro";
-            labelTipoDoCadastro.Size = new Size(76, 32);
+            labelTipoDoCadastro.Size = new Size(76, 22);
             labelTipoDoCadastro.Text = "                       ";
             // 
             // rodape
@@ -387,6 +387,7 @@
             // 
             txtId.Location = new Point(123, 39);
             txtId.Name = "txtId";
+            txtId.ReadOnly = true;
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 4;
             // 

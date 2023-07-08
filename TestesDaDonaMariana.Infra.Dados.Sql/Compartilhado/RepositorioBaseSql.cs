@@ -9,7 +9,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado
     {
         private const string enderecoBanco =
              @"Data Source=(LocalDb)\MSSqlLocalDB;Initial Catalog=TestesDonaMarianaBD;Integrated Security=True;Pooling=False";
-
+         
         protected abstract string sqlInserir { get; }
         protected abstract string sqlEditar { get; }
         protected abstract string sqlExcluir { get; }

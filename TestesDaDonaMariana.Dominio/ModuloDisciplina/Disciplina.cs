@@ -8,7 +8,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
     {
         public string nome { get; set; }
 
-        public List<Materia> Items { get; set; }
+        public List<Materia> materias { get; set; }
         public Disciplina()
         {
             
@@ -38,10 +38,9 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
             return "";
         }
 
-        public void AdicionarItem(Materia item)
+        public override string ToString()
         {
-            if (Items.Contains(item) == false)
-                Items.Add(item);
+            return nome;
         }
     }
 }

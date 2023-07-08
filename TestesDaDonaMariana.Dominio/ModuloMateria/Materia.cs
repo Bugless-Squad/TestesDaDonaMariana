@@ -9,20 +9,22 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
     {
         public string titulo { get; set; }
         public Disciplina disciplina { get; set; }
-        public OpcoesSerieEnum serie { get; set; }
+        //  public OpcoesSeriesEnum serie { get; set; }
 
+        public string serie { get; set; }
         public Questao questao { get; set; }  //qtdCadastrada
         public Materia()
         {
         }
 
-        public Materia( int id, string titulo,Disciplina disciplina, int serie)
+        public Materia(int id, string titulo, Disciplina disciplina, string serie)
         {
             this.id = id;
             this.titulo = titulo;
             this.disciplina = disciplina;
-            this.serie = (OpcoesSerieEnum)serie;
+            this.serie = serie;
         }
+
 
         public override void AtualizarInformacoes(Materia registroAtualizado)
         {

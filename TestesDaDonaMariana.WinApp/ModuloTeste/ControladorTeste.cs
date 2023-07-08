@@ -15,7 +15,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         public override string ToolTipInserir => "Realizar adição de Teste";
 
-       // public override string ToolTipEditar => "Editar Matéria Existente";
+        public override string ToolTipEditar => "Editar Matéria Existente";
        // public override string ToolTipDuplicar => "Duplicar Teste Existente";
 
         public override string ToolTipExcluir => "Excluir Matéria Existente";
@@ -24,7 +24,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         public override bool HomeHabilitado => true;
         public override bool InserirHabilitado => true;
-     //   public override bool EditarHabilitado => true;
+        public override bool EditarHabilitado => true;
         public override bool ExcluirHabilitado => true;
 
         public override void Inserir()

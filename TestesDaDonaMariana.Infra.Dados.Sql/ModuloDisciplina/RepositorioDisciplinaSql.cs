@@ -9,8 +9,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
     public class RepositorioDisciplinaSql : RepositorioBaseSql<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
     {
-        private const string enderecoBanco = @"Data Source = (LocalDB)\MSSqlLocalDB;Initial Catalog = FestasInfantis; Integrated Security = True; Pooling=False";
-
         protected override string sqlInserir => @"INSERT INTO [TBDISCIPLINA] 
 	                                            (
 		                                            [NOME]
@@ -48,24 +46,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 
         public void Editar(Disciplina registroSelecionado, Disciplina registroAtualizado)
         {
-            //FALTA COISA AQUI
-
-            ////obter a conexão com o banco e abrir ela
-            //SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            //conexaoComBanco.Open();
-
-            ////cria um comando e relaciona com a conexão aberta
-            //SqlCommand comandoEditar = conexaoComBanco.CreateCommand();
-            //comandoEditar.CommandText = sqlEditar;
-
-            ////adiciona os parâmetros no comando
-            //ConfigurarParametros(comandoEditar, registro);
-
-            ////executa o comando
-            //comandoEditar.ExecuteNonQuery();
-
-            ////encerra a conexão
-            //conexaoComBanco.Close();
+            throw new NotImplementedException();
         }
 
         public Disciplina SelecionarPorId(int id)

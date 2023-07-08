@@ -1,4 +1,5 @@
 ﻿using TestesDaDonaMariana.Dominio.Compartilhado;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.Dominio.ModuloTeste
@@ -8,10 +9,12 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
         public string titulo { get; set; }
         public int numQuestoes { get; set; }
         public Materia materia { get; set; }
+        public Disciplina disciplina { get; set; }
         public DateTime dataCriacao { get; set; }
-        public Teste()
+        public Teste(int id, string titulo)
         {
-            
+            this.id = id;
+            titulo = titulo;
         }
         public Teste(int id, Materia materia, int numQuestoes, DateTime datacriacao)
         {

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 
@@ -15,13 +7,19 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
     public partial class TelaMateriaForm : Form
     {
         private Materia materia { get; set; }
+        private Materia materiaSelecionada { get; set; }
+        private List<Materia> materias { get; set; }
 
-        public TelaMateriaForm()
+        public TelaMateriaForm(List<Materia> materias, List<Disciplina> disciplinas)
         {
             InitializeComponent();
             this.ConfigurarDialog();
 
+            ObterDisciplina(disciplinas);
+
             carregarOpcaoSerie();
+
+           this.materias = materias;
         }
 
 
@@ -30,36 +28,67 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             int id = Convert.ToInt32(txtId.Text);
             string titulo = txtTitulo.Text;
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
-            int serie = (int)cmbSerie.SelectedItem;
+
+            string serie = (string)cmbSerie.SelectedItem;
 
             return new Materia(id, titulo, disciplina, serie);
         }
+
+        public void ConfigurarTela(Materia materiaSelecionada)
+        {
+            txtId.Text = materiaSelecionada.id.ToString();
+            txtTitulo.Text = materiaSelecionada.titulo;
+            cmbDisciplina.SelectedItem = materiaSelecionada.disciplina;
+            cmbSerie.SelectedItem = materiaSelecionada.serie;
+
+            this.materiaSelecionada = materiaSelecionada;
+        }
+
+        //private void CarregarDisciplinas(List<Disciplina> disciplinas)
+        //{
+        //    foreach (Disciplina disciplina in disciplinas)
+        //    {
+        //        cmbDisciplina.Items.Add(disciplina);
+        //    }
+        //}
+
         private void carregarOpcaoSerie()
         {
-            OpcoesSerieEnum[] serie = Enum.GetValues<OpcoesSerieEnum>();
+            OpcoesSeriesEnum[] serie = Enum.GetValues<OpcoesSeriesEnum>();
 
-            foreach (OpcoesSerieEnum opcaoSerie in serie)
+            foreach (OpcoesSeriesEnum opcaoSerie in serie)
             {
                 cmbSerie.Items.Add(opcaoSerie);
             }
             cmbSerie.SelectedIndex = 0;
+        }
 
+        public void ObterDisciplina(List<Disciplina> disciplinas) 
+        {
+            foreach (Disciplina disciplina in disciplinas)
+            {
+                cmbDisciplina.Items.Add(disciplina);
+            }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            materia = ObterMateria();
             string status = "";
 
-            //if (materia.Where(i => materia.id != MateriaSelecionado?.id).Any(x => x.titulo == materia.titulo))
-            //    status = "Já existe uma materia cadastrada com esse nome!";
-            //else
-            //    status = materia.Validar();
+            materia = ObterMateria();
+
+            if (materias.Where(i => materia.id != materiaSelecionada?.id).Any(x => x.titulo == materia.titulo))
+                status = "Já existe uma materia cadastrada com esse nome!";
+            else
+                status = materia.Validar();
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
 
             if (status != "")
+            {
                 DialogResult = DialogResult.None;
+                return;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
