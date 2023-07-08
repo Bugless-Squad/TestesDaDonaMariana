@@ -42,8 +42,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 gridAlternativas.Rows.Add(alternativa.id, alternativa.texto, alternativa.alternativaCorreta);
             }
-
-            TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
         public static void ConfigurarGridZebradoAlternativas(DataGridView grid)

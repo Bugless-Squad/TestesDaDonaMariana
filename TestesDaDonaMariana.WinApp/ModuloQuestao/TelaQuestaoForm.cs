@@ -46,27 +46,36 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             string enunciado = txtEnunciado.Text.Trim();
 
-            string gabarito = "";
+            Alternativa alternativaCorreta = (Alternativa)cmbAlternativas.SelectedItem;
 
-            return new(id, disciplina, materia, enunciado, gabarito);
+            List<Alternativa> alternativas = (alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+
+            return new(id, disciplina, materia, enunciado, alternativaCorreta, alternativas);
         }
 
         public void ConfigurarTela(Questao questaoSelecionada)
         {
             this.questaoSelecionada = questaoSelecionada;
 
+            this.alternativasParaAdicionar = questaoSelecionada.alternativas;
+
+            btnRemover.Enabled = true;
+            cmbAlternativas.Enabled = true;
+
             txtId.Text = questaoSelecionada.id.ToString().Trim();
             cmbDisciplina.SelectedItem = questaoSelecionada.disciplina;
             cmbMaterias.SelectedItem = questaoSelecionada.materia;
             txtEnunciado.Text = questaoSelecionada.enunciado.ToString().Trim();
-
             tabelaAlternativas.AtualizarRegistros(questaoSelecionada.alternativas);
+            cmbAlternativas.SelectedItem = questaoSelecionada.alternativaCorreta;
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            if (questao.alternativas == null)
+            if (questao.alternativas == null && questaoSelecionada.alternativas == null)
                 questao.alternativas = new();
+
+            questao = ObterQuestao();
 
             string status = "";
 
@@ -74,9 +83,16 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             Alternativa alternativa = new(texto);
 
+            status = questao.ValidarParaAdicionar();
+
+            TelaPrincipalForm.Tela.AtualizarRodape(status);
+
+            if (status != "")
+                return;
+
             status = alternativa.Validar();
 
-            if (alternativasParaAdicionar.Contains(alternativa))
+            if (alternativasParaAdicionar.Any(x => x.texto == texto))
                 status = $"Você não pode adicionar a mesma alternativa mais de uma vez!";
 
             if (alternativasParaAdicionar.Count >= 5)
@@ -95,9 +111,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             alternativasParaAdicionar.Add(alternativa);
 
-            tabelaAlternativas.AtualizarRegistros(alternativasParaAdicionar);
+            tabelaAlternativas.AtualizarRegistros(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
 
             txtAlternativa.Text = "";
+
+            cmbAlternativas.Enabled = true;
 
             CarregarAlternativas(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
         }
@@ -108,12 +126,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             Alternativa alternativa = alternativasParaAdicionar.FirstOrDefault(x => x.id == id);
 
-            if (alternativasParaAdicionar.Except(alternativasParaRemover).Count() == 0)
-            {
-                TelaPrincipalForm.Tela.AtualizarRodape($"Você deve adicionar uma alternativa primeiro!");
+            string status = "";
 
-                return;
-            }
+            if (alternativasParaAdicionar.Except(alternativasParaRemover).Count() == 0)
+                status = $"Você deve adicionar uma alternativa primeiro!";
+
+            if (id == 0)
+                status = $"Você deve selecionar uma alternativa primeiro!";
+
+            TelaPrincipalForm.Tela.AtualizarRodape(status);
 
             alternativasParaRemover.Add(alternativa);
 
@@ -122,31 +143,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             CarregarAlternativas(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
         }
 
-        private void btnSelecionarAlternativaCorreta_Click(object sender, EventArgs e)
-        {
-            int id = tabelaAlternativas.ObterNumeroItemSelecionado();
-
-            Alternativa alternativa = questao.alternativas.FirstOrDefault(x => x.id == id);
-
-            alternativasParaAdicionar.Find(x => x.id == alternativa.id);
-
-            if (id == 0)
-            {
-                TelaPrincipalForm.Tela.AtualizarRodape($"Você deve selecionar uma alternativa para torna-lá correta!");
-                DialogResult = DialogResult.None;
-                return;
-            }
-
-            alternativa.alternativaCorreta = AlternativaCorretaEnum.Correta;
-        }
-
         private void btnGravar_Click(object sender, EventArgs e)
         {
             questao = ObterQuestao();
-
-            questao.AdicionarAlternativas(alternativasParaAdicionar);
-
-            questao.RemoverAlternativas(alternativasParaRemover);
 
             string status = "";
 
@@ -155,8 +154,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             else
                 status = questao.Validar();
 
-            if (questao.alternativas.Count < 2)
-                status = $"Você deve adicionar no mínimo 2 alternativas por questão!";
+            if (questao.alternativas.All(x => x.alternativaCorreta == AlternativaCorretaEnum.Errada))
+                status = $"Voce deve selecionar uma alternativa como correta!";
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
 
@@ -211,9 +210,17 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         private void cmbAlternativas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (alternativasParaAdicionar.Except(alternativasParaRemover).ToList().Any(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta))
+            {
+                foreach (Alternativa a in alternativasParaAdicionar.Except(alternativasParaRemover).ToList())
+                {
+                    a.alternativaCorreta = AlternativaCorretaEnum.Errada;
+                }
+            }
+
             ((Alternativa)cmbAlternativas.SelectedItem).alternativaCorreta = AlternativaCorretaEnum.Correta;
 
-            CarregarAlternativas(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
+            tabelaAlternativas.AtualizarRegistros(alternativasParaAdicionar.Except(alternativasParaRemover).ToList());
         }
 
         private void txtAlternativa_KeyPress(object sender, KeyPressEventArgs e)

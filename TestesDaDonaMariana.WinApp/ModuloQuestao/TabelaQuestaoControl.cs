@@ -41,7 +41,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             foreach (var cliente in clientes)
             {
                 grid.Rows.Add(cliente.id, cliente.materia,
-                    cliente.enunciado.Substring(0, 15));
+                    cliente.enunciado.Substring(0, 14));
             }
         }
     }

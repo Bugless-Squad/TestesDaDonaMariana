@@ -1,36 +1,38 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
     public class Questao : EntidadeBase<Questao>
     {
-        public List<Alternativa> alternativas { get; set; } 
+        public List<Alternativa> alternativas { get; set; } = new();
+        public Alternativa alternativaCorreta { get; set; }
         public Disciplina disciplina { get; set; }    
         public Materia materia { get; set; }
         public string enunciado { get; set; }    
-        public string gabarito { get; set; }
 
         public Questao()
         {
 
         }
 
-        public Questao(int id, Disciplina disciplina, Materia materia, string enunciado, string gabarito)
+        public Questao(int id, Disciplina disciplina, Materia materia, string enunciado, Alternativa alternativaCorreta, List<Alternativa> alternativas)
         {
             this.id = id;
             this.disciplina = disciplina;
             this.materia = materia;
             this.enunciado = enunciado;
-            this.gabarito = gabarito;
-            alternativas = new();
+            this.alternativaCorreta = alternativaCorreta;
+            this.alternativas = alternativas;
         }
 
         public override void AtualizarInformacoes(Questao registroAtualizado)
         {
+            disciplina = registroAtualizado.disciplina;
             materia = registroAtualizado.materia;
             enunciado = registroAtualizado.enunciado;
-            gabarito = registroAtualizado.gabarito;
+            alternativaCorreta = registroAtualizado.alternativaCorreta;
             alternativas = registroAtualizado.alternativas;
         }
 
@@ -53,6 +55,24 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             }
 
         }
+        public string ValidarParaAdicionar()
+        {
+            Validador valida = new();
+
+            if (disciplina == null)
+                return $"Você deve selecionar uma disciplina!";
+
+            if (materia == null)
+                return $"Você deve selecionar uma matéria!";
+
+            if (valida.ValidaString(enunciado))
+                return $"Você deve escrever um enunciado para sua questão!";
+
+            if (enunciado.Length < 14)
+                return $"O enunciado deve conter ao menos 15 caracteres!";
+
+            return "";
+        }
 
         public override string Validar()
         {
@@ -71,7 +91,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
                 return $"O enunciado deve conter ao menos 15 caracteres!";
 
             if (alternativas.Count() < 2)
-                return $"Você deve adicionar ao menos duas alternativas!";
+                return $"Você deve adicionar no mínimo 2 alternativas por questão!";
 
             return "";
         }
