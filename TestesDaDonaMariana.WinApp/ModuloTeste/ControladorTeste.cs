@@ -25,12 +25,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         public override void Inserir()
         {
-            TelaCadastroTesteForm telaTeste = new();
+            TelaTesteForm telaTeste = new();
 
             if (telaTeste.ShowDialog() == DialogResult.OK)
             {
-                Teste teste = telaTeste.ObterTeste();
-                repositorioTeste.Inserir(teste);
+                //Teste teste = telaTeste.ObterTeste();
+                //repositorioTeste.Inserir(teste);
 
                 CarregarTeste();
             }
