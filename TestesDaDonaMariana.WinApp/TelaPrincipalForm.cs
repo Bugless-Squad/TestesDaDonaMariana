@@ -18,13 +18,17 @@ namespace TestesDaDonaMariana.WinApp
     {
         private ControladorBase controlador;
 
-        static ContextoDeDados contextoDeDados = new(carregarDados: true);
+        //static ContextoDeDados contextoDeDados = new(carregarDados: true);
 
-        private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaJson(contextoDeDados);
-        private IRepositorioMateria repositorioMateria = new RepositorioMateriaJson(contextoDeDados);
-        private IRepositorioQuestao repositorioQuestao = new RepositorioQuestaoJson(contextoDeDados);
-        private IRepositorioTeste repositorioTeste = new RepositorioTesteJson(contextoDeDados);
+        //private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaJson(contextoDeDados);
+        //private IRepositorioMateria repositorioMateria = new RepositorioMateriaJson(contextoDeDados);
+        //private IRepositorioQuestao repositorioQuestao = new RepositorioQuestaoJson(contextoDeDados);
+        //private IRepositorioTeste repositorioTeste = new RepositorioTesteJson(contextoDeDados);
 
+        private IRepositorioDisciplina repositorioDisciplina = new RepositorioDisciplinaSql();
+        private IRepositorioMateria repositorioMateria = new RepositorioMateriaSql();
+        private IRepositorioQuestao repositorioQuestao = new RepositorioQuestaoSql();
+        private IRepositorioTeste repositorioTeste = new RepositorioTesteSql();
 
         public TelaPrincipalForm()
         {

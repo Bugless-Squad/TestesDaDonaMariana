@@ -8,7 +8,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
     {
         public string titulo { get; set; }
         public Disciplina disciplina { get; set; }
-        public OpcoesSeriesEnum serie { get; set; }
+        public string serie { get; set; }
         public List<Questao> questoes { get; set; }  
         public int? qtdQuestoesMateria { get { return questoes?.Count(); } }
 
@@ -17,7 +17,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
 
         }
 
-        public Materia( int id, string titulo, Disciplina disciplina, OpcoesSeriesEnum serie)
+        public Materia( int id, string titulo, Disciplina disciplina, string serie)
         {
             this.id = id;
             this.titulo = titulo;
@@ -45,7 +45,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
             if (disciplina == null)
                 return $"Você deve selecionar uma disciplina!";
 
-            if (serie == OpcoesSeriesEnum.Nenhuma)
+            if (serie == null)
                 return $"Você deve selecionar uma série!";
 
             return "";
