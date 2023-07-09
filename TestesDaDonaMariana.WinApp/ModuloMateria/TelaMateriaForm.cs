@@ -74,7 +74,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             materia = ObterMateria();
 
             if (materias.Where(i => materia.id != materiaSelecionada?.id).Any(x => x.titulo == materia.titulo))
-                status = "Já existe uma materia cadastrada com esse nome!";
+                status = "Já existe uma materias cadastrada com esse nome!";
             else
                 status = materia.Validar();
 

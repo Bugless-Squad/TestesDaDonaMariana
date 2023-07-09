@@ -1,16 +1,19 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
     public class ControladorQuestao : ControladorBase
     {
+        private IRepositorioTeste repositorioTeste;
         private IRepositorioQuestao repositorioQuestao;
         private IRepositorioDisciplina repositorioDisciplina;
         private TabelaQuestaoControl tabelaQuestao;
 
-        public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioDisciplina repositorioDisciplina)
+        public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioDisciplina repositorioDisciplina, IRepositorioTeste repositorioTeste)
         {
+            this.repositorioTeste = repositorioTeste;
             this.repositorioQuestao = repositorioQuestao;
             this.repositorioDisciplina = repositorioDisciplina;
         }
@@ -38,6 +41,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 repositorioQuestao.Inserir(questao);
 
                 CarregarQuestoes();
+            }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
             }
         }
 
@@ -71,6 +78,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 CarregarQuestoes();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Excluir()
@@ -86,15 +97,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 return;
             }
-            //if (repositorioQuestao.SelecionarTodos().Any(x => x. == questoes))
-            //{
-            //    MessageBox.Show($"Não é possivel remover esse questao pois ele possuí vinculo com ao menos um Aluguel!",
-            //        "Exclusão de clientes",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Exclamation);
+            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
+            {
+                MessageBox.Show($"Não é possivel excluír essa questão pois ela possuí vinculo com ao menos um teste!",
+                    "Exclusão de Questões",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-            //    return;
-            //}
+                return;
+            }
 
             DialogResult opcaoEscolhida = MessageBox.Show(
                 $"Deseja excluir o questao {questaoSelecionada.id}?", 

@@ -11,6 +11,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             grid.ConfigurarGridZebrado();
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
+
+            TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
         private DataGridViewColumn[] ObterColunas()

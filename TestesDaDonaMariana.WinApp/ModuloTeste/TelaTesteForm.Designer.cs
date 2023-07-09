@@ -196,9 +196,9 @@
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(26, 160);
             label3.Name = "label3";
-            label3.Size = new Size(188, 21);
+            label3.Size = new Size(184, 21);
             label3.TabIndex = 95;
-            label3.Text = "Quantidade  de Questões:";
+            label3.Text = "Quantidade de Questões:";
             // 
             // label5
             // 

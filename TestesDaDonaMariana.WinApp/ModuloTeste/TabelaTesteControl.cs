@@ -1,5 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
@@ -12,6 +13,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             grid.ConfigurarGridZebrado();
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
+
+            TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
         private DataGridViewColumn[] ObterColunas()
@@ -44,7 +47,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             foreach (Teste teste in testes)
             {
-                grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, teste.materia, teste.numQuestoes);
+                string materia = "";
+
+                if (teste.materias.Count > 1)
+                    materia = "Todas";
+                else
+                    materia = teste.materias.FirstOrDefault(x => x.id == 1).titulo;
+
+                grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, materia, teste.numQuestoes);
             }
         }
     }

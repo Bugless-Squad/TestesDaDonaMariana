@@ -39,6 +39,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
                 CarregarDisciplinas();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Editar()
@@ -66,6 +70,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 repositorioDisciplina.Editar(disciplinaSelecionada, disciplina);
 
                 CarregarDisciplinas();
+            }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
             }
         }
 

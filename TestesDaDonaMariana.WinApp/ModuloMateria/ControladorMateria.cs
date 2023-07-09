@@ -42,6 +42,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 CarregarMaterias();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Editar()
@@ -76,6 +80,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 CarregarMaterias();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Excluir()
@@ -93,7 +101,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             }
             if (repositorioQuestao.SelecionarTodos().Any(x => x.materia == materia))
             {
-                MessageBox.Show($"Não é possivel remover essa materia pois ela possuí vinculo com ao menos uma questão!",
+                MessageBox.Show($"Não é possivel remover essa materias pois ela possuí vinculo com ao menos uma questão!",
                     "Exclusão de Itens",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);

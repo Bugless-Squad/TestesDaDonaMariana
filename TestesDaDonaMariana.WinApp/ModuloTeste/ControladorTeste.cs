@@ -41,6 +41,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
                 CarregarTeste();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Editar()
@@ -67,6 +71,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 repositorioTeste.Editar(testeSelecionado, teste);
 
                 CarregarTeste();
+            }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
             }
         }
 

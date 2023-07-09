@@ -40,11 +40,17 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
 
-            Materia materia = (Materia)cmbMaterias.SelectedItem;
+            List<Materia> materias = new();
+
+            if (cmbMaterias.SelectedItem == "Todas")
+                materias = disciplina.materias;
+
+            if (cmbMaterias.SelectedItem != null)
+                materias.Add((Materia)cmbMaterias.SelectedItem);
 
             int numeroDeQuestoes = Convert.ToInt32(numQuestoes.Value);
 
-            return new(id, titulo, disciplina, materia, numeroDeQuestoes);
+            return new(id, titulo, disciplina, materias, numeroDeQuestoes);
         }
 
         public void ConfigurarTelaDuplicacao(Teste testeSelecionado)
@@ -54,12 +60,30 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             txtId.Text = testeSelecionado.id.ToString().Trim();
             txtTitulo.Text = testeSelecionado.titulo.ToString().Trim();
             cmbDisciplina.SelectedItem = testeSelecionado.disciplina;
-            cmbMaterias.SelectedItem = testeSelecionado.materia;
+            cmbMaterias.SelectedItem = testeSelecionado.materias;
             numQuestoes.Value = Convert.ToDecimal(testeSelecionado.numQuestoes);
         }
 
         private void btnGerarTeste_Click(object sender, EventArgs e)
         {
+            teste = ObterTeste();
+
+            string status = "";
+
+            if (testes.Where(i => teste.id != testeSelecionado?.id).Any(x => x.titulo == teste.titulo))
+                status = $"Já existe um teste cadastrado com esse título!";
+            else
+                status = teste.Validar();
+
+            TelaPrincipalForm.Tela.AtualizarRodape(status);
+
+            if (status != "")
+                return;
+
+            foreach (Materia materia in teste.materias)
+            {
+                
+            }
 
         }
 
@@ -103,7 +127,17 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             {
                 cmbMaterias.Items.Add(materia);
             }
+
+            cmbMaterias.Items.Add("Todas");
         }
+
+        //private void CarregarQuestoes(List<Questao> questoes)
+        //{
+        //    foreach (Questao questao in materias)
+        //    {
+        //        cmbMaterias.Items.Add(materias);
+        //    }
+        //}
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
