@@ -29,9 +29,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         {
             TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
-            DialogResult opcaoEscolhida = tela.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 Questao questao = tela.ObterQuestao();
 
@@ -61,9 +59,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             tela.ConfigurarTelaEdicao(questaoSelecionada);
 
-            DialogResult opcaoEscolhida = tela.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 Questao questao = tela.ObterQuestao();
 
@@ -114,6 +110,20 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             }
         }
 
+        private void CarregarQuestoes()
+        {
+            List<Questao> questoes = repositorioQuestao.SelecionarTodos();
+
+            tabelaQuestao.AtualizarRegistros(questoes);
+        }
+
+        private Questao ObterQuestãoSelecionada()
+        {
+            int id = tabelaQuestao.ObterNumeroClienteSelecionado();
+
+            return repositorioQuestao.SelecionarPorId(id);
+        }
+
         public override UserControl ObterListagem()
         {
             if (tabelaQuestao == null)
@@ -127,20 +137,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Questões";
-        }
-
-        private void CarregarQuestoes()
-        {
-            List<Questao> questoes = repositorioQuestao.SelecionarTodos();
-
-            tabelaQuestao.AtualizarRegistros(questoes);
-        }
-
-        private Questao ObterQuestãoSelecionada()
-        {
-            int id = tabelaQuestao.ObterNumeroClienteSelecionado();
-
-            return repositorioQuestao.SelecionarPorId(id);
         }
     }
 }

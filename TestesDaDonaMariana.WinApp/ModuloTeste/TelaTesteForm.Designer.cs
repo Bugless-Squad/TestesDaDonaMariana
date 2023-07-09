@@ -40,19 +40,19 @@
             btnCancelar = new Button();
             btnGravar = new Button();
             btnGerarTeste = new Button();
-            numericUpDown1 = new NumericUpDown();
+            numQuestoes = new NumericUpDown();
             label3 = new Label();
             label5 = new Label();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numQuestoes).BeginInit();
             SuspendLayout();
             // 
             // txtId
             // 
             txtId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtId.Location = new Point(175, 22);
+            txtId.Location = new Point(220, 22);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
-            txtId.Size = new Size(194, 29);
+            txtId.Size = new Size(219, 29);
             txtId.TabIndex = 76;
             txtId.Text = "0";
             // 
@@ -60,7 +60,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(143, 25);
+            label8.Location = new Point(188, 25);
             label8.Name = "label8";
             label8.Size = new Size(26, 21);
             label8.TabIndex = 75;
@@ -69,7 +69,7 @@
             // txtTitulo
             // 
             txtTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTitulo.Location = new Point(175, 57);
+            txtTitulo.Location = new Point(220, 57);
             txtTitulo.Name = "txtTitulo";
             txtTitulo.Size = new Size(467, 29);
             txtTitulo.TabIndex = 78;
@@ -78,7 +78,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(117, 57);
+            label2.Location = new Point(162, 57);
             label2.Name = "label2";
             label2.Size = new Size(52, 21);
             label2.TabIndex = 77;
@@ -89,16 +89,17 @@
             cmbDisciplina.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDisciplina.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbDisciplina.FormattingEnabled = true;
-            cmbDisciplina.Location = new Point(175, 92);
+            cmbDisciplina.Location = new Point(220, 92);
             cmbDisciplina.Name = "cmbDisciplina";
             cmbDisciplina.Size = new Size(467, 29);
             cmbDisciplina.TabIndex = 87;
+            cmbDisciplina.SelectedIndexChanged += cmbDisciplina_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(89, 92);
+            label1.Location = new Point(134, 92);
             label1.Name = "label1";
             label1.Size = new Size(80, 21);
             label1.TabIndex = 86;
@@ -110,7 +111,7 @@
             cmbMaterias.Enabled = false;
             cmbMaterias.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbMaterias.FormattingEnabled = true;
-            cmbMaterias.Location = new Point(175, 126);
+            cmbMaterias.Location = new Point(220, 126);
             cmbMaterias.Name = "cmbMaterias";
             cmbMaterias.Size = new Size(467, 29);
             cmbMaterias.TabIndex = 89;
@@ -119,7 +120,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(103, 126);
+            label7.Location = new Point(148, 126);
             label7.Name = "label7";
             label7.Size = new Size(66, 21);
             label7.TabIndex = 88;
@@ -128,9 +129,11 @@
             // panelAlternativas
             // 
             panelAlternativas.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            panelAlternativas.Location = new Point(175, 195);
+            panelAlternativas.Location = new Point(220, 195);
+            panelAlternativas.MaximumSize = new Size(467, 344);
+            panelAlternativas.MinimumSize = new Size(467, 344);
             panelAlternativas.Name = "panelAlternativas";
-            panelAlternativas.Size = new Size(467, 309);
+            panelAlternativas.Size = new Size(467, 344);
             panelAlternativas.TabIndex = 90;
             // 
             // btnCancelar
@@ -139,10 +142,10 @@
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnCancelar.ImageAlign = ContentAlignment.BottomRight;
-            btnCancelar.Location = new Point(548, 577);
+            btnCancelar.Location = new Point(584, 546);
             btnCancelar.Margin = new Padding(4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 40);
+            btnCancelar.Size = new Size(103, 40);
             btnCancelar.TabIndex = 92;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextImageRelation = TextImageRelation.TextAboveImage;
@@ -154,50 +157,54 @@
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnGravar.ImageAlign = ContentAlignment.BottomRight;
-            btnGravar.Location = new Point(448, 577);
+            btnGravar.Location = new Point(468, 546);
             btnGravar.Margin = new Padding(4);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(94, 40);
+            btnGravar.Size = new Size(103, 40);
             btnGravar.TabIndex = 91;
             btnGravar.Text = "Gravar";
             btnGravar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
             // btnGerarTeste
             // 
             btnGerarTeste.Enabled = false;
             btnGerarTeste.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnGerarTeste.Location = new Point(448, 510);
+            btnGerarTeste.Location = new Point(468, 160);
             btnGerarTeste.Name = "btnGerarTeste";
-            btnGerarTeste.Size = new Size(194, 40);
+            btnGerarTeste.Size = new Size(219, 29);
             btnGerarTeste.TabIndex = 93;
             btnGerarTeste.Text = "Gerar Teste";
             btnGerarTeste.UseVisualStyleBackColor = true;
+            btnGerarTeste.Click += btnGerarTeste_Click;
             // 
-            // numericUpDown1
+            // numQuestoes
             // 
-            numericUpDown1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(175, 160);
-            numericUpDown1.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(194, 29);
-            numericUpDown1.TabIndex = 94;
+            numQuestoes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            numQuestoes.Location = new Point(220, 160);
+            numQuestoes.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
+            numQuestoes.Name = "numQuestoes";
+            numQuestoes.ReadOnly = true;
+            numQuestoes.Size = new Size(219, 29);
+            numQuestoes.TabIndex = 94;
+            numQuestoes.ValueChanged += numQuestoes_ValueChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(8, 160);
+            label3.Location = new Point(26, 160);
             label3.Name = "label3";
-            label3.Size = new Size(161, 21);
+            label3.Size = new Size(188, 21);
             label3.TabIndex = 95;
-            label3.Text = "Número de Questões:";
+            label3.Text = "Quantidade  de Questões:";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(30, 195);
+            label5.Location = new Point(75, 195);
             label5.Name = "label5";
             label5.Size = new Size(139, 21);
             label5.TabIndex = 96;
@@ -207,11 +214,11 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(676, 644);
-            Controls.Add(label5);
-            Controls.Add(numericUpDown1);
-            Controls.Add(label3);
+            ClientSize = new Size(721, 616);
             Controls.Add(btnGerarTeste);
+            Controls.Add(label5);
+            Controls.Add(numQuestoes);
+            Controls.Add(label3);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(panelAlternativas);
@@ -227,7 +234,7 @@
             Margin = new Padding(4);
             Name = "TelaTesteForm";
             Text = "TelaTesteForm";
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numQuestoes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,7 +253,7 @@
         private Button btnCancelar;
         private Button btnGravar;
         private Button btnGerarTeste;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown numQuestoes;
         private Label label3;
         private Label label5;
     }

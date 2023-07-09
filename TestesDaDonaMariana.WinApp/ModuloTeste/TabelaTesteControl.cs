@@ -20,14 +20,20 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Enunciado", HeaderText = "Enunciado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Título", HeaderText = "Título"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Matéria", HeaderText = "Matéria"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade de Questões", HeaderText = "Quantidade de Questões"},
 
             };
 
             return colunas;
         }
 
-        public int ObterNumeroItemSelecionado()
+        public int ObterNumeroTesteSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
@@ -36,9 +42,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         {
             grid.Rows.Clear();
 
-            foreach (var teste in testes)
+            foreach (Teste teste in testes)
             {
-                grid.Rows.Add();
+                grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, teste.materia, teste.numQuestoes);
             }
         }
     }

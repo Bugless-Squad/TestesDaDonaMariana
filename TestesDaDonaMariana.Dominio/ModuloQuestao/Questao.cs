@@ -1,6 +1,5 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
@@ -87,7 +86,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             if (valida.ValidaString(enunciado))
                 return $"Você deve escrever um enunciado para sua questão!";
 
-            if (enunciado.Length < 14)
+            if (enunciado.Length <= 14)
                 return $"O enunciado deve conter ao menos 15 caracteres!";
 
             if (alternativas.Count() < 2)

@@ -1,6 +1,6 @@
-﻿namespace TestesDaDonaMariana.WinApp.ModuloQuestao
+﻿namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
-    partial class TabelaAlternativasControl
+    partial class TabelaQuestoesTesteControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gridAlternativas = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)gridAlternativas).BeginInit();
+            gridQuestoesTeste = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridQuestoesTeste).BeginInit();
             SuspendLayout();
             // 
             // gridQuestoesTeste
             // 
-            gridAlternativas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridAlternativas.Dock = DockStyle.Fill;
-            gridAlternativas.Location = new Point(0, 0);
-            gridAlternativas.Name = "gridQuestoesTeste";
-            gridAlternativas.RowTemplate.Height = 25;
-            gridAlternativas.Size = new Size(395, 182);
-            gridAlternativas.TabIndex = 1;
+            gridQuestoesTeste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridQuestoesTeste.Dock = DockStyle.Fill;
+            gridQuestoesTeste.Location = new Point(0, 0);
+            gridQuestoesTeste.Name = "gridQuestoesTeste";
+            gridQuestoesTeste.RowTemplate.Height = 25;
+            gridQuestoesTeste.Size = new Size(467, 344);
+            gridQuestoesTeste.TabIndex = 1;
             // 
-            // TabelaAlternativasControl
+            // TabelaQuestoesTesteControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
-            Controls.Add(gridAlternativas);
-            MaximumSize = new Size(395, 182);
-            MinimumSize = new Size(395, 182);
-            Name = "TabelaAlternativasControl";
-            Size = new Size(395, 182);
-            ((System.ComponentModel.ISupportInitialize)gridAlternativas).EndInit();
+            Controls.Add(gridQuestoesTeste);
+            Margin = new Padding(0);
+            MaximumSize = new Size(467, 344);
+            MinimumSize = new Size(467, 344);
+            Name = "TabelaQuestoesTesteControl";
+            Size = new Size(467, 344);
+            ((System.ComponentModel.ISupportInitialize)gridQuestoesTeste).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView gridAlternativas;
+        private DataGridView gridQuestoesTeste;
     }
 }
