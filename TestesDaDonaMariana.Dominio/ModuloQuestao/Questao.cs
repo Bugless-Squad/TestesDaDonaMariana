@@ -45,15 +45,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
                 alternativas.Add(a);
             }
         }
-        
-        public void RemoverAlternativas(List<Alternativa> alternativasParaRemover)
-        {
-            foreach (Alternativa a in alternativasParaRemover)
-            {
-                alternativas.Remove(a);
-            }
 
-        }
         public string ValidarParaAdicionar()
         {
             Validador valida = new();
