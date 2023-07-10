@@ -62,14 +62,14 @@ namespace TestesDaDonaMariana.WinApp
 
         private void questoesMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorQuestao(repositorioQuestao, repositorioDisciplina);
+            controlador = new ControladorQuestao(repositorioQuestao, repositorioDisciplina, repositorioTeste);
 
             ConfigurarTelaPrincipal(controlador);
         }
 
         private void testesMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorTeste(repositorioTeste);
+            controlador = new ControladorTeste(repositorioTeste, repositorioDisciplina);
 
             ConfigurarTelaPrincipal(controlador);
         }
@@ -99,6 +99,7 @@ namespace TestesDaDonaMariana.WinApp
         {
             btnInserir.ToolTipText = controlador.ToolTipInserir;
             btnEditar.ToolTipText = controlador.ToolTipEditar;
+            btnDuplicar.ToolTipText = controlador.ToolTipDuplicar;
             btnExcluir.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
@@ -106,10 +107,14 @@ namespace TestesDaDonaMariana.WinApp
             btnFinalizarPgto.ToolTipText = controlador.ToolTipFinalizarPagamento;
             btnConfigDesconto.ToolTipText = controlador.ToolTipConfigDesconto;
             btnVisualizar.ToolTipText = controlador.ToolTipVisualizar;
+            btnVisualizar.ToolTipText = controlador.ToolTipVisualizar;
+            btnVisualizarGabarito.ToolTipText = controlador.ToolTipVisualizarGabarito;
+            btnGerarPdf.ToolTipText = controlador.ToolTipGerarPdf;
             btnHome.ToolTipText = controlador.ToolTipHome;
 
             btnInserir.Enabled = controlador.InserirHabilitado;
             btnEditar.Enabled = controlador.EditarHabilitado;
+            btnDuplicar.Enabled = controlador.DuplicarHabilitado;
             btnExcluir.Enabled = controlador.ExcluirHabilitado;
             btnHome.Enabled = controlador.HomeHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
@@ -118,9 +123,12 @@ namespace TestesDaDonaMariana.WinApp
             btnFinalizarPgto.Enabled = controlador.FinalizarPagamentoHabilitado;
             btnConfigDesconto.Enabled = controlador.ConfigDescontoHabilitado;
             btnVisualizar.Enabled = controlador.VisualizarHabilitado;
+            btnVisualizarGabarito.Enabled = controlador.VisualizarGabaritoHabilitado;
+            btnGerarPdf.Enabled = controlador.GerarPdfHabilitado;
 
             btnInserir.Visible = controlador.InserirVisivel;
             btnEditar.Visible = controlador.EditarVisivel;
+            btnDuplicar.Visible = controlador.DuplicarVisivel;
             btnExcluir.Visible = controlador.ExcluirVisivel;
             btnHome.Visible = controlador.HomeVisivel;
             btnFiltrar.Visible = controlador.FiltrarVisivel;
@@ -129,6 +137,8 @@ namespace TestesDaDonaMariana.WinApp
             btnFinalizarPgto.Visible = controlador.FinalizarPagamentoVisivel;
             btnConfigDesconto.Visible = controlador.ConfigDescontoVisivel;
             btnVisualizar.Visible = controlador.VisualizarVisivel;
+            btnVisualizarGabarito.Visible = controlador.VisualizarGabaritoVisivel;
+            btnGerarPdf.Visible = controlador.GerarPdfVisivel;
 
             toolStripSeparator0.Visible = controlador.SeparadorVisivel0;
             toolStripSeparator1.Visible = controlador.SeparadorVisivel1;
@@ -152,6 +162,11 @@ namespace TestesDaDonaMariana.WinApp
         private void btnEditar_Click(object sender, EventArgs e)
         {
             controlador.Editar();
+        }
+
+        private void btdDuplicar_Click(object sender, EventArgs e)
+        {
+            controlador.Duplicar();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -186,7 +201,17 @@ namespace TestesDaDonaMariana.WinApp
 
         private void btnVisualizar_Click(object sender, EventArgs e)
         {
-            controlador.Visualizar();
+            controlador.VisualizarTeste();
+        }
+
+        private void btnVisualizarGabarito_Click(object sender, EventArgs e)
+        {
+            controlador.VisualizarGabarito();
+        }
+
+        private void btnGerarPdf_Click(object sender, EventArgs e)
+        {
+            controlador.GerarPdf();
         }
     }
 }

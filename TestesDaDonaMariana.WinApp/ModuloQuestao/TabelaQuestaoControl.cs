@@ -34,14 +34,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             return grid.SelecionarNumero<int>();
         }
 
-        public void AtualizarRegistros(List<Questao> clientes)
+        public void AtualizarRegistros(List<Questao> questoes)
         {
             grid.Rows.Clear();
 
-            foreach (var cliente in clientes)
+            foreach (var questao in questoes)
             {
-                grid.Rows.Add(cliente.id, cliente.materia,
-                    cliente.enunciado.Substring(0, 14));
+                grid.Rows.Add(questao.id, questao.materia,
+                    questao.enunciado.Substring(0, 14));
             }
         }
     }

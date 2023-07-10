@@ -32,12 +32,12 @@
             ((System.ComponentModel.ISupportInitialize)gridAlternativas).BeginInit();
             SuspendLayout();
             // 
-            // gridAlternativas
+            // gridQuestoesTeste
             // 
             gridAlternativas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridAlternativas.Dock = DockStyle.Fill;
             gridAlternativas.Location = new Point(0, 0);
-            gridAlternativas.Name = "gridAlternativas";
+            gridAlternativas.Name = "gridQuestoesTeste";
             gridAlternativas.RowTemplate.Height = 25;
             gridAlternativas.Size = new Size(395, 182);
             gridAlternativas.TabIndex = 1;

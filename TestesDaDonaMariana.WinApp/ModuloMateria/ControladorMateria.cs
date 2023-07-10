@@ -1,4 +1,5 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+﻿using System.Drawing.Drawing2D;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
@@ -6,6 +7,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
     public class ControladorMateria : ControladorBase
     {
+        List<OpcoesSeriesEnum> seriesEnum { get { return new List<OpcoesSeriesEnum>(Enum.GetValues(typeof(OpcoesSeriesEnum)).Cast<OpcoesSeriesEnum>()); } }
+
         IRepositorioDisciplina repositorioDisciplina;
         IRepositorioMateria repositorioMateria;
         IRepositorioQuestao repositorioQuestao;
@@ -16,7 +19,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             this.repositorioDisciplina = repositorioDisciplina;
             this.repositorioMateria = repositorioMateria;
             this.repositorioQuestao = repositorioQuestao;
-
         }
         public override string ToolTipInserir => "Cadastrar Matéria";
         public override string ToolTipEditar => "Editar Matéria Existente";
@@ -26,11 +28,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         public override bool HomeHabilitado => true;
         public override bool InserirHabilitado => true;
         public override bool EditarHabilitado => true;
+        public override bool EditarVisivel => true;
         public override bool ExcluirHabilitado => true;
 
         public override void Inserir()
         {
-            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), seriesEnum);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -41,6 +44,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
                 repositorioMateria.Inserir(materia);
 
                 CarregarMaterias();
+            }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
             }
         }
 
@@ -57,8 +64,17 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 return;
             }
+            if (repositorioQuestao.SelecionarTodos().Any(x => x.materia == materiaSelecionada))
+            {
+                MessageBox.Show($"Não é possivel editar essa materias pois ela possuí vinculo com ao menos uma questão!",
+                    "Edição de Materia",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+                return;
+            }
+
+            TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), seriesEnum);
 
             tela.ConfigurarTela(materiaSelecionada);
 
@@ -76,6 +92,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 CarregarMaterias();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Excluir()
@@ -85,7 +105,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             if (materia == null)
             {
                 MessageBox.Show($"Selecione uma matéria primeiro!",
-                    "Exclusão de Materias",
+                    "Exclusão de Materia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -93,8 +113,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             }
             if (repositorioQuestao.SelecionarTodos().Any(x => x.materia == materia))
             {
-                MessageBox.Show($"Não é possivel remover essa materia pois ela possuí vinculo com ao menos uma questão!",
-                    "Exclusão de Itens",
+                MessageBox.Show($"Não é possivel remover essa materias pois ela possuí vinculo com ao menos uma questão!",
+                    "Exclusão de Materia",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 

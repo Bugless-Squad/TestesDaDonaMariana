@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="itext7" Version="8.0.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj" />
     <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Json\TestesDaDonaMariana.Infra.Dados.Json.csproj" />
     <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj" />
@@ -23,6 +28,9 @@
     </Compile>
     <Compile Update="ModuloQuestao\TabelaAlternativasControl.cs" />
     <Compile Update="ModuloQuestao\TabelaQuestaoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloTeste\TabelaQuestoesTesteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

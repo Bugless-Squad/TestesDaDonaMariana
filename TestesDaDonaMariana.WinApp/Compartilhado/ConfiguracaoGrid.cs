@@ -70,11 +70,36 @@
                 return default(T);
 
             object value = grid.SelectedRows[firstLine].Cells[firstColumn].Value;
-
+            
             if (value == null)
                 return default(T);
 
             return (T)Convert.ChangeType(value, typeof(T));
+        }
+
+        public static T SelecionarLetra<T>(this DataGridView grid)
+        {
+            const int firstLine = 0, firstColumn = 0;
+            if (grid.SelectedRows.Count == 0)
+                return default(T);
+
+            Dictionary<string, int> meuDicionario = new Dictionary<string, int>()
+            {
+                { "a.", 1 },
+                { "b.", 2 },
+                { "c.", 3 },
+                { "d.", 4 },
+                { "e.", 5 }
+            };
+
+            object value = grid.SelectedRows[firstLine].Cells[firstColumn].Value;
+
+            object num = meuDicionario[value.ToString()];
+
+            if (num == null)
+                return default(T);
+
+            return (T)Convert.ChangeType(num, typeof(T));
         }
     }
 }

@@ -1,16 +1,19 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
     public class ControladorQuestao : ControladorBase
     {
+        private IRepositorioTeste repositorioTeste;
         private IRepositorioQuestao repositorioQuestao;
         private IRepositorioDisciplina repositorioDisciplina;
         private TabelaQuestaoControl tabelaQuestao;
 
-        public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioDisciplina repositorioDisciplina)
+        public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioDisciplina repositorioDisciplina, IRepositorioTeste repositorioTeste)
         {
+            this.repositorioTeste = repositorioTeste;
             this.repositorioQuestao = repositorioQuestao;
             this.repositorioDisciplina = repositorioDisciplina;
         }
@@ -23,15 +26,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         public override bool HomeHabilitado => true;
         public override bool InserirHabilitado => true;
         public override bool EditarHabilitado => true;
+        public override bool EditarVisivel => true;
         public override bool ExcluirHabilitado => true;
 
         public override void Inserir()
         {
             TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
-            DialogResult opcaoEscolhida = tela.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 Questao questao = tela.ObterQuestao();
 
@@ -40,6 +42,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 repositorioQuestao.Inserir(questao);
 
                 CarregarQuestoes();
+            }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
             }
         }
 
@@ -50,7 +56,16 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (questaoSelecionada == null)
             {
                 MessageBox.Show($"Selecione um questao primeiro!",
-                    "Edição de clientes",
+                    "Edição de Questão",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
+            {
+                MessageBox.Show($"Não é possivel editar essa questão pois ela possuí vinculo com ao menos um teste!",
+                    "Edição de Questão",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -59,11 +74,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
 
-            tela.ConfigurarTela(questaoSelecionada);
+            tela.ConfigurarTelaEdicao(questaoSelecionada);
 
-            DialogResult opcaoEscolhida = tela.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 Questao questao = tela.ObterQuestao();
 
@@ -75,6 +88,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 CarregarQuestoes();
             }
+            else
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape("");
+            }
         }
 
         public override void Excluir()
@@ -84,21 +101,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (questaoSelecionada == null)
             {
                 MessageBox.Show($"Selecione um questao primeiro!",
-                    "Exclusão de Questões",
+                    "Exclusão de Questão",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
                 return;
             }
-            //if (repositorioQuestao.SelecionarTodos().Any(x => x. == questoes))
-            //{
-            //    MessageBox.Show($"Não é possivel remover esse questao pois ele possuí vinculo com ao menos um Aluguel!",
-            //        "Exclusão de clientes",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Exclamation);
+            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
+            {
+                MessageBox.Show($"Não é possivel excluír essa questão pois ela possuí vinculo com ao menos um teste!",
+                    "Exclusão de Questão",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
 
-            //    return;
-            //}
+                return;
+            }
 
             DialogResult opcaoEscolhida = MessageBox.Show(
                 $"Deseja excluir o questao {questaoSelecionada.id}?", 
@@ -110,8 +127,24 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 repositorioQuestao.Excluir(questaoSelecionada);
 
+                questaoSelecionada.materia.questoes.Remove(questaoSelecionada);
+
                 CarregarQuestoes();
             }
+        }
+
+        private void CarregarQuestoes()
+        {
+            List<Questao> questoes = repositorioQuestao.SelecionarTodos();
+
+            tabelaQuestao.AtualizarRegistros(questoes);
+        }
+
+        private Questao ObterQuestãoSelecionada()
+        {
+            int id = tabelaQuestao.ObterNumeroClienteSelecionado();
+
+            return repositorioQuestao.SelecionarPorId(id);
         }
 
         public override UserControl ObterListagem()
@@ -127,20 +160,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Questões";
-        }
-
-        private void CarregarQuestoes()
-        {
-            List<Questao> questoes = repositorioQuestao.SelecionarTodos();
-
-            tabelaQuestao.AtualizarRegistros(questoes);
-        }
-
-        private Questao ObterQuestãoSelecionada()
-        {
-            int id = tabelaQuestao.ObterNumeroClienteSelecionado();
-
-            return repositorioQuestao.SelecionarPorId(id);
         }
     }
 }

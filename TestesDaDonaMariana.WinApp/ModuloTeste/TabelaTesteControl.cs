@@ -1,5 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
@@ -12,6 +13,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             grid.ConfigurarGridZebrado();
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
+
+            TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
         private DataGridViewColumn[] ObterColunas()
@@ -20,14 +23,20 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Enunciado", HeaderText = "Enunciado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Título", HeaderText = "Título"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Disciplina", HeaderText = "Disciplina"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Matéria", HeaderText = "Matéria"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade de Questões", HeaderText = "Quantidade de Questões"},
 
             };
 
             return colunas;
         }
 
-        public int ObterNumeroItemSelecionado()
+        public int ObterNumeroTesteSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
@@ -36,9 +45,16 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         {
             grid.Rows.Clear();
 
-            foreach (var teste in testes)
+            foreach (Teste teste in testes)
             {
-                grid.Rows.Add();
+                string materia = "";
+
+                if (teste.materias.Count > 1)
+                    materia = "Todas";
+                else
+                    materia = teste.materias.FirstOrDefault(x => x == teste.materias[0]).titulo;
+
+                grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, materia, teste.numQuestoes);
             }
         }
     }

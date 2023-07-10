@@ -4,6 +4,7 @@
     {
         public int id { get; set; }
         public int idContador { get; set; }
+        public string idLetra { get; set; } 
         public string texto { get; set; }
         public AlternativaCorretaEnum alternativaCorreta { get; set; }
 
@@ -13,7 +14,7 @@
         }
 
         public Alternativa(string texto)
-        {
+        {            
             this.texto = texto;
             alternativaCorreta = AlternativaCorretaEnum.Errada;
         }
