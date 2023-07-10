@@ -11,11 +11,12 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
     public partial class TelaGerarPdfTesteForm : Form
     {
         private Teste teste { get; set; }
-        private string localizacao { get; set; }
 
         public TelaGerarPdfTesteForm(Teste teste)
         {
             InitializeComponent();
+
+            this.ConfigurarDialog();
 
             this.teste = teste;
         }
@@ -23,12 +24,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         public void ConfigurarTelaPdf(Teste teste)
         {
             txtTitulo.Text = teste.titulo.ToString().Trim();
-            txtLocalizacao.Text = localizacao;
         }
 
         private void GerarPdfGabarito()
         {
-            PdfWriter localizacao = new(txtLocalizacao.Text + "/" + teste.id + "_gabarito" + ".pdf");
+            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "/" + teste.id + "_gabarito" + ".pdf");
             PdfDocument pdf = new(localizacao); 
             Document doc = new(pdf);
 
@@ -70,7 +70,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         private void GerarPdfTeste()
         {
-            PdfWriter localizacao = new(txtLocalizacao.Text + "\\" + teste.id + ".pdf");
+            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "/" + teste.id + ".pdf");
             PdfDocument pdf = new(localizacao);
             Document doc = new(pdf);
 
@@ -172,10 +172,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             FolderBrowserDialog folder = new();
 
             if (folder.ShowDialog() == DialogResult.OK)
-                localizacao = folder.SelectedPath;
+                txtLocalizacao.Text = folder.SelectedPath;
 
-            ConfigurarTelaPdf(teste);
-            return;
+            DialogResult = DialogResult.None;
         }
     }
 }
