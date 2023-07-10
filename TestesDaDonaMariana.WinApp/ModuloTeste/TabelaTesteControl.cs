@@ -52,7 +52,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 if (teste.materias.Count > 1)
                     materia = "Todas";
                 else
-                    materia = teste.materias.FirstOrDefault(x => x.id == 1).titulo;
+                    materia = teste.materias.FirstOrDefault(x => x == teste.materias[0]).titulo;
 
                 grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, materia, teste.numQuestoes);
             }

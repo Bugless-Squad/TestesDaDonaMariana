@@ -113,8 +113,10 @@
             // panelAlternativas
             // 
             panelAlternativas.Location = new Point(213, 330);
+            panelAlternativas.MaximumSize = new Size(395, 142);
+            panelAlternativas.MinimumSize = new Size(395, 142);
             panelAlternativas.Name = "panelAlternativas";
-            panelAlternativas.Size = new Size(395, 155);
+            panelAlternativas.Size = new Size(395, 142);
             panelAlternativas.TabIndex = 78;
             // 
             // btnCancelar
@@ -123,7 +125,7 @@
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnCancelar.ImageAlign = ContentAlignment.BottomRight;
-            btnCancelar.Location = new Point(514, 535);
+            btnCancelar.Location = new Point(514, 513);
             btnCancelar.Margin = new Padding(4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(94, 40);
@@ -138,7 +140,7 @@
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnGravar.ImageAlign = ContentAlignment.BottomRight;
-            btnGravar.Location = new Point(414, 535);
+            btnGravar.Location = new Point(414, 513);
             btnGravar.Margin = new Padding(4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(94, 40);
@@ -216,7 +218,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(65, 491);
+            label3.Location = new Point(65, 478);
             label3.Name = "label3";
             label3.Size = new Size(142, 20);
             label3.TabIndex = 88;
@@ -228,7 +230,7 @@
             cmbAlternativas.Enabled = false;
             cmbAlternativas.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbAlternativas.FormattingEnabled = true;
-            cmbAlternativas.Location = new Point(213, 491);
+            cmbAlternativas.Location = new Point(213, 478);
             cmbAlternativas.Name = "cmbAlternativas";
             cmbAlternativas.Size = new Size(395, 28);
             cmbAlternativas.TabIndex = 89;
@@ -249,7 +251,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(639, 598);
+            ClientSize = new Size(639, 581);
             Controls.Add(label5);
             Controls.Add(cmbAlternativas);
             Controls.Add(btnAdicionar);

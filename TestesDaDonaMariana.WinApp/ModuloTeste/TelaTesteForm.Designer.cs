@@ -115,6 +115,7 @@
             cmbMaterias.Name = "cmbMaterias";
             cmbMaterias.Size = new Size(467, 29);
             cmbMaterias.TabIndex = 89;
+            cmbMaterias.SelectedIndexChanged += cmbMaterias_SelectedIndexChanged;
             // 
             // label7
             // 

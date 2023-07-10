@@ -118,6 +118,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 repositorioQuestao.Excluir(questaoSelecionada);
 
+                questaoSelecionada.materia.questoes.Remove(questaoSelecionada);
+
                 CarregarQuestoes();
             }
         }

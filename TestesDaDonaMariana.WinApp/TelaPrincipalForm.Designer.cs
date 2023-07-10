@@ -48,6 +48,7 @@
             btnFinalizarPgto = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             btnVisualizar = new ToolStripButton();
+            btnVisualizarGabarito = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             toolStripSeparator5 = new ToolStripSeparator();
             labelTipoDoCadastro = new ToolStripLabel();
@@ -95,7 +96,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnDuplicar, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, toolStripSeparator4, btnVisualizar, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnDuplicar, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, toolStripSeparator4, btnVisualizar, btnVisualizarGabarito, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
             toolStrip1.Location = new Point(0, 25);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1188, 35);
@@ -268,6 +269,19 @@
             btnVisualizar.Visible = false;
             btnVisualizar.Click += btnVisualizar_Click;
             // 
+            // btnVisualizarGabarito
+            // 
+            btnVisualizarGabarito.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnVisualizarGabarito.Enabled = false;
+            btnVisualizarGabarito.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnVisualizarGabarito.Image = (Image)resources.GetObject("btnVisualizarGabarito.Image");
+            btnVisualizarGabarito.ImageTransparentColor = Color.Magenta;
+            btnVisualizarGabarito.Name = "btnVisualizarGabarito";
+            btnVisualizarGabarito.Padding = new Padding(6);
+            btnVisualizarGabarito.Size = new Size(32, 32);
+            btnVisualizarGabarito.Text = "Visualizar Gabarito";
+            btnVisualizarGabarito.Visible = false;
+            // 
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -400,5 +414,6 @@
         private ToolStripMenuItem questoesMenuItem;
         private ToolStripMenuItem testesMenuItem;
         private ToolStripButton btnDuplicar;
+        private ToolStripButton btnVisualizarGabarito;
     }
 }

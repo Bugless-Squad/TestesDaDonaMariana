@@ -180,6 +180,18 @@
         AAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnVisualizarGabarito.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFESURBVGhD7dhpK0RxFMfx+3qsg+ySJNlJ5hV46qGHXqZ9
+        SZLsS3YSvr/GKU1kud0799T51qfGmDHnYP66kiiKoiiKoqhwzWG+ctNfs3jFGxZ1h6em8QINLyuoh4sm
+        8QQbfg2NcNE4HmDDb6AZLhrFHWz4LbTARcO4gQ2/gza4aAhXsOF30Q4XDeICNvweOuCiAZzBht9HFzJt
+        CXWVm6nqxwls+AP0INMWoBdbRpolenEEG/4Qfci0MuwF0yzRDX237escQz+NXEq7RCf0e27PP4XeB7n2
+        3yV0LOqEseedQydQTfrrEq3Q2W6Pv4TO/pr22yVK2IY97hr6q1uIflqiCZuwz99iBIXquyUasP5xn9xj
+        DIXsqyVWP338iAkUuuolzDOm4KLqJXRJOANX2RK6GNdFucu0hP4dEkVRFEVRFOVSkrwDZ3iEDUjSBRQA
+        AAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btnFiltrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

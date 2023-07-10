@@ -12,19 +12,20 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
         public DateTime dataCriacao { get; set; }
         public Disciplina disciplina { get; set; }
         public List<Materia> materias { get; set; }
-        public List<Questao> questoes { get; set; } = new();
+        public List<Questao> questoes { get; set; } 
 
         public Teste()
         {
             
         }
 
-        public Teste(int id, string titulo, Disciplina disciplina, List<Materia> materias, int numQuestoes)
+        public Teste(int id, string titulo, Disciplina disciplina, List<Materia> materias, List<Questao> questoes, int numQuestoes)
         {
             this.id = id;
             this.titulo = titulo;
             this.disciplina = disciplina;
             this.materias = materias;
+            this.questoes = questoes;
             this.numQuestoes = numQuestoes;
             dataCriacao = DateTime.Now;
         }
@@ -33,7 +34,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
         {
             disciplina = registroAtualizado.disciplina;
             materias = registroAtualizado.materias;
-
+            questoes = registroAtualizado.questoes;
         }
 
         public override string Validar()

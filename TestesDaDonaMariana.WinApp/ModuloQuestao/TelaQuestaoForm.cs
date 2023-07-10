@@ -255,7 +255,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         public void AtualizarAlternativas(List<Alternativa> alternativasParaAtualizar)
         {
             var contador = 0;
-            foreach(var alternativa in alternativasParaAtualizar)
+            foreach (var alternativa in alternativasParaAtualizar)
             {
                 contador = contador + 1;
                 alternativa.id = contador;

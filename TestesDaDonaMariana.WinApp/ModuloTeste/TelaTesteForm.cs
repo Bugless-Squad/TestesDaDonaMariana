@@ -27,6 +27,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             if (tabelaQuestoesTeste == null)
                 tabelaQuestoesTeste = new();
 
+            questoes = new();
+
             panelAlternativas.Controls.Clear();
 
             panelAlternativas.Controls.Add(tabelaQuestoesTeste);
@@ -49,7 +51,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             int numeroDeQuestoes = Convert.ToInt32(numQuestoes.Value);
 
-            return new(id, titulo, disciplina, materias, numeroDeQuestoes);
+            return new(id, titulo, disciplina, materias, this.questoes, numeroDeQuestoes);
         }
 
         public void ConfigurarTelaDuplicacao(Teste testeSelecionado)
@@ -80,14 +82,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             Random random = new();
             int randomIndex = 0;
-                        
+
             while (teste.questoes.Count != teste.numQuestoes)
             {
                 foreach (Materia materia in teste.materias)
                 {
                     randomIndex = random.Next(materia.questoes.Count);
 
-                    if (teste.questoes.All(q => q.id != materia.questoes[randomIndex].id) && teste.questoes.Count != teste.numQuestoes)
+                    if (teste.questoes.All(q => q.id != materia.questoes[randomIndex].id) && teste.questoes.Count != teste.numQuestoes && materia.questoes.Count != 0)
                     {
                         teste.questoes.Add(materia.questoes[randomIndex]);
                     }
@@ -104,12 +106,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         {
             string status = ValidarTeste();
 
-            teste.questoes = questoes;
+                teste.questoes = questoes;
 
             if (status != "")
-            {   
+            {
                 DialogResult = DialogResult.None;
-                return;
             }
 
             if (status == "" && teste.questoes == null)
@@ -117,9 +118,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 status = $"Você deve clicar em gerar um teste para poder gravar seu teste!";
                 TelaPrincipalForm.Tela.AtualizarRodape(status);
                 DialogResult = DialogResult.None;
-                return;
             }
-
 
             return;
         }
@@ -136,6 +135,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 status = teste.Validar();
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
+
+            if (teste == null)
+                questoes = new();
 
             return status;
         }
@@ -175,6 +177,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         private void numQuestoes_ValueChanged(object sender, EventArgs e)
         {
             btnGerarTeste.Enabled = true;
+        }
+
+        private void cmbMaterias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (teste != null)
+            {
+                teste.questoes.Clear();
+                tabelaQuestoesTeste.AtualizarRegistros(teste.questoes);
+            }
         }
     }
 }
