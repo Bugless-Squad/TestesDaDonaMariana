@@ -147,7 +147,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 DialogResult = DialogResult.None;
             }
 
-            if (status == "" && teste.questoes == null)
+            if (teste.questoes.Count == 0)
             {
                 status = $"Você deve clicar em gerar um teste para poder gravar seu teste!";
                 TelaPrincipalForm.Tela.AtualizarRodape(status);
