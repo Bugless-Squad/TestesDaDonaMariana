@@ -44,8 +44,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             if (cmbMaterias.SelectedItem == "Todas")
                 materias = disciplina.materias;
-
-            if (cmbMaterias.SelectedItem != null)
+            else if (cmbMaterias.SelectedItem != null)
                 materias.Add((Materia)cmbMaterias.SelectedItem);
 
             int numeroDeQuestoes = Convert.ToInt32(numQuestoes.Value);
@@ -60,7 +59,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             txtId.Text = testeSelecionado.id.ToString().Trim();
             txtTitulo.Text = testeSelecionado.titulo.ToString().Trim();
             cmbDisciplina.SelectedItem = testeSelecionado.disciplina;
-            cmbMaterias.SelectedItem = testeSelecionado.materias;
+
+            if (testeSelecionado.materias.Count > 1)
+                cmbMaterias.SelectedItem = "Todas";
+
+            if (testeSelecionado.materias.Count == 1)
+                cmbMaterias.SelectedItem = testeSelecionado.materias.FirstOrDefault(x => x.id == 1);
+
             numQuestoes.Value = Convert.ToDecimal(testeSelecionado.numQuestoes);
         }
 
@@ -80,11 +85,29 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             if (status != "")
                 return;
 
-            foreach (Materia materia in teste.materias)
+            List<Questao> questoesAleatorias = new();
+            Questao questao = new();
+            Random random = new();
+            int randomIndex = 0;
+
+            while(questoesAleatorias.Count != teste.numQuestoes)
             {
-                
+                foreach (Materia materia in teste.materias)
+                {
+                    randomIndex = random.Next(materia.questoes.Count);
+                    questao = materia.questoes[randomIndex];
+
+                    if (questoesAleatorias.All(q => q.id != questao.id))
+                    {
+                        questoesAleatorias.Add(questao);
+                    }
+                }
+
             }
 
+            tabelaQuestoesTeste.AtualizarRegistros(questoesAleatorias);
+
+            Console.WriteLine(random);
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
