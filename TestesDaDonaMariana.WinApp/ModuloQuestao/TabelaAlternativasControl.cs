@@ -18,7 +18,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Número da Alternativa", HeaderText = "Número da Alternativa"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Alternativa", HeaderText = "Alternativa"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Texto", HeaderText = "Texto"},
 
@@ -28,9 +28,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             return colunas;
         }
 
-        public int ObterNumeroItemSelecionado()
+        public int ObterNumeroAlternativaSelecionada()
         {
-            return gridAlternativas.SelecionarNumero<int>();
+            return gridAlternativas.SelecionarLetra<int>();
         }
 
         public void AtualizarRegistros(List<Alternativa> alternativas)
@@ -39,7 +39,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             foreach (var alternativa in alternativas)
             {
-                gridAlternativas.Rows.Add(alternativa.id, alternativa.texto, alternativa.alternativaCorreta);
+                gridAlternativas.Rows.Add(alternativa.idLetra, alternativa.texto, alternativa.alternativaCorreta);
             }
         }
     }

@@ -111,8 +111,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (alternativasParaAdicionar.Count > 0)
                 alternativa.idContador = alternativasParaAdicionar.Max(x => x.id);
 
+            Dictionary<int, string> meuDicionario = new()
+            {
+                { 1, "a." },
+                { 2, "b." },
+                { 3, "c." },
+                { 4, "d." },
+                { 5, "e." }
+            };
+
             alternativa.idContador++;
             alternativa.id = alternativa.idContador;
+            alternativa.idLetra = meuDicionario[alternativa.id];
 
             alternativasParaAdicionar.Add(alternativa);
 
@@ -129,7 +139,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            int id = tabelaAlternativas.ObterNumeroItemSelecionado();
+            int id = tabelaAlternativas.ObterNumeroAlternativaSelecionada();
 
             Alternativa alternativa = alternativasParaAdicionar.FirstOrDefault(x => x.id == id);
 

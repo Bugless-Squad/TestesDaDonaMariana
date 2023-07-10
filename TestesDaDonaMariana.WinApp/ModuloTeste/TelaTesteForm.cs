@@ -10,8 +10,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
     {
         Teste teste { get; set; }
         List<Teste> testes { get; set; }
+        List<Questao> questoes { get; set; }
         Teste testeSelecionado { get; set; }
-        List<Questao> questoesTeste { get; set; }
         TabelaQuestoesTesteControl tabelaQuestoesTeste { get; set; }
 
         public TelaTesteForm(List<Teste> testes, List<Disciplina> disciplinas)
@@ -57,7 +57,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             this.testeSelecionado = testeSelecionado;
 
             txtId.Text = testeSelecionado.id.ToString().Trim();
-            txtTitulo.Text = testeSelecionado.titulo.ToString().Trim();
+            txtTitulo.Text = testeSelecionado.titulo.ToString().Trim() + " - Duplicado";
             cmbDisciplina.SelectedItem = testeSelecionado.disciplina;
 
             if (testeSelecionado.materias.Count > 1)
@@ -71,65 +71,83 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         private void btnGerarTeste_Click(object sender, EventArgs e)
         {
-            teste = ObterTeste();
+            string status = ValidarTeste();
 
-            string status = "";
-
-            if (testes.Where(i => teste.id != testeSelecionado?.id).Any(x => x.titulo == teste.titulo))
-                status = $"Já existe um teste cadastrado com esse título!";
-            else
-                status = teste.Validar();
-
-            TelaPrincipalForm.Tela.AtualizarRodape(status);
+            teste.questoes.Clear();
 
             if (status != "")
                 return;
 
-            List<Questao> questoesAleatorias = new();
-            Questao questao = new();
             Random random = new();
             int randomIndex = 0;
-
-            while(questoesAleatorias.Count != teste.numQuestoes)
+                        
+            while (teste.questoes.Count != teste.numQuestoes)
             {
                 foreach (Materia materia in teste.materias)
                 {
                     randomIndex = random.Next(materia.questoes.Count);
-                    questao = materia.questoes[randomIndex];
 
-                    if (questoesAleatorias.All(q => q.id != questao.id))
+                    if (teste.questoes.All(q => q.id != materia.questoes[randomIndex].id) && teste.questoes.Count != teste.numQuestoes)
                     {
-                        questoesAleatorias.Add(questao);
+                        teste.questoes.Add(materia.questoes[randomIndex]);
                     }
                 }
 
             }
 
-            tabelaQuestoesTeste.AtualizarRegistros(questoesAleatorias);
+            questoes = teste.questoes;
 
-            Console.WriteLine(random);
+            tabelaQuestoesTeste.AtualizarRegistros(teste.questoes);
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
+        {
+            string status = ValidarTeste();
+
+            teste.questoes = questoes;
+
+            if (status != "")
+            {   
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (status == "" && teste.questoes == null)
+            {
+                status = $"Você deve clicar em gerar um teste para poder gravar seu teste!";
+                TelaPrincipalForm.Tela.AtualizarRodape(status);
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+
+            return;
+        }
+
+        private string ValidarTeste()
         {
             teste = ObterTeste();
 
             string status = "";
 
-            if (testes.Where(i => teste.id != testeSelecionado?.id).Any(x => x.titulo == teste.titulo))
+            if (testes.Any(x => x.titulo == teste.titulo))
                 status = $"Já existe um teste cadastrado com esse título!";
             else
                 status = teste.Validar();
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
 
-            if (status != "")
+            return status;
+        }
+
+        private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((Disciplina)cmbDisciplina.SelectedItem != null)
             {
-                DialogResult = DialogResult.None;
-                return;
+                cmbMaterias.Enabled = true;
             }
 
-            return;
+            CarregarMaterias(((Disciplina)cmbDisciplina.SelectedItem).materias);
         }
 
         private void CarregarDisciplinas(List<Disciplina> disciplinas)
@@ -152,24 +170,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             }
 
             cmbMaterias.Items.Add("Todas");
-        }
-
-        //private void CarregarQuestoes(List<Questao> questoes)
-        //{
-        //    foreach (Questao questao in materias)
-        //    {
-        //        cmbMaterias.Items.Add(materias);
-        //    }
-        //}
-
-        private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if ((Disciplina)cmbDisciplina.SelectedItem != null)
-            {
-                cmbMaterias.Enabled = true;
-            }
-
-            CarregarMaterias(((Disciplina)cmbDisciplina.SelectedItem).materias);
         }
 
         private void numQuestoes_ValueChanged(object sender, EventArgs e)

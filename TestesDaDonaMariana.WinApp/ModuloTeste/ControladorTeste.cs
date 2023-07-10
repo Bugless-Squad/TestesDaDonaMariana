@@ -20,13 +20,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         }
 
         public override string ToolTipInserir => "Cadastrar Teste";
-        public override string ToolTipEditar => "Duplicar Teste Existente";
+        public override string ToolTipDuplicar => "Duplicar Teste Existente";
         public override string ToolTipExcluir => "Excluir Teste Existente";
         public override string ToolTipHome => "Voltar a tela inicial";
 
         public override bool HomeHabilitado => true;
         public override bool InserirHabilitado => true;
-        public override bool EditarHabilitado => true;
+        public override bool DuplicarHabilitado => true;
+        public override bool DuplicarVisivel => true;
         public override bool ExcluirHabilitado => true;
 
         public override void Inserir()
@@ -47,7 +48,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             }
         }
 
-        public override void Editar()
+        public override void Duplicar()
         {
             Teste testeSelecionado = ObterTesteSelecionado();
 
@@ -68,7 +69,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             {
                 Teste teste = tela.ObterTeste();
 
-                repositorioTeste.Editar(testeSelecionado, teste);
+                repositorioTeste.Inserir(teste);
 
                 CarregarTeste();
             }

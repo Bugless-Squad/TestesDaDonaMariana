@@ -25,6 +25,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
         public override bool HomeHabilitado => true;
         public override bool InserirHabilitado => true;
         public override bool EditarHabilitado => true;
+        public override bool EditarVisivel => true;
         public override bool ExcluirHabilitado => true;
 
         public override void Inserir()

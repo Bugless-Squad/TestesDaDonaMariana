@@ -75,7 +75,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
             Materia materia = new();
 
             if (materias.Count == 1)
-                materia = materias.FirstOrDefault(x => x.id == 1);
+                materia = materias.FirstOrDefault(x => x == materias[0]);
 
             if (materia.questoes.Count < numQuestoes)
                 return $"Você tem apenas {materia.questoes.Count} questões dessa matéria no banco!";

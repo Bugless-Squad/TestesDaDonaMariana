@@ -99,6 +99,7 @@ namespace TestesDaDonaMariana.WinApp
         {
             btnInserir.ToolTipText = controlador.ToolTipInserir;
             btnEditar.ToolTipText = controlador.ToolTipEditar;
+            btnDuplicar.ToolTipText = controlador.ToolTipDuplicar;
             btnExcluir.ToolTipText = controlador.ToolTipExcluir;
             btnFiltrar.ToolTipText = controlador.ToolTipFiltrar;
             btnAdicionarItens.ToolTipText = controlador.ToolTipAdicionarItens;
@@ -110,6 +111,7 @@ namespace TestesDaDonaMariana.WinApp
 
             btnInserir.Enabled = controlador.InserirHabilitado;
             btnEditar.Enabled = controlador.EditarHabilitado;
+            btnDuplicar.Enabled = controlador.DuplicarHabilitado;
             btnExcluir.Enabled = controlador.ExcluirHabilitado;
             btnHome.Enabled = controlador.HomeHabilitado;
             btnFiltrar.Enabled = controlador.FiltrarHabilitado;
@@ -121,6 +123,7 @@ namespace TestesDaDonaMariana.WinApp
 
             btnInserir.Visible = controlador.InserirVisivel;
             btnEditar.Visible = controlador.EditarVisivel;
+            btnDuplicar.Visible = controlador.DuplicarVisivel;
             btnExcluir.Visible = controlador.ExcluirVisivel;
             btnHome.Visible = controlador.HomeVisivel;
             btnFiltrar.Visible = controlador.FiltrarVisivel;
@@ -152,6 +155,11 @@ namespace TestesDaDonaMariana.WinApp
         private void btnEditar_Click(object sender, EventArgs e)
         {
             controlador.Editar();
+        }
+
+        private void btdDuplicar_Click(object sender, EventArgs e)
+        {
+            controlador.Duplicar();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)

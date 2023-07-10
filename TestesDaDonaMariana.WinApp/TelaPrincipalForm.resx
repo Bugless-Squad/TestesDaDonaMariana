@@ -105,6 +105,17 @@
         vs0iZ0OMBcqhgBoF1CigRgE1CqiVLwAAAO61dgJNXp2MFCiIWAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btnDuplicar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEaSURBVGhD7ZkxCsJAEEVzHmvBVhC8jZUXsLf2GPYWgpXg
+        FTyNzkcXxmGdDWamWPwPHiobZvIxm5DdgRDyMwvxKD4SvImon8ZSrDWOdiamcBBrDaM9iSlcxNIE/0Y0
+        OsRkVu9PTTcB7mKtSBcBtuK3Il0E2CktXc2BGgzQgAEATqxo6SKAV4QBGni9R+MVYYAGXu8QGKABA7To
+        IgBOsmjpIoBXhAEaeL1H4xXpIgBfaCbAAC04BxqEBPCK2ADRer1H4xXZiHo8S6x+/4wuZMHStx7PctIS
+        Oy6TYo21uBf1cVFi9RuXEiFkAlex3A0smGj6bmEfdvitx3G8pYyhTwpzsTSxRAZAnzSwS3h+ff0gIgDq
+        pu1CEvIfDMMTzAOGrlv9VDAAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btnEditar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
