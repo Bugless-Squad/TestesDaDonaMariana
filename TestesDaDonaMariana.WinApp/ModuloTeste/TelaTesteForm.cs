@@ -64,9 +64,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             if (testeSelecionado.materias.Count > 1)
                 cmbMaterias.SelectedItem = "Todas";
-
-            if (testeSelecionado.materias.Count == 1)
-                cmbMaterias.SelectedItem = testeSelecionado.materias.FirstOrDefault(x => x.id == 1);
+            else 
+                cmbMaterias.SelectedItem = testeSelecionado.materias.FirstOrDefault(x => x == testeSelecionado.materias[0]);
 
             numQuestoes.Value = Convert.ToDecimal(testeSelecionado.numQuestoes);
         }

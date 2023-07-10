@@ -59,6 +59,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
                 return;
             }
+            if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina == disciplinaSelecionada))
+            {
+                MessageBox.Show($"Não é possivel editar essa disciplina pois ela possuí vinculo com ao menos uma matéria!",
+                    "Edição de Disciplina",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
 
             TelaDisciplinaForm tela = new(repositorioDisciplina.SelecionarTodos());
 
@@ -85,7 +94,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             if (disciplina == null)
             {
                 MessageBox.Show($"Selecione uma disciplina primeiro!",
-                    "Exclusão de disciplinas",
+                    "Exclusão de Disciplina",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -94,7 +103,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina == disciplina))
             {
                 MessageBox.Show($"Não é possivel remover essa disciplina pois ela possuí vinculo com ao menos uma matéria!",
-                    "Exclusão de Itens",
+                    "Exclusão de Disciplina",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 

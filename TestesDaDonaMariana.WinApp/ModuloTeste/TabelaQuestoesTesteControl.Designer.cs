@@ -35,12 +35,13 @@
             // gridQuestoesTeste
             // 
             gridQuestoesTeste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridQuestoesTeste.Dock = DockStyle.Fill;
             gridQuestoesTeste.Location = new Point(0, 0);
+            gridQuestoesTeste.MaximumSize = new Size(365, 344);
+            gridQuestoesTeste.MinimumSize = new Size(365, 344);
             gridQuestoesTeste.Name = "gridQuestoesTeste";
             gridQuestoesTeste.RowTemplate.Height = 25;
-            gridQuestoesTeste.Size = new Size(467, 344);
-            gridQuestoesTeste.TabIndex = 1;
+            gridQuestoesTeste.Size = new Size(365, 344);
+            gridQuestoesTeste.TabIndex = 0;
             // 
             // TabelaQuestoesTesteControl
             // 

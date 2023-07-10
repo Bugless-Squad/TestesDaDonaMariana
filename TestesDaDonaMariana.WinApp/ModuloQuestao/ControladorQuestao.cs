@@ -56,7 +56,16 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (questaoSelecionada == null)
             {
                 MessageBox.Show($"Selecione um questao primeiro!",
-                    "Edição de clientes",
+                    "Edição de Questão",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
+            {
+                MessageBox.Show($"Não é possivel editar essa questão pois ela possuí vinculo com ao menos um teste!",
+                    "Edição de Questão",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -92,7 +101,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (questaoSelecionada == null)
             {
                 MessageBox.Show($"Selecione um questao primeiro!",
-                    "Exclusão de Questões",
+                    "Exclusão de Questão",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
@@ -101,7 +110,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
             {
                 MessageBox.Show($"Não é possivel excluír essa questão pois ela possuí vinculo com ao menos um teste!",
-                    "Exclusão de Questões",
+                    "Exclusão de Questão",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
 
