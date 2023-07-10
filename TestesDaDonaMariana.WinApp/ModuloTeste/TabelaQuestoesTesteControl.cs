@@ -1,5 +1,4 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloQuestao;
-using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {

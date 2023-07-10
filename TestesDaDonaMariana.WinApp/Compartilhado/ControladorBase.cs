@@ -22,7 +22,11 @@
 
         public virtual string? ToolTipConfigDesconto { get { return "Configurar desconto indisponível"; } }
 
-        public virtual string? ToolTipVisualizar { get { return "Visualizar indisponível"; } }
+        public virtual string? ToolTipVisualizar { get { return "VisualizarTeste indisponível"; } }
+
+        public virtual string? ToolTipVisualizarGabarito { get { return "VisualizarTeste gabarito indisponível"; } }
+
+        public virtual string? ToolTipGerarPdf { get { return "Gerar PDF indisponível"; } }
 
         public virtual bool InserirHabilitado { get { return false; } }
         public virtual bool EditarHabilitado { get { return false; } }
@@ -35,6 +39,8 @@
         public virtual bool FinalizarPagamentoHabilitado { get { return false; } }
         public virtual bool ConfigDescontoHabilitado { get { return false; } }
         public virtual bool VisualizarHabilitado { get { return false; } }
+        public virtual bool VisualizarGabaritoHabilitado { get { return false; } }
+        public virtual bool GerarPdfHabilitado { get { return false; } }
 
         public virtual bool InserirVisivel { get { return true; } }
         public virtual bool EditarVisivel { get { return false; } }
@@ -47,7 +53,9 @@
         public virtual bool FinalizarPagamentoVisivel { get { return false; } }
         public virtual bool ConfigDescontoVisivel { get { return false; } }
         public virtual bool VisualizarVisivel { get { return false; } }
-
+        public virtual bool VisualizarGabaritoVisivel { get { return false; } }
+        public virtual bool GerarPdfVisivel { get { return false; } }
+        
         public virtual bool SeparadorVisivel0 { get { return true; } }
         public virtual bool SeparadorVisivel1 { get { return false; } }
         public virtual bool SeparadorVisivel2 { get { return false; } }
@@ -73,13 +81,16 @@
 
         public virtual void ConfigurarDesconto() { }
 
-        public virtual void Visualizar() { }
+        public virtual void VisualizarTeste() { }
+
+        public virtual void VisualizarGabarito() { }
+
+        public virtual void GerarPdf() { }
 
         public virtual void Home() { }
 
         public abstract UserControl ObterListagem();
 
         public abstract string ObterTipoCadastro();
-
     }
 }

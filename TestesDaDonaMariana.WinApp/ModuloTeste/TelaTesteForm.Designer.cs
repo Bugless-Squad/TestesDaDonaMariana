@@ -41,7 +41,7 @@
             btnGravar = new Button();
             btnGerarTeste = new Button();
             numQuestoes = new NumericUpDown();
-            label3 = new Label();
+            lblQtdQuestoes = new Label();
             label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)numQuestoes).BeginInit();
             SuspendLayout();
@@ -191,15 +191,15 @@
             numQuestoes.TabIndex = 94;
             numQuestoes.ValueChanged += numQuestoes_ValueChanged;
             // 
-            // label3
+            // lblQtdQuestoes
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(26, 160);
-            label3.Name = "label3";
-            label3.Size = new Size(184, 21);
-            label3.TabIndex = 95;
-            label3.Text = "Quantidade de Questões:";
+            lblQtdQuestoes.AutoSize = true;
+            lblQtdQuestoes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblQtdQuestoes.Location = new Point(26, 160);
+            lblQtdQuestoes.Name = "lblQtdQuestoes";
+            lblQtdQuestoes.Size = new Size(184, 21);
+            lblQtdQuestoes.TabIndex = 95;
+            lblQtdQuestoes.Text = "Quantidade de Questões:";
             // 
             // label5
             // 
@@ -219,7 +219,7 @@
             Controls.Add(btnGerarTeste);
             Controls.Add(label5);
             Controls.Add(numQuestoes);
-            Controls.Add(label3);
+            Controls.Add(lblQtdQuestoes);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(panelAlternativas);
@@ -234,7 +234,7 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "TelaTesteForm";
-            Text = "TelaTesteForm";
+            Text = "Cadastro de Testes";
             ((System.ComponentModel.ISupportInitialize)numQuestoes).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -255,7 +255,7 @@
         private Button btnGravar;
         private Button btnGerarTeste;
         private NumericUpDown numQuestoes;
-        private Label label3;
+        private Label lblQtdQuestoes;
         private Label label5;
     }
 }

@@ -64,10 +64,45 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             if (testeSelecionado.materias.Count > 1)
                 cmbMaterias.SelectedItem = "Todas";
-            else 
+            else
                 cmbMaterias.SelectedItem = testeSelecionado.materias.FirstOrDefault(x => x == testeSelecionado.materias[0]);
 
             numQuestoes.Value = Convert.ToDecimal(testeSelecionado.numQuestoes);
+        }
+
+        public void ConfigurarTelaVisualizarDetalhes(Teste testeSelecionado)
+        {
+            this.testeSelecionado = testeSelecionado;
+
+            this.Text = $"Vizualizando {testeSelecionado.titulo}.";
+
+            txtId.Text = testeSelecionado.id.ToString().Trim();
+            txtTitulo.Text = testeSelecionado.titulo.ToString().Trim();
+            txtTitulo.ReadOnly = true;
+            cmbDisciplina.SelectedItem = testeSelecionado.disciplina;
+            cmbDisciplina.Enabled = false;
+
+            tabelaQuestoesTeste.AtualizarRegistros(testeSelecionado.questoes);
+
+            if (testeSelecionado.materias.Count > 1)
+                cmbMaterias.SelectedItem = "Todas";
+            else
+                cmbMaterias.SelectedItem = testeSelecionado.materias.FirstOrDefault(x => x == testeSelecionado.materias[0]);
+
+            cmbMaterias.Enabled = false;
+
+            lblQtdQuestoes.Visible = false;
+
+            numQuestoes.Enabled = false;
+            numQuestoes.Visible = false;
+
+            btnGerarTeste.Enabled = false;
+            btnGerarTeste.Visible = false;
+
+            btnGravar.Enabled = false;
+            btnGravar.Visible = false;
+
+            btnCancelar.Text = "Fechar";
         }
 
         private void btnGerarTeste_Click(object sender, EventArgs e)
@@ -105,7 +140,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
         {
             string status = ValidarTeste();
 
-                teste.questoes = questoes;
+            teste.questoes = questoes;
 
             if (status != "")
             {

@@ -49,6 +49,7 @@
             toolStripSeparator4 = new ToolStripSeparator();
             btnVisualizar = new ToolStripButton();
             btnVisualizarGabarito = new ToolStripButton();
+            btnGerarPdf = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             toolStripSeparator5 = new ToolStripSeparator();
             labelTipoDoCadastro = new ToolStripLabel();
@@ -96,7 +97,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnDuplicar, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, toolStripSeparator4, btnVisualizar, btnVisualizarGabarito, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnDuplicar, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, btnVisualizar, btnVisualizarGabarito, toolStripSeparator4, btnGerarPdf, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
             toolStrip1.Location = new Point(0, 25);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1188, 35);
@@ -265,7 +266,7 @@
             btnVisualizar.Name = "btnVisualizar";
             btnVisualizar.Padding = new Padding(6);
             btnVisualizar.Size = new Size(32, 32);
-            btnVisualizar.Text = "Visualizar";
+            btnVisualizar.Text = "VisualizarTeste";
             btnVisualizar.Visible = false;
             btnVisualizar.Click += btnVisualizar_Click;
             // 
@@ -279,8 +280,23 @@
             btnVisualizarGabarito.Name = "btnVisualizarGabarito";
             btnVisualizarGabarito.Padding = new Padding(6);
             btnVisualizarGabarito.Size = new Size(32, 32);
-            btnVisualizarGabarito.Text = "Visualizar Gabarito";
+            btnVisualizarGabarito.Text = "VisualizarTeste Gabarito";
             btnVisualizarGabarito.Visible = false;
+            btnVisualizarGabarito.Click += btnVisualizarGabarito_Click;
+            // 
+            // btnGerarPdf
+            // 
+            btnGerarPdf.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnGerarPdf.Enabled = false;
+            btnGerarPdf.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGerarPdf.Image = (Image)resources.GetObject("btnGerarPdf.Image");
+            btnGerarPdf.ImageTransparentColor = Color.Magenta;
+            btnGerarPdf.Name = "btnGerarPdf";
+            btnGerarPdf.Padding = new Padding(6);
+            btnGerarPdf.Size = new Size(32, 32);
+            btnGerarPdf.Text = "Filtrar";
+            btnGerarPdf.Visible = false;
+            btnGerarPdf.Click += btnGerarPdf_Click;
             // 
             // btnFiltrar
             // 
@@ -415,5 +431,6 @@
         private ToolStripMenuItem testesMenuItem;
         private ToolStripButton btnDuplicar;
         private ToolStripButton btnVisualizarGabarito;
+        private ToolStripButton btnGerarPdf;
     }
 }
