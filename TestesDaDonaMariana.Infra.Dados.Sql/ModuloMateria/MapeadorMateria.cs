@@ -1,7 +1,6 @@
 ﻿using System.Data.SqlClient;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
-using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria

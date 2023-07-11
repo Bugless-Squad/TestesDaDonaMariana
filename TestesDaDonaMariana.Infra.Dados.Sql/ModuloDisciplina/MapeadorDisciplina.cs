@@ -1,6 +1,5 @@
 ﻿using System.Data.SqlClient;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {

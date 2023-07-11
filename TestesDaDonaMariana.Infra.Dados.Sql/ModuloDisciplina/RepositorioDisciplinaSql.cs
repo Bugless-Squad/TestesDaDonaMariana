@@ -1,9 +1,4 @@
-﻿using Microsoft.Win32;
-using System.Data.SqlClient;
-using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.Dominio.ModuloMateria;
-using TestesDaDonaMariana.Dominio.ModuloTeste;
-using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {

@@ -1,5 +1,4 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
-using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 {
