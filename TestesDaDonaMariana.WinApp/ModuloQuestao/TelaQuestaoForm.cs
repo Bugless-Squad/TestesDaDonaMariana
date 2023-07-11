@@ -1,11 +1,13 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
     public partial class TelaQuestaoForm : Form
     {
+        IRepositorioMateria repositorioMateria;
         Questao questao { get; set; }
         List<Questao> questoes { get; set; }
         Questao questaoSelecionada { get; set; }
@@ -13,10 +15,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
         List<Alternativa> alternativasParaAdicionar { get; set; }
         TabelaAlternativasControl tabelaAlternativas { get; set; }
         List<Alternativa> alternativas { get { return alternativasParaAdicionar.Except(alternativasParaRemover).ToList(); } }
-
         Dictionary<int, string> meuDicionario { get; set; }
 
-        public TelaQuestaoForm(List<Questao> questoes, List<Disciplina> disciplinas)
+        public TelaQuestaoForm(List<Questao> questoes, List<Disciplina> disciplinas, IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
 
@@ -26,6 +27,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             this.questao = new();
             this.questoes = questoes;
+            this.repositorioMateria = repositorioMateria;
 
             if (tabelaAlternativas == null)
                 tabelaAlternativas = new();
@@ -57,11 +59,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
             string enunciado = txtEnunciado.Text.Trim();
 
-            Alternativa alternativaCorreta = (Alternativa)cmbAlternativas.SelectedItem;
-
             List<Alternativa> alternativas = this.alternativas;
+            
+            Alternativa alternativaCorreta = new();
 
-            return new(id, disciplina, materia, enunciado, alternativaCorreta, alternativas);
+            if (alternativas.Count > 0)
+                alternativaCorreta = alternativas.Find(a => a.alternativaCorreta == "Correta");
+
+            return new(id, disciplina, materia, enunciado, alternativaCorreta?.texto, alternativas);
         }
 
         public void ConfigurarTelaEdicao(Questao questaoSelecionada)
@@ -170,7 +175,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             else
                 status = questao.Validar();
 
-            if (questao.alternativas.All(x => x.alternativaCorreta == AlternativaCorretaEnum.Errada))
+            if (questao.alternativas.All(x => x.alternativaCorreta == "Errada"))
                 status = $"Voce deve selecionar uma alternativa como correta!";
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
@@ -206,11 +211,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             }
         }
 
-        private void CarregarMaterias(List<Materia> materias)
+        private void CarregarMaterias()
         {
             cmbMaterias.Items.Clear();
+            questao = ObterQuestao();
+            questao.disciplina.nome = cmbDisciplina.Text;
 
-            foreach (Materia materia in materias)
+            foreach (Materia materia in repositorioMateria.SelecionarMateriasPorDisciplina(questao.disciplina.id))
             {
                 cmbMaterias.Items.Add(materia);
             }
@@ -223,7 +230,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 cmbMaterias.Enabled = true;
             }
 
-            CarregarMaterias(((Disciplina)cmbDisciplina.SelectedItem).materias);
+            CarregarMaterias();
         }
 
         private void cmbAlternativas_SelectedIndexChanged(object sender, EventArgs e)
@@ -232,18 +239,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 foreach (Alternativa a in this.alternativas)
                 {
-                    a.alternativaCorreta = AlternativaCorretaEnum.Errada;
+                    a.alternativaCorreta = "Errada";
                 }
             }
 
-            ((Alternativa)cmbAlternativas.SelectedItem).alternativaCorreta = AlternativaCorretaEnum.Correta;
+            ((Alternativa)cmbAlternativas.SelectedItem).alternativaCorreta = "Correta";
 
             tabelaAlternativas.AtualizarRegistros(this.alternativas);
         }
 
         private bool VerificarSeExisteAlternativaCorreta()
         {
-            return this.alternativas.Any(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta);
+            return this.alternativas.Any(x => x.alternativaCorreta == "Correta");
         }
 
         private void txtAlternativa_KeyPress(object sender, KeyPressEventArgs e)

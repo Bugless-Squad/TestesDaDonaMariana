@@ -66,7 +66,7 @@ namespace TestesDaDonaMariana.WinApp
 
         private void questoesMenuItem_Click(object sender, EventArgs e)
         {
-            controlador = new ControladorQuestao(repositorioQuestao, repositorioDisciplina, repositorioTeste);
+            controlador = new ControladorQuestao(repositorioQuestao, repositorioMateria, repositorioDisciplina, repositorioTeste);
 
             ConfigurarTelaPrincipal(controlador);
         }

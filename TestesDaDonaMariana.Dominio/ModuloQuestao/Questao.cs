@@ -6,7 +6,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
     public class Questao : EntidadeBase<Questao>
     {
         public List<Alternativa> alternativas { get; set; } = new();
-        public Alternativa alternativaCorreta { get; set; }
+        public string alternativaCorreta { get; set; }
         public Disciplina disciplina { get; set; }    
         public Materia materia { get; set; }
         public string enunciado { get; set; }    
@@ -16,16 +16,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 
         }
 
-        public Questao(int id, Materia materia, string enunciado, string alternativaCorreta)
-        {
-            this.id = id;
-            materia = materia;
-            enunciado = enunciado;
-            alternativaCorreta = alternativaCorreta;
-            alternativas = new List<Alternativa>();
-        }
-
-        public Questao(int id, Disciplina disciplina, Materia materia, string enunciado, Alternativa alternativaCorreta, List<Alternativa> alternativas)
+        public Questao(int id, Disciplina disciplina, Materia materia, string enunciado, string alternativaCorreta, List<Alternativa> alternativas)
         {
             this.id = id;
             this.disciplina = disciplina;

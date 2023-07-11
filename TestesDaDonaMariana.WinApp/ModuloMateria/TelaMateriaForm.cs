@@ -42,9 +42,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
             txtId.Text = materiaSelecionada.id.ToString();
             txtTitulo.Text = materiaSelecionada.titulo;
-            //cmbDisciplina.Text = materiaSelecionada.disciplina.ToString();
-            cmbDisciplina.SelectedValue = materiaSelecionada.disciplina;
             cmbSerie.SelectedItem = materiaSelecionada.serie;
+            cmbDisciplina.Text = materiaSelecionada.disciplina.ToString();
+            cmbDisciplina.SelectedItem = materiaSelecionada.disciplina;
         }
 
         private void CarregarDisciplinas(List<Disciplina> disciplinas)

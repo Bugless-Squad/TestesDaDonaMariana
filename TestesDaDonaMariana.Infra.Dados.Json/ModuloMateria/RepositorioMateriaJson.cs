@@ -9,6 +9,11 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
             
         }
 
+        public List<Materia> SelecionarMateriasPorDisciplina(int idDisciplina)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override List<Materia> ObterRegistros()
         {
             return contextoDeDados.materias;

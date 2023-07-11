@@ -2,5 +2,6 @@
 {
     public interface IRepositorioMateria : IRepositorio<Materia>
     {
+        List<Materia> SelecionarMateriasPorDisciplina(int idDisciplina);
     }
 }

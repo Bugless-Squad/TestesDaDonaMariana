@@ -1,12 +1,10 @@
 ﻿namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
-    public class Alternativa
+    public class Alternativa : EntidadeBase<Alternativa>
     {
-        public int id { get; set; }
-        public int idContador { get; set; }
         public string idLetra { get; set; } 
         public string texto { get; set; }
-        public AlternativaCorretaEnum alternativaCorreta { get; set; }
+        public string alternativaCorreta { get; set; }
 
         public Alternativa()
         {
@@ -16,10 +14,10 @@
         public Alternativa(string texto)
         {            
             this.texto = texto;
-            alternativaCorreta = AlternativaCorretaEnum.Errada;
+            alternativaCorreta = "Errada";
         }
 
-        public string Validar()
+        public override string Validar()
         {
             Validador valida = new();
 
@@ -32,6 +30,11 @@
         public override string ToString()
         {
             return texto;
+        }
+
+        public override void AtualizarInformacoes(Alternativa registroAtualizado)
+        {
+            throw new NotImplementedException();
         }
     }
 }

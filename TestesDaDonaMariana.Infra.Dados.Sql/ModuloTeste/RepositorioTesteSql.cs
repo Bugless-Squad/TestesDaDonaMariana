@@ -2,36 +2,59 @@
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
 {
-    public class RepositorioTesteSql : IRepositorioTeste
+    public class RepositorioTesteSql : RepositorioBaseSql<Teste, MapeadorTeste>, IRepositorioTeste
     {
-        public void Editar(Teste registroSelecionado, Teste registroAtualizado)
+        protected override string sqlInserir => @"INSERT INTO [TBTESTE] 
+                                                ([titulo], [numQuestoes], [dataCriacao], [disciplina_id])
+                                              VALUES 
+                                                (@TITULO, @NUMQUESTOES, @DATACRIACAO, @DISCIPLINA_ID);                  
+                                              SELECT SCOPE_IDENTITY();";
+
+        protected override string sqlEditar => @"UPDATE [TBTESTE] 
+                                             SET
+                                                [titulo] = @TITULO,
+                                                [numQuestoes] = @NUMQUESTOES,
+                                                [dataCriacao] = @DATACRIACAO,
+                                                [disciplina_id] = @DISCIPLINA_ID
+                                             WHERE
+                                                [id] = @ID";
+
+        protected override string sqlExcluir => @"DELETE FROM [TBTESTE]
+                                              WHERE 
+                                                [id] = @ID";
+
+        protected override string sqlSelecionarTodos => @"SELECT 
+                                                        [id] AS TESTE_ID,
+                                                        [titulo] AS TESTE_TITULO,
+                                                        [numQuestoes] AS TESTE_NUMQUESTOES,
+                                                        [dataCriacao] AS TESTE_DATACRIACAO,
+                                                        [disciplina_id] AS DISCIPLINA_ID
+                                                      FROM 
+                                                        [TBTESTE]";
+
+        protected override string sqlSelecionarPorId => @"SELECT 
+                                                        [id] AS TESTE_ID,
+                                                        [titulo] AS TESTE_TITULO,
+                                                        [numQuestoes] AS TESTE_NUMQUESTOES,
+                                                        [dataCriacao] AS TESTE_DATACRIACAO,
+                                                        [disciplina_id] AS DISCIPLINA_ID
+                                                      FROM 
+                                                        [TBTESTE]
+                                                      WHERE 
+                                                        [id] = @ID";
+
+        public override List<Teste> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            List<Teste> testes = base.SelecionarTodos();
+
+            return testes;
         }
 
-        public void Editar(int id, Teste registro)
+        public override Teste SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
-        }
+            Teste teste = base.SelecionarPorId(id);
 
-        public void Excluir(Teste registro)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Inserir(Teste novoRegistro)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Teste SelecionarPorId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Teste> SelecionarTodos()
-        {
-            throw new NotImplementedException();
+            return teste;
         }
     }
 }

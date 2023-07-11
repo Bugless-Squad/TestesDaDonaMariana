@@ -15,6 +15,11 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
             
         }
 
+        public Disciplina(int id)
+        {
+            this.id = id;   
+        }
+
         public Disciplina(int id, string nome)
         {
             this.id = id;

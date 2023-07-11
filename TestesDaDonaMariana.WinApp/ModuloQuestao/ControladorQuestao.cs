@@ -1,4 +1,5 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
 
@@ -8,12 +9,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
     {
         private IRepositorioTeste repositorioTeste;
         private IRepositorioQuestao repositorioQuestao;
+        private IRepositorioMateria repositorioMateria;
         private IRepositorioDisciplina repositorioDisciplina;
         private TabelaQuestaoControl tabelaQuestao;
 
-        public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioDisciplina repositorioDisciplina, IRepositorioTeste repositorioTeste)
+        public ControladorQuestao(IRepositorioQuestao repositorioQuestao, IRepositorioMateria repositorioMateria, 
+            IRepositorioDisciplina repositorioDisciplina, IRepositorioTeste repositorioTeste)
         {
             this.repositorioTeste = repositorioTeste;
+            this.repositorioMateria = repositorioMateria;
             this.repositorioQuestao = repositorioQuestao;
             this.repositorioDisciplina = repositorioDisciplina;
         }
@@ -31,7 +35,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
         public override void Inserir()
         {
-            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), repositorioMateria);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -62,7 +66,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 return;
             }
-            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
+            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q.id == questaoSelecionada.id)))
             {
                 MessageBox.Show($"Não é possivel editar essa questão pois ela possuí vinculo com ao menos um teste!",
                     "Edição de Questão",
@@ -72,7 +76,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
                 return;
             }
 
-            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos());
+            TelaQuestaoForm tela = new(repositorioQuestao.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), repositorioMateria);
 
             tela.ConfigurarTelaEdicao(questaoSelecionada);
 
@@ -107,7 +111,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 return;
             }
-            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q == questaoSelecionada)))
+            if (repositorioTeste.SelecionarTodos().Any(x => x.questoes.Any(q => q.id == questaoSelecionada.id)))
             {
                 MessageBox.Show($"Não é possivel excluír essa questão pois ela possuí vinculo com ao menos um teste!",
                     "Exclusão de Questão",

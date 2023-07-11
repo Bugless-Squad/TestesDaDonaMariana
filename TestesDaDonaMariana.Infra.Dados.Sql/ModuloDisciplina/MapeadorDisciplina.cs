@@ -18,6 +18,13 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 
             return new Disciplina(id, nome);
         }
+
+        public Disciplina ConverterRegistroId(SqlDataReader leitorRegistros)
+        {
+            int id = Convert.ToInt32(leitorRegistros["DISCIPLINA_ID"]);
+
+            return new Disciplina(id);
+        }
     }
 }
 

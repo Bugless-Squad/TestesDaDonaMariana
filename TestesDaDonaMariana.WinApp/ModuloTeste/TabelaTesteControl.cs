@@ -31,6 +31,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade de Questões", HeaderText = "Quantidade de Questões"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Data de Criação", HeaderText = "Data de Criação"}
+
             };
 
             return colunas;
@@ -54,7 +56,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 else
                     materia = teste.materias.FirstOrDefault(x => x == teste.materias[0]).titulo;
 
-                grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, materia, teste.numQuestoes);
+                grid.Rows.Add(teste.id, teste.titulo, teste.disciplina, materia, teste.numQuestoes, teste.dataCriacao);
             }
         }
     }
