@@ -43,6 +43,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 questao.materia.questoes.Add(questao);
 
+                questao.alternativaCorreta = questao.alternativas.Find(a => a.alternativaCorreta == AlternativaCorretaEnum.Correta);
+                
+                questao.alternativaCorreta.id = questao.alternativas.Find(a => a.alternativaCorreta == AlternativaCorretaEnum.Correta).id;
+
                 repositorioQuestao.Inserir(questao);
 
                 CarregarQuestoes();

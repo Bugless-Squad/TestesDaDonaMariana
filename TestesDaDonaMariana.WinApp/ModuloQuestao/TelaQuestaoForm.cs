@@ -1,7 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
-using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
@@ -64,9 +63,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             Alternativa alternativaCorreta = new();
 
             if (alternativas.Count > 0)
-                alternativaCorreta = alternativas.Find(a => a.alternativaCorreta == "Correta");
+                alternativaCorreta = alternativas.Find(a => a.alternativaCorreta == AlternativaCorretaEnum.Correta);
 
-            return new(id, disciplina, materia, enunciado, alternativaCorreta?.texto, alternativas);
+            return new(id, disciplina, materia, enunciado, alternativaCorreta, alternativas);
         }
 
         public void ConfigurarTelaEdicao(Questao questaoSelecionada)
@@ -175,7 +174,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             else
                 status = questao.Validar();
 
-            if (questao.alternativas.All(x => x.alternativaCorreta == "Errada"))
+            if (questao.alternativas.All(x => x.alternativaCorreta == AlternativaCorretaEnum.Errada))
                 status = $"Voce deve selecionar uma alternativa como correta!";
 
             TelaPrincipalForm.Tela.AtualizarRodape(status);
@@ -239,18 +238,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             {
                 foreach (Alternativa a in this.alternativas)
                 {
-                    a.alternativaCorreta = "Errada";
+                    a.alternativaCorreta = AlternativaCorretaEnum.Errada;
                 }
             }
 
-            ((Alternativa)cmbAlternativas.SelectedItem).alternativaCorreta = "Correta";
+            ((Alternativa)cmbAlternativas.SelectedItem).alternativaCorreta = AlternativaCorretaEnum.Correta;
 
             tabelaAlternativas.AtualizarRegistros(this.alternativas);
         }
 
         private bool VerificarSeExisteAlternativaCorreta()
         {
-            return this.alternativas.Any(x => x.alternativaCorreta == "Correta");
+            return this.alternativas.Any(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta);
         }
 
         private void txtAlternativa_KeyPress(object sender, KeyPressEventArgs e)

@@ -11,27 +11,31 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
     {
         protected string enderecoBanco =
              @"Data Source=(LocalDb)\MSSqlLocalDB;Initial Catalog=TestesDonaMarianaBD;Integrated Security=True";
+
+
         public override void ConfigurarParametros(SqlCommand comando, Questao registro)
         {
             comando.Parameters.AddWithValue("@ID", registro.id);
+            comando.Parameters.AddWithValue("@ENUNCIADO", registro.enunciado);
             comando.Parameters.AddWithValue("@DISCIPLINA_ID", registro.disciplina.id);
             comando.Parameters.AddWithValue("@MATERIA_ID", registro.materia.id);
-            comando.Parameters.AddWithValue("@ENUNCIADO", registro.enunciado);
+            comando.Parameters.AddWithValue("@ALTERNATIVACORRETA_ID", registro.alternativaCorreta?.id);
         }
 
         public override Questao ConverterRegistro(SqlDataReader leitor)
         {
-            int id = Convert.ToInt32(leitor["QUESTAO_ID"]);
-            string enunciado = Convert.ToString(leitor["QUESTAO_ENUNCIADO"]);
+            int id = Convert.ToInt32(leitor["ID"]);
+            string enunciado = Convert.ToString(leitor["ENUNCIADO"]);
+            int disciplinaId = Convert.ToInt32(leitor["DISCIPLINA_ID"]);
+            int materiaId = Convert.ToInt32(leitor["MATERIA_ID"]);
+            int? alternativaCorretaId = leitor["ALTERNATIVACORRETA_ID"] != DBNull.Value ? Convert.ToInt32(leitor["ALTERNATIVACORRETA_ID"]) : null;
 
-            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitor);
-            Materia materia = new MapeadorMateria().ConverterRegistro(leitor);
+            Disciplina disciplina = new RepositorioDisciplinaSql().SelecionarPorId(disciplinaId);
+            Materia materia = new RepositorioMateriaSql().SelecionarPorId(materiaId);
+            Alternativa alternativaCorreta = alternativaCorretaId.HasValue ? new RepositorioAlternativaSql().SelecionarPorId(alternativaCorretaId.Value) : null;
 
-            Questao questao = new Questao();
-            questao.id = id;
-            questao.enunciado = enunciado;
-            questao.disciplina = disciplina;
-            questao.materia = materia;
+            Questao questao = new(id, enunciado, disciplina, materia);
+            questao.alternativaCorreta = alternativaCorreta;
 
             return questao;
         }
@@ -43,27 +47,27 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
             SqlCommand comandoSelecionarPorTeste = conexaoComBanco.CreateCommand();
             comandoSelecionarPorTeste.CommandText = @"SELECT 
-                                                    Q.[id] AS QUESTAO_ID,
-                                                    Q.[enunciado] AS QUESTAO_ENUNCIADO,
+                                                    Q.[id] AS ID,
+                                                    Q.[enunciado] AS ENUNCIADO,
                                                     Q.[disciplina_id] AS DISCIPLINA_ID,
-                                                    Q.[materia_id] AS MATERIA_ID
+                                                    Q.[materia_id] AS MATERIA_ID,
+                                                    Q.[alternativaCorreta_id] AS ALTERNATIVACORRETA_ID
                                                   FROM 
                                                     [TBQUESTAO] AS Q
-                                                  INNER JOIN [TBQUESTAO_TESTE] AS QT
-                                                      ON Q.[id] = QT.[questao_id]
+                                                  INNER JOIN [TBTESTE_QUESTAO] AS TQ
+                                                      ON Q.[id] = TQ.[questao_id]
                                                   WHERE 
-                                                    QT.[teste_id] = @TESTE_ID";
+                                                    TQ.[teste_id] = @TESTE_ID;";
 
             comandoSelecionarPorTeste.Parameters.AddWithValue("@TESTE_ID", testeId);
 
             SqlDataReader leitorQuestoes = comandoSelecionarPorTeste.ExecuteReader();
 
             List<Questao> questoes = new List<Questao>();
-            MapeadorQuestao mapeador = new MapeadorQuestao();
 
             while (leitorQuestoes.Read())
             {
-                Questao questao = mapeador.ConverterRegistro(leitorQuestoes);
+                Questao questao = ConverterRegistro(leitorQuestoes);
                 questoes.Add(questao);
             }
 

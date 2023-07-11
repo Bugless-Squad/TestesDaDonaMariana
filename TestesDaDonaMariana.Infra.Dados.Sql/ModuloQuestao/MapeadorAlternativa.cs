@@ -10,23 +10,17 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
             comando.Parameters.AddWithValue("@ID", registro.id);
             comando.Parameters.AddWithValue("@IDLETRA", registro.idLetra);
             comando.Parameters.AddWithValue("@TEXTO", registro.texto);
-            comando.Parameters.AddWithValue("@ALTERNATIVACORRETA", (string)registro.alternativaCorreta);
+            comando.Parameters.AddWithValue("@ALTERNATIVACORRETA", registro.alternativaCorreta.ToString());
         }
 
         public override Alternativa ConverterRegistro(SqlDataReader leitor)
         {
-            int id = Convert.ToInt32(leitor["ALTERNATIVA_ID"]);
-            string idLetra = Convert.ToString(leitor["ALTERNATIVA_IDLETRA"]);
-            string texto = Convert.ToString(leitor["ALTERNATIVA_TEXTO"]);
-            string alternativaCorreta = Convert.ToString(leitor["ALTERNATIVA_ALTERNATIVACORRETA"]);
+            int id = Convert.ToInt32(leitor["ID"]);
+            string idLetra = Convert.ToString(leitor["IDLETRA"]);
+            string texto = Convert.ToString(leitor["TEXTO"]);
+            AlternativaCorretaEnum alternativaCorreta = (AlternativaCorretaEnum)Enum.Parse(typeof(AlternativaCorretaEnum), Convert.ToString(leitor["ALTERNATIVACORRETA"]));
 
-            Alternativa alternativa = new();
-            alternativa.id = id;
-            alternativa.idLetra = idLetra;
-            alternativa.texto = texto;
-            alternativa.alternativaCorreta = alternativaCorreta;
-
-            return alternativa;
+            return new Alternativa(id, idLetra, texto, alternativaCorreta);
         }
     }
 }

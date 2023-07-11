@@ -64,7 +64,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                     .SetFontSize(11)
                     .SetBold();
 
-                x.alternativas.Where(x => x.alternativaCorreta == "Correta").ToList().ForEach(a => questao.Add(new Text(a.idLetra + " " + a.texto)));
+                x.alternativas.Where(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta).ToList().ForEach(a => questao.Add(new Text(a.idLetra + " " + a.texto)));
 
                 doc.Add(questao);
 
