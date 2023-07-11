@@ -5,8 +5,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 {
     public class RepositorioMateriaSql : RepositorioBaseSql<Materia, MapeadorMateria>, IRepositorioMateria
     {
-        private const string enderecoBanco = @"Data Source = (LocalDB)\MSSqlLocalDB;Initial Catalog = FestasInfantis; Integrated Security = True; Pooling=False";
-
         protected override string sqlInserir => @"INSERT INTO[DBO].[TBMATERIA]
                                                     (
                                                         [NOME]

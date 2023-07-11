@@ -9,8 +9,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
     public class RepositorioDisciplinaSql : RepositorioBaseSql<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
     {
-        private const string enderecoBanco = @"Data Source = (LocalDB)\MSSqlLocalDB;Initial Catalog = FestasInfantis; Integrated Security = True; Pooling=False";
-
         protected override string sqlInserir => @"INSERT INTO [TBDISCIPLINA] 
 	                                            (
 		                                            [NOME]
