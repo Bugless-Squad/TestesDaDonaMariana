@@ -26,10 +26,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             txtTitulo.Text = teste.titulo.ToString().Trim();
         }
 
+
         private void GerarPdfGabarito()
         {
-            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "/" + teste.id + "_gabarito" + ".pdf");
-            PdfDocument pdf = new(localizacao); 
+            if (txtLocalizacao.Text == "")
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape($"Você deve informar a localização do diretório!");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "\\" + teste.id + "_gabarito" + ".pdf");
+            PdfDocument pdf = new(localizacao);
             Document doc = new(pdf);
 
             Paragraph header = new Paragraph("Gabarito do teste:")
@@ -56,7 +64,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                     .SetFontSize(11)
                     .SetBold();
 
-                x.alternativas.Where(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta).ToList().ForEach(y => questao.Add(new Text(y.ToString())));
+                x.alternativas.Where(x => x.alternativaCorreta == AlternativaCorretaEnum.Correta).ToList().ForEach(a => questao.Add(new Text(a.idLetra + " " + a.texto)));
 
                 doc.Add(questao);
 
@@ -70,14 +78,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         private void GerarPdfTeste()
         {
-            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "/" + teste.id + ".pdf");
+            if (txtLocalizacao.Text == "")
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape($"Você deve informar a localização do diretório!");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "\\" + teste.id + ".pdf");
             PdfDocument pdf = new(localizacao);
             Document doc = new(pdf);
 
             doc.Add(new LineSeparator(new SolidLine(1f)));
             doc.Add(new Paragraph(""));
 
-            Paragraph info = new Paragraph("• Teste:")
+            Paragraph info = new Paragraph("• Teste: " + teste.titulo)
                 .SetTextAlignment(TextAlignment.LEFT)
                 .SetFontSize(13);
 
@@ -88,7 +103,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             else
                 materia = teste.materias.FirstOrDefault(x => x == teste.materias[0]).titulo;
 
+            info.Add($"\n• Disciplina: {teste.disciplina}");
             info.Add($"\n• Matéria: {materia}");
+            info.Add($"\n• Aluno(a): ");
 
             doc.Add(info);
             doc.Add(new Paragraph(""));
@@ -115,13 +132,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
                 i++;
 
-                x.alternativas.ForEach(y =>
+                x.alternativas.ForEach(a =>
                 {
-                    Paragraph alternative = new Paragraph(y.ToString())
+                    Paragraph alternativa = new Paragraph(a.idLetra + " " + a.texto)
                         .SetTextAlignment(TextAlignment.LEFT)
                         .SetFontSize(9);
 
-                    doc.Add(alternative);
+                    doc.Add(alternativa);
                 });
 
                 doc.Add(new Paragraph("\n"));
@@ -133,7 +150,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         private void btnGerarPDF_Click(object sender, EventArgs e)
         {
-            if (txtLocalizacao.Text == null)
+            if (txtLocalizacao.Text == "")
             {
                 TelaPrincipalForm.Tela.AtualizarRodape($"Você deve informar a localização do diretório!");
                 DialogResult = DialogResult.None;
@@ -148,18 +165,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             if (cbxTeste.Checked && !cbxGabarito.Checked)
             {
                 GerarPdfTeste();
-                return;
             }
             if (cbxGabarito.Checked && !cbxTeste.Checked)
             {
                 GerarPdfGabarito();
-                return;
             }
             if (cbxTeste.Checked && cbxGabarito.Checked)
             {
                 GerarPdfTeste();
                 GerarPdfGabarito();
-                return;
             }
 
             MessageBox.Show("PDF gerado com sucesso!", "Gerar PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
