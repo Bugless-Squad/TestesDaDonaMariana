@@ -9,7 +9,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
         public string serie { get; set; }
         public string titulo { get; set; }
         public Disciplina disciplina { get; set; }
-        public List<Questao> questoes { get; set; } = new();
+        public List<Questao>? questoes { get; set; } = new();
         public int? qtdQuestoesMateria { get { return questoes?.Count(); } }
 
         public Materia()

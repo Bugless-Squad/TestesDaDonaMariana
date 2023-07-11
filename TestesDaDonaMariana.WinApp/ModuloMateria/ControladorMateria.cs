@@ -64,23 +64,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 return;
             }
-            if (repositorioQuestao.SelecionarTodos().Any(x => x.materia == materiaSelecionada))
-            {
-                MessageBox.Show($"Não é possivel editar essa materias pois ela possuí vinculo com ao menos uma questão!",
-                    "Edição de Materia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+            //if (repositorioQuestao.SelecionarTodos().Any(x => x.materia.id == materiaSelecionada.id))
+            //{
+            //    MessageBox.Show($"Não é possivel editar essa materias pois ela possuí vinculo com ao menos uma questão!",
+            //        "Edição de Materia",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Exclamation);
 
-                return;
-            }
+            //    return;
+            //}
 
             TelaMateriaForm tela = new(repositorioMateria.SelecionarTodos(), repositorioDisciplina.SelecionarTodos(), seriesEnum);
 
             tela.ConfigurarTela(materiaSelecionada);
 
-            DialogResult opcaoEscolhida = tela.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 Materia materia = tela.ObterMateria();
 
@@ -88,7 +86,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 materia.disciplina.materias.Add(materia);
 
-                repositorioMateria.Editar(materiaSelecionada, materia);
+                repositorioMateria.Editar(materiaSelecionada.id, materia);
 
                 CarregarMaterias();
             }
@@ -111,15 +109,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 return;
             }
-            if (repositorioQuestao.SelecionarTodos().Any(x => x.materia == materia))
-            {
-                MessageBox.Show($"Não é possivel remover essa materias pois ela possuí vinculo com ao menos uma questão!",
-                    "Exclusão de Materia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+            //if (repositorioQuestao.SelecionarTodos().Any(x => x.materia.id == materia.id))
+            //{
+            //    MessageBox.Show($"Não é possivel remover essa materias pois ela possuí vinculo com ao menos uma questão!",
+            //        "Exclusão de Materia",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Exclamation);
 
-                return;
-            }
+            //    return;
+            //}
 
             DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o item {materia.titulo}?",
                 "Exclusão de Materia",

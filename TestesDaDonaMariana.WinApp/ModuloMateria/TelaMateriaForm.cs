@@ -23,7 +23,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
             this.materias = materias;
         }
 
-
         public Materia ObterMateria()
         {
             int id = Convert.ToInt32(txtId.Text);
@@ -39,12 +38,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
         public void ConfigurarTela(Materia materiaSelecionada)
         {
+            this.materiaSelecionada = materiaSelecionada;
+
             txtId.Text = materiaSelecionada.id.ToString();
             txtTitulo.Text = materiaSelecionada.titulo;
-            cmbDisciplina.SelectedItem = materiaSelecionada.disciplina;
+            //cmbDisciplina.Text = materiaSelecionada.disciplina.ToString();
+            cmbDisciplina.SelectedValue = materiaSelecionada.disciplina;
             cmbSerie.SelectedItem = materiaSelecionada.serie;
-
-            this.materiaSelecionada = materiaSelecionada;
         }
 
         private void CarregarDisciplinas(List<Disciplina> disciplinas)

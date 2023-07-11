@@ -59,7 +59,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
                 return;
             }
-            if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina == disciplinaSelecionada))
+            if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina.id == disciplinaSelecionada.id))
             {
                 MessageBox.Show($"Não é possivel editar essa disciplina pois ela possuí vinculo com ao menos uma matéria!",
                     "Edição de Disciplina",
@@ -77,7 +77,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             {
                 Disciplina disciplina = tela.ObterDisciplina();
 
-                repositorioDisciplina.Editar(disciplinaSelecionada, disciplina);
+                repositorioDisciplina.Editar(disciplinaSelecionada.id, disciplina);
 
                 CarregarDisciplinas();
             }
@@ -100,7 +100,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
                 return;
             }
-            if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina == disciplina))
+            if (repositorioMateria.SelecionarTodos().Any(x => x.disciplina.id == disciplina.id))
             {
                 MessageBox.Show($"Não é possivel remover essa disciplina pois ela possuí vinculo com ao menos uma matéria!",
                     "Exclusão de Disciplina",

@@ -44,17 +44,6 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             alternativas = registroAtualizado.alternativas;
         }
 
-        public void AdicionarAlternativas(List<Alternativa> alternativasParaAdicionar)
-        {
-            foreach (Alternativa a in alternativasParaAdicionar)
-            {
-                if (alternativas.Contains(a))
-                    return;
-
-                alternativas.Add(a);
-            }
-        }
-
         public string ValidarParaAdicionar()
         {
             Validador valida = new();
