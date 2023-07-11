@@ -150,7 +150,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         private void btnGerarPDF_Click(object sender, EventArgs e)
         {
-            if (txtLocalizacao.Text == null)
+            if (txtLocalizacao.Text == "")
             {
                 TelaPrincipalForm.Tela.AtualizarRodape($"Você deve informar a localização do diretório!");
                 DialogResult = DialogResult.None;

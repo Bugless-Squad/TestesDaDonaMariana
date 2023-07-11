@@ -150,16 +150,15 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             }
 
             TelaGerarPdfTesteForm telaPdf = new(testeSelecionado);
+
             telaPdf.ConfigurarTelaPdf(testeSelecionado);
 
             if (telaPdf.ShowDialog() == DialogResult.OK)
             {
                 CarregarTeste();
             }
-            else
-            {
-                TelaPrincipalForm.Tela.AtualizarRodape("");
-            }
+
+            TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
         private void CarregarTeste()
