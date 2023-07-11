@@ -7,7 +7,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado
         where T : EntidadeBase<T>
         where TMapeador : MapeadorBase<T>, new()
     {
-        private const string enderecoBanco =
+        protected string enderecoBanco =
              @"Data Source=(LocalDb)\MSSqlLocalDB;Initial Catalog=TestesDonaMarianaBD;Integrated Security=True;Pooling=False";
 
         protected abstract string sqlInserir { get; }
