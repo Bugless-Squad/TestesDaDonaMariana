@@ -3,7 +3,7 @@ using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 {
-    public class RepositorioQuestaoSql : RepositorioBaseSql<Questao, MapeadorQuestao> ,IRepositorioQuestao
+    public class RepositorioQuestaoSql : RepositorioBaseSql<Questao, MapeadorQuestao>, IRepositorioQuestao
     {
         protected override string sqlInserir => @"INSERT INTO[DBO].[QUESTAO]
                                                     (
@@ -272,7 +272,28 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
         private void CarregarAlternativas(Questao questao)
         {
-            throw new NotImplementedException();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarAlternativas = conexaoComBanco.CreateCommand();
+            comandoSelecionarAlternativas.CommandText = sqlCarregarAlternativas;
+
+            comandoSelecionarAlternativas.Parameters.AddWithValue("QUESTAO_ID", questao.id);
+            comandoSelecionarAlternativas.Parameters.AddWithValue("MATERIA_ID", questao.materia.id);
+            comandoSelecionarAlternativas.Parameters.AddWithValue("DISCIPLINA_ID", questao.materia.disciplina.id);
+
+            SqlDataReader leitorAlternativa = comandoSelecionarAlternativas.ExecuteReader();
+
+            while (leitorAlternativa.Read())
+            {
+                MapeadorQuestao mapeador = new MapeadorQuestao();
+
+                Alternativa alternativa = mapeador.ConverterParaAlternativa(leitorAlternativa);
+
+                questao.AdicionarAlternativa(alternativa);
+            }
+
+            conexaoComBanco.Close();
         }
 
         public void Editar(Questao registroSelecionado, Questao registroAtualizado)

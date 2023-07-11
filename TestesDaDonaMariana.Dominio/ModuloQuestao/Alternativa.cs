@@ -1,6 +1,6 @@
 ﻿namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
-    public class Alternativa
+    public class Alternativa : EntidadeBase <Alternativa>
     {
         public int id { get; set; }
         public int idContador { get; set; }
@@ -8,18 +8,22 @@
         public string texto { get; set; }
         public AlternativaCorretaEnum alternativaCorreta { get; set; }
 
-        public Alternativa()
-        {
-            
-        }
-
         public Alternativa(string texto)
         {            
             this.texto = texto;
             alternativaCorreta = AlternativaCorretaEnum.Errada;
         }
+        public Alternativa()
+        {
+            
+        }
+        public override void AtualizarInformacoes(Alternativa registroAtualizado)
+        {
+            this.alternativaCorreta = registroAtualizado.alternativaCorreta; 
 
-        public string Validar()
+        }
+
+        public override string Validar()
         {
             Validador valida = new();
 

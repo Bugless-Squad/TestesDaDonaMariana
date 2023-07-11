@@ -44,7 +44,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             alternativas = registroAtualizado.alternativas;
         }
 
-        public void AdicionarAlternativas(List<Alternativa> alternativasParaAdicionar)
+        public void AdicionarAlternativa(List<Alternativa> alternativasParaAdicionar)
         {
             foreach (Alternativa a in alternativasParaAdicionar)
             {

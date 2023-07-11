@@ -9,7 +9,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
     public class RepositorioDisciplinaSql : RepositorioBaseSql<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
     {
-        protected override string sqlInserir => @"INSERT INTO [TBDISCIPLINA] 
+        protected override string sqlInserir => @"INSERT INTO [DISCIPLINA] 
 	                                            (
 		                                            [NOME]
 	                                            )
@@ -20,13 +20,13 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 
                                             SELECT SCOPE_IDENTITY();";
 
-        protected override string sqlEditar => @"UPDATE [TBDISCIPLINA] 
+        protected override string sqlEditar => @"UPDATE [DISCIPLINA] 
                                                 SET
                                                     [NOME] = @NOME
                                                 WHERE
                                                     [ID] = @ID";
 
-        protected override string sqlExcluir => @"DELETE FROM [TBDISCIPLINA]
+        protected override string sqlExcluir => @"DELETE FROM [DISCIPLINA]
 	                                                WHERE 
 		                                                [ID] = @ID";
 
@@ -34,36 +34,19 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 	                                                    [ID]        DISCIPLINA_ID 
 	                                                   ,[NOME]      DISCIPLINA_NOME
                                                     FROM 
-	                                                    [TBDISCIPLINA]";
+	                                                    [DISCIPLINA]";
 
         protected override string sqlSelecionarPorId => @"SELECT 
 	                                                    [ID]        DISCIPLINA_ID 
 	                                                   ,[NOME]      DISCIPLINA_NOME
                                                     FROM 
-	                                                    [TBDISCIPLINA] 
+	                                                    [DISCIPLINA] 
                                                     WHERE 
                                                         [ID] = @ID";
 
         public void Editar(Disciplina registroSelecionado, Disciplina registroAtualizado)
         {
-            //FALTA COISA AQUI
-
-            ////obter a conexão com o banco e abrir ela
-            //SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            //conexaoComBanco.Open();
-
-            ////cria um comando e relaciona com a conexão aberta
-            //SqlCommand comandoEditar = conexaoComBanco.CreateCommand();
-            //comandoEditar.CommandText = sqlEditar;
-
-            ////adiciona os parâmetros no comando
-            //ConfigurarParametros(comandoEditar, registro);
-
-            ////executa o comando
-            //comandoEditar.ExecuteNonQuery();
-
-            ////encerra a conexão
-            //conexaoComBanco.Close();
+            throw new NotImplementedException();
         }
 
         public Disciplina SelecionarPorId(int id)
@@ -79,5 +62,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 
             return disciplinas;
         }
+
     }
 }

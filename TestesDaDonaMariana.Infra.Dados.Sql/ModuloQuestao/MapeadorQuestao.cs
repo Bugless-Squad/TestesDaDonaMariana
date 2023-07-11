@@ -19,7 +19,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
             comando.Parameters.AddWithValue("@ENUNCIADO", registro.enunciado);
             comando.Parameters.AddWithValue("@RESPOSTACERTA", registro.alternativaCorreta);
         }
-
         public override Questao ConverterRegistro(SqlDataReader leitor)
         {
             int id = Convert.ToInt32(leitor["QUESTAO_ID"]);
@@ -30,7 +29,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
             return new Questao(id, materia, enunciado, alternativaCorreta);
         }
-
         public Alternativa ConverterParaAlternativa(SqlDataReader leitorAlternativa)
         {
             int id = Convert.ToInt32(leitorAlternativa["ALTERNATIVA_ID"]);
@@ -39,8 +37,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
             Questao questao = ConverterRegistro(leitorAlternativa);
 
-            return new();
+            return new Alternativa();
         }
-
     }
 }

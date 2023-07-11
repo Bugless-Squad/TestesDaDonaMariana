@@ -6,6 +6,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
     [Serializable]
     public class Materia : EntidadeBase<Materia>
     {
+        private string? nome;
+
         public string serie { get; set; }
         public string titulo { get; set; }
         public Disciplina disciplina { get; set; }
@@ -22,6 +24,13 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
             this.id = id;
             this.titulo = titulo;
             this.disciplina = disciplina;
+            this.serie = serie;
+        }
+
+        public Materia(int id, string? nome, string? serie)
+        {
+            this.id = id;
+            this.nome = nome;
             this.serie = serie;
         }
 

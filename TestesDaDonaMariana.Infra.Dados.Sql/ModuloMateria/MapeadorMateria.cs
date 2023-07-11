@@ -26,5 +26,16 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 
             return new Materia(id, nome, disciplina, serie);
         }
+
+        internal Materia ConverterMateria(SqlDataReader leitorMateria)
+        {
+            int id = Convert.ToInt32(leitorMateria["ID"]);
+            string nome = Convert.ToString(leitorMateria["NOME"]);
+            string serie = Convert.ToString(leitorMateria["SERIE"]);
+
+
+
+            return new Materia(id, nome, serie);
+        }
     }
 }

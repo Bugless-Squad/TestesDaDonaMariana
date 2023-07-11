@@ -1,4 +1,5 @@
-﻿using TestesDaDonaMariana.Dominio.Compartilhado;
+﻿using System.Drawing.Drawing2D;
+using TestesDaDonaMariana.Dominio.Compartilhado;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
@@ -12,11 +13,24 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
         public DateTime dataCriacao { get; set; }
         public Disciplina disciplina { get; set; }
         public List<Materia> materias { get; set; }
+
+        //
+        public Materia materia { get; set; }    
         public List<Questao> questoes { get; set; } 
+
+        public Teste(int id, string titulo, Disciplina disciplina, Materia materias, int numQuestoes)
+        {
+            this.id = id;
+            titulo = titulo;
+            disciplina = disciplina;
+            materias = materias;
+            this.numQuestoes = numQuestoes;
+            questoes = new List<Questao>();
+
+        }
 
         public Teste()
         {
-            
         }
 
         public Teste(int id, string titulo, Disciplina disciplina, List<Materia> materias, List<Questao> questoes, int numQuestoes)
@@ -35,6 +49,12 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
             disciplina = registroAtualizado.disciplina;
             materias = registroAtualizado.materias;
             questoes = registroAtualizado.questoes;
+        }
+
+        public void AdicionarQuestao(Questao questao)
+        {
+            if (questoes.Contains(questao) == false)
+                questoes.Add(questao);
         }
 
         public override string Validar()
