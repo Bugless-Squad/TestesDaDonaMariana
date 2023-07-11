@@ -36,17 +36,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
                 return;
             }
 
-            //    string folderPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), txtLocalizacao.Text);
-
-            //    if (!Directory.Exists(folderPath))
-            //    {
-            //        Directory.CreateDirectory(folderPath);
-            //    }
-
-            //    PdfDocument pdf = new PdfDocument(new PdfWriter(new FileStream(txtLocalizacao.Text + "\\" + teste.id + "_gabarito" + ".pdf", FileMode.Create)));
-
-            string diretorio = txtLocalizacao.Text + "\\" + teste.id + "_gabarito" + ".pdf";
-            PdfWriter localizacao = new PdfWriter(diretorio);
+            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "\\" + teste.id + "_gabarito" + ".pdf");
             PdfDocument pdf = new(localizacao);
             Document doc = new(pdf);
 
@@ -88,7 +78,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
         private void GerarPdfTeste()
         {
-            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "/" + teste.id + ".pdf");
+            if (txtLocalizacao.Text == "")
+            {
+                TelaPrincipalForm.Tela.AtualizarRodape($"Você deve informar a localização do diretório!");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            PdfWriter localizacao = new PdfWriter(txtLocalizacao.Text + "\\" + teste.id + ".pdf");
             PdfDocument pdf = new(localizacao);
             Document doc = new(pdf);
 
