@@ -84,7 +84,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
                 questao.materia.questoes.Add(questao);
 
-                repositorioQuestao.Editar(questaoSelecionada, questao);
+                repositorioQuestao.Editar(questaoSelecionada.id, questao);
 
                 CarregarQuestoes();
             }

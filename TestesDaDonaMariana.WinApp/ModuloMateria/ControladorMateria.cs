@@ -88,7 +88,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 materia.disciplina.materias.Add(materia);
 
-                repositorioMateria.Editar(materiaSelecionada, materia);
+                repositorioMateria.Editar(materiaSelecionada.id, materia);
 
                 CarregarMaterias();
             }

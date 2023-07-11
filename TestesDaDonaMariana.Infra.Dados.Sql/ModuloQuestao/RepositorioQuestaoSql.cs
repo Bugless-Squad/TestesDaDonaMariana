@@ -68,21 +68,21 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
                                               @"INSERT INTO [TBAlternativa]
                                                         (
                                                             [QUESTAO_ID]
-                                                           ,[RESPOSTA]
-                                                           ,[VERDADEIRO]
+                                                           ,[TEXTO]
+                                                           ,[ALTERNATIVA]
                                                         )
                                                     VALUES
                                                         (
                                                            @QUESTAO_ID
-                                                           ,@RESPOSTA
-                                                           ,@VERDADEIRO
+                                                           ,@TEXTO
+                                                           ,@ALTERNATIVA
                                                         )";
 
         private string sqlCarregarAlternativas =>
             @"SELECT 
                             A.ID            ALTERNATIVA_ID, 
-                            A.RESPOSTA      ALTERNATIVA_RESPOSTA,
-                            A.VERDADEIRO    ALTERNATIVA_VERDADEIRO,
+                            A.TEXTO         ALTERNATIVA_QUESTAO,
+                            A.ALTERNATIVA   ALTERNATIVA_ALTERNATIVA,
                             A.QUESTAO_ID    QUESTAO_ID,
 
                             Q.MATERIA_ID    MATERIA_ID,
@@ -116,47 +116,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
             @"DELETE FROM [TBALTERNATIVA]
                             WHERE
                                 [QUESTAO_ID] = @QUESTAO_ID";
-        public void Inserir(Questao questao, List<Alternativa> alternativasAdicionadas)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            conexaoComBanco.Open();
-
-            SqlCommand comandoInserir = conexaoComBanco.CreateCommand();
-            comandoInserir.CommandText = sqlInserir;
-
-            MapeadorQuestao mapeador = new MapeadorQuestao();
-            mapeador.ConfigurarParametros(comandoInserir, questao);
-
-            object id = comandoInserir.ExecuteScalar();
-
-            questao.id = Convert.ToInt32(id);
-
-            conexaoComBanco.Close();
-
-            foreach (Alternativa alternativa in alternativasAdicionadas)
-            {
-                if (questao.alternativas.Contains(alternativa) == false)
-                {
-                    AdicionarAlternativa(alternativa, questao);
-                }
-            }
-        }
-
-        public void Editar(int id, Questao questao, List<Alternativa> alternativas)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            conexaoComBanco.Open();
-
-            SqlCommand comandoEditar = conexaoComBanco.CreateCommand();
-            comandoEditar.CommandText = sqlEditar;
-
-            MapeadorQuestao mapeador = new MapeadorQuestao();
-            mapeador.ConfigurarParametros(comandoEditar, questao);
-
-            comandoEditar.ExecuteNonQuery();
-
-            conexaoComBanco.Close();
-        }
 
         public override void Excluir(Questao questao)
         {
@@ -198,8 +157,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
                 MapeadorQuestao mapeador = new MapeadorQuestao();
                 questao = mapeador.ConverterRegistro(leitorTemas);
             }
-
-
             //encerra a conexão
             conexaoComBanco.Close();
 
@@ -207,67 +164,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
             {
                 CarregarAlternativas(questao);
             }
-
             return questao;
-        }
-
-        public List<Questao> SelecionarTodos(bool carregarItens = false, bool carregarQuestoes = false)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            conexaoComBanco.Open();
-
-            SqlCommand comandoSelecionarTodos = conexaoComBanco.CreateCommand();
-            comandoSelecionarTodos.CommandText = sqlSelecionarTodos;
-
-            SqlDataReader leitorTemas = comandoSelecionarTodos.ExecuteReader();
-
-            List<Questao> questoes = new List<Questao>();
-
-            while (leitorTemas.Read())
-            {
-                MapeadorQuestao mapeador = new MapeadorQuestao();
-                Questao questao = mapeador.ConverterRegistro(leitorTemas);
-
-                if (carregarItens)
-                    CarregarAlternativas(questao);
-
-                questoes.Add(questao);
-            }
-
-            conexaoComBanco.Close();
-
-            return questoes;
-        }
-
-        private void AdicionarAlternativa(Alternativa alternativa, Questao questao)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            conexaoComBanco.Open();
-
-            SqlCommand comandoInserir = conexaoComBanco.CreateCommand();
-            comandoInserir.CommandText = sqlAdicionarAlternativa;
-
-            comandoInserir.Parameters.AddWithValue("QUESTAO_ID", questao.id);
-            //      comandoInserir.Parameters.AddWithValue("RESPOSTA", alternativa.alternativaCorreta);
-            comandoInserir.Parameters.AddWithValue("VERDADEIRO", alternativa.alternativaCorreta);
-
-            comandoInserir.ExecuteNonQuery();
-
-            conexaoComBanco.Close();
-        }
-
-        private void RemoverAlternativa(Questao questao)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-
-            SqlCommand comandoExclusao = new SqlCommand(sqlRemoverAlternativas, conexaoComBanco);
-
-            comandoExclusao.Parameters.AddWithValue("QUESTAO_ID", questao.id);
-
-            conexaoComBanco.Open();
-            comandoExclusao.ExecuteNonQuery();
-
-            conexaoComBanco.Close();
         }
 
         private void CarregarAlternativas(Questao questao)
@@ -296,9 +193,18 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
             conexaoComBanco.Close();
         }
 
-        public void Editar(Questao registroSelecionado, Questao registroAtualizado)
+        private void RemoverAlternativa(Questao questao)
         {
-            throw new NotImplementedException();
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoExclusao = new SqlCommand(sqlRemoverAlternativas, conexaoComBanco);
+
+            comandoExclusao.Parameters.AddWithValue("QUESTAO_ID", questao.id);
+
+            conexaoComBanco.Open();
+            comandoExclusao.ExecuteNonQuery();
+
+            conexaoComBanco.Close();
         }
     }
 }

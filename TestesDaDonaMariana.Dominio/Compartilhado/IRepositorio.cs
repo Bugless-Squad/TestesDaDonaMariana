@@ -5,8 +5,6 @@ namespace TestesDaDonaMariana.Dominio.Compartilhado
     {
         void Inserir(T novoRegistro);
 
-        void Editar(T registroSelecionado, T registroAtualizado);
-
         void Editar(int id, T registro);
 
         void Excluir(T registro);

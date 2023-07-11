@@ -77,7 +77,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             {
                 Disciplina disciplina = tela.ObterDisciplina();
 
-                repositorioDisciplina.Editar(disciplinaSelecionada, disciplina);
+                repositorioDisciplina.Editar(disciplinaSelecionada.id, disciplina);
 
                 CarregarDisciplinas();
             }

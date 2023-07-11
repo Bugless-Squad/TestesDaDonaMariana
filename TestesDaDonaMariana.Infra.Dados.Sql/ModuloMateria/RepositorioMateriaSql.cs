@@ -101,10 +101,5 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 
             return materias;
         }
-
-        public void Editar(Materia registroSelecionado, Materia registroAtualizado)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
