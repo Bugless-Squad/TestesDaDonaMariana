@@ -165,7 +165,8 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Name = "TelaMateriaForm";
-            Text = "TelaMateriaForm";
+            ShowIcon = false;
+            Text = "Cadastro Matéria";
             ResumeLayout(false);
             PerformLayout();
         }

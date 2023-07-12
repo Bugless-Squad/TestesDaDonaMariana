@@ -46,9 +46,9 @@
             btnRemoverItens = new ToolStripButton();
             toolStripSeparator3 = new ToolStripSeparator();
             btnFinalizarPgto = new ToolStripButton();
-            toolStripSeparator4 = new ToolStripSeparator();
             btnVisualizar = new ToolStripButton();
             btnVisualizarGabarito = new ToolStripButton();
+            toolStripSeparator4 = new ToolStripSeparator();
             btnGerarPdf = new ToolStripButton();
             btnFiltrar = new ToolStripButton();
             toolStripSeparator5 = new ToolStripSeparator();
@@ -79,8 +79,9 @@
             // DisciplinasMenuItem
             // 
             DisciplinasMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DisciplinasMenuItem.Image = (Image)resources.GetObject("DisciplinasMenuItem.Image");
             DisciplinasMenuItem.Name = "DisciplinasMenuItem";
-            DisciplinasMenuItem.Size = new Size(75, 19);
+            DisciplinasMenuItem.Size = new Size(91, 20);
             DisciplinasMenuItem.Text = "Disciplinas";
             DisciplinasMenuItem.Click += DisciplinasMenuItem_Click;
             // 
@@ -89,18 +90,18 @@
             panelRegistros.BorderStyle = BorderStyle.FixedSingle;
             panelRegistros.Controls.Add(pictureBox1);
             panelRegistros.Dock = DockStyle.Fill;
-            panelRegistros.Location = new Point(0, 60);
+            panelRegistros.Location = new Point(0, 51);
             panelRegistros.Margin = new Padding(4);
             panelRegistros.Name = "panelRegistros";
-            panelRegistros.Size = new Size(1188, 579);
+            panelRegistros.Size = new Size(1188, 588);
             panelRegistros.TabIndex = 7;
             // 
             // toolStrip1
             // 
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigDesconto, toolStripSeparator1, btnInserir, btnDuplicar, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, btnVisualizar, btnVisualizarGabarito, toolStripSeparator4, btnGerarPdf, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
-            toolStrip1.Location = new Point(0, 25);
+            toolStrip1.Location = new Point(0, 26);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1188, 35);
+            toolStrip1.Size = new Size(1188, 25);
             toolStrip1.TabIndex = 6;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -250,12 +251,6 @@
             btnFinalizarPgto.Visible = false;
             btnFinalizarPgto.Click += btnFinalizarPgto_Click;
             // 
-            // toolStripSeparator4
-            // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 35);
-            toolStripSeparator4.Visible = false;
-            // 
             // btnVisualizar
             // 
             btnVisualizar.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -283,6 +278,12 @@
             btnVisualizarGabarito.Text = "VisualizarTeste Gabarito";
             btnVisualizarGabarito.Visible = false;
             btnVisualizarGabarito.Click += btnVisualizarGabarito_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new Size(6, 35);
+            toolStripSeparator4.Visible = false;
             // 
             // btnGerarPdf
             // 
@@ -315,13 +316,13 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 35);
+            toolStripSeparator5.Size = new Size(6, 25);
             toolStripSeparator5.Visible = false;
             // 
             // labelTipoDoCadastro
             // 
             labelTipoDoCadastro.Name = "labelTipoDoCadastro";
-            labelTipoDoCadastro.Size = new Size(76, 32);
+            labelTipoDoCadastro.Size = new Size(76, 22);
             labelTipoDoCadastro.Text = "                       ";
             // 
             // rodape
@@ -347,28 +348,31 @@
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(8, 3, 0, 3);
-            menuStrip1.Size = new Size(1188, 25);
+            menuStrip1.Size = new Size(1188, 26);
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
             // 
             // materiasMenuItem
             // 
+            materiasMenuItem.Image = (Image)resources.GetObject("materiasMenuItem.Image");
             materiasMenuItem.Name = "materiasMenuItem";
-            materiasMenuItem.Size = new Size(64, 19);
+            materiasMenuItem.Size = new Size(80, 20);
             materiasMenuItem.Text = "Matérias";
             materiasMenuItem.Click += materiasMenuItem_Click;
             // 
             // questoesMenuItem
             // 
+            questoesMenuItem.Image = (Image)resources.GetObject("questoesMenuItem.Image");
             questoesMenuItem.Name = "questoesMenuItem";
-            questoesMenuItem.Size = new Size(68, 19);
+            questoesMenuItem.Size = new Size(84, 20);
             questoesMenuItem.Text = "Questões";
             questoesMenuItem.Click += questoesMenuItem_Click;
             // 
             // testesMenuItem
             // 
+            testesMenuItem.Image = (Image)resources.GetObject("testesMenuItem.Image");
             testesMenuItem.Name = "testesMenuItem";
-            testesMenuItem.Size = new Size(50, 19);
+            testesMenuItem.Size = new Size(66, 20);
             testesMenuItem.Text = "Testes";
             testesMenuItem.Click += testesMenuItem_Click;
             // 

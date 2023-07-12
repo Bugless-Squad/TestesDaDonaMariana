@@ -271,7 +271,8 @@
             Controls.Add(label8);
             Controls.Add(label7);
             Name = "TelaQuestaoForm";
-            Text = "TelaQuestaoForm";
+            ShowIcon = false;
+            Text = "Cadastro Questão";
             ResumeLayout(false);
             PerformLayout();
         }

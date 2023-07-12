@@ -59,7 +59,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
             string enunciado = txtEnunciado.Text.Trim();
 
             List<Alternativa> alternativas = this.alternativas;
-            
+
             Alternativa alternativaCorreta = new();
 
             if (alternativas.Count > 0)

@@ -117,7 +117,8 @@
             Controls.Add(txtDisciplina);
             Controls.Add(label2);
             Name = "TelaDisciplinaForm";
-            Text = "TelaDisciplinaForm";
+            ShowIcon = false;
+            Text = "Cadastro Disciplina";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -234,6 +234,7 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "TelaTesteForm";
+            ShowIcon = false;
             Text = "Cadastro de Testes";
             ((System.ComponentModel.ISupportInitialize)numQuestoes).EndInit();
             ResumeLayout(false);

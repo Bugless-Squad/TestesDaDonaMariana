@@ -160,7 +160,8 @@
             Controls.Add(cbxGabarito);
             Controls.Add(cbxTeste);
             Name = "TelaGerarPdfTesteForm";
-            Text = "TelaGerarPdfTesteForm";
+            ShowIcon = false;
+            Text = "Gerar PDF";
             ResumeLayout(false);
             PerformLayout();
         }

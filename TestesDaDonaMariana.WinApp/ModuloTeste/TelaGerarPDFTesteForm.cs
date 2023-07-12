@@ -42,7 +42,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
             Paragraph header = new Paragraph("Gabarito do teste:")
                 .SetTextAlignment(TextAlignment.CENTER)
-                .SetFontSize(21);     
+                .SetFontSize(21);
 
             Paragraph subheader = new Paragraph(teste.titulo)
                 .SetTextAlignment(TextAlignment.CENTER)
@@ -177,7 +177,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
             }
 
             MessageBox.Show("PDF gerado com sucesso!", "Gerar PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        
+
             return;
         }
 
