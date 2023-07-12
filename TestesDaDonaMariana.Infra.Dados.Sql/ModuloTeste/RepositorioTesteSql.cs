@@ -5,7 +5,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
     public class RepositorioTesteSql : RepositorioBaseSql<Teste, MapeadorTeste>, IRepositorioTeste
     {
         protected override string sqlInserir => @"INSERT INTO [TBTESTE] 
-                                                ([titulo], [numQuestoes], [dataCriacao], [disciplina_id])
+                                                ([titulo], [QuantidadeQuestoes], [dataCriacao], [disciplina_id])
                                               VALUES 
                                                 (@TITULO, @NUMQUESTOES, @DATACRIACAO, @DISCIPLINA_ID);                  
                                               SELECT SCOPE_IDENTITY();";
@@ -13,7 +13,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
         protected override string sqlEditar => @"UPDATE [TBTESTE] 
                                              SET
                                                 [titulo] = @TITULO,
-                                                [numQuestoes] = @NUMQUESTOES,
+                                                [QuantidadeQuestoes] = @NUMQUESTOES,
                                                 [dataCriacao] = @DATACRIACAO,
                                                 [disciplina_id] = @DISCIPLINA_ID
                                              WHERE
@@ -26,7 +26,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
         protected override string sqlSelecionarTodos => @"SELECT 
                                                         [id] AS TESTE_ID,
                                                         [titulo] AS TESTE_TITULO,
-                                                        [numQuestoes] AS TESTE_NUMQUESTOES,
+                                                        [QuantidadeQuestoes] AS TESTE_NUMQUESTOES,
                                                         [dataCriacao] AS TESTE_DATACRIACAO,
                                                         [disciplina_id] AS DISCIPLINA_ID
                                                       FROM 
@@ -35,7 +35,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
         protected override string sqlSelecionarPorId => @"SELECT 
                                                         [id] AS TESTE_ID,
                                                         [titulo] AS TESTE_TITULO,
-                                                        [numQuestoes] AS TESTE_NUMQUESTOES,
+                                                        [QuantidadeQuestoes] AS TESTE_NUMQUESTOES,
                                                         [dataCriacao] AS TESTE_DATACRIACAO,
                                                         [disciplina_id] AS DISCIPLINA_ID
                                                       FROM 
