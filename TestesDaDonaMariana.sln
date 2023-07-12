@@ -13,6 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infraestrutura", "3 - I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestesDaDonaMariana.Dominio", "TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj", "{C1753A5E-4983-4332-945A-F89D08BF01DA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestesDaDonaMariana.Infra.Dados.Json", "TestesDaDonaMariana.Infra.Dados.Json\TestesDaDonaMariana.Infra.Dados.Json.csproj", "{8D3108E9-8ACB-4E94-AE5B-E62B07677BAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 - InfraJson", "3.1 - InfraJson", "{91FD0295-F225-419E-92A7-520BB1B24A63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 - InfraSql", "3.2 - InfraSql", "{A06CBB7F-777D-468C-A339-750F2BE969A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestesDaDonaMariana.Infra.Dados.Sql", "TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj", "{A94955D5-7B52-42EC-B22B-20084D9354EF}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TestesDaDonaMariana.Infra.BancoDeDados.Sql", "TestesDaDonaMariana.Infra.BancoDeDados.Sql\TestesDaDonaMariana.Infra.BancoDeDados.Sql.sqlproj", "{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +37,20 @@ Global
 		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1753A5E-4983-4332-945A-F89D08BF01DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3108E9-8ACB-4E94-AE5B-E62B07677BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3108E9-8ACB-4E94-AE5B-E62B07677BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3108E9-8ACB-4E94-AE5B-E62B07677BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3108E9-8ACB-4E94-AE5B-E62B07677BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94955D5-7B52-42EC-B22B-20084D9354EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94955D5-7B52-42EC-B22B-20084D9354EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94955D5-7B52-42EC-B22B-20084D9354EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94955D5-7B52-42EC-B22B-20084D9354EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +58,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{12FD98CE-48E9-487C-A0DF-252144A04A26} = {3372D591-D629-4020-A388-FE547E279528}
 		{C1753A5E-4983-4332-945A-F89D08BF01DA} = {56A12C88-9EAC-49D9-8254-7139B947D75E}
+		{8D3108E9-8ACB-4E94-AE5B-E62B07677BAA} = {91FD0295-F225-419E-92A7-520BB1B24A63}
+		{91FD0295-F225-419E-92A7-520BB1B24A63} = {A196E49D-68DA-48E9-BED0-99B24BAD2268}
+		{A06CBB7F-777D-468C-A339-750F2BE969A5} = {A196E49D-68DA-48E9-BED0-99B24BAD2268}
+		{A94955D5-7B52-42EC-B22B-20084D9354EF} = {A06CBB7F-777D-468C-A339-750F2BE969A5}
+		{AF9D87EA-9250-4AB2-8CEC-AC56A864F7A5} = {A06CBB7F-777D-468C-A339-750F2BE969A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB8E88F6-FBB0-4D6E-98A8-8B9FC459CFC1}
