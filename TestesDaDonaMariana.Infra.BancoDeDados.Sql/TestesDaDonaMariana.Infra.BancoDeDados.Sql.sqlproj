@@ -67,5 +67,6 @@
     <Build Include="dbo\Tables\TBALTERNATIVA.sql" />
     <Build Include="dbo\Tables\TBTESTE_QUESTAO.sql" />
     <Build Include="dbo\Tables\TBTESTE_MATERIA.sql" />
+    <Build Include="dbo\Tables\TBQUESTAO_ALTERNATIVA.sql" />
   </ItemGroup>
 </Project>

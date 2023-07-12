@@ -3,8 +3,11 @@
     [idLetra]            VARCHAR (10) NOT NULL,
     [texto]              VARCHAR (50) NOT NULL,
     [alternativaCorreta] VARCHAR (50) NOT NULL,
-    CONSTRAINT [PK_TBAlternativa] PRIMARY KEY CLUSTERED ([texto] ASC)
+    CONSTRAINT [PK_TBAlternativa] PRIMARY KEY CLUSTERED ([id] ASC),
+    CONSTRAINT [FK_TbAlternativa_Questao] FOREIGN KEY ([id]) REFERENCES [dbo].[TBQUESTAO] ([id])
 );
+
+
 
 
 
