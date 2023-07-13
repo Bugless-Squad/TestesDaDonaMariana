@@ -1,4 +1,7 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+﻿using System.Data.SqlClient;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
@@ -51,6 +54,37 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
             List<Disciplina> disciplinas = base.SelecionarTodos();
 
             return disciplinas;
+        }
+        public List<Materia> SelecionarMateriasPorDisciplina(int disciplinaId)
+        {
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            conexaoComBanco.Open();
+
+            SqlCommand comandoSelecionarMaterias = conexaoComBanco.CreateCommand();
+            comandoSelecionarMaterias.CommandText = @"SELECT [ID] MATERIA_ID,
+                                                         [NOME] MATERIA_NOME,
+                                                         [SERIE] MATERIA_SERIE,
+                                                         [DISCIPLINA_ID]
+                                                  FROM [TBMATERIA]
+                                                  WHERE [DISCIPLINA_ID] = @DISCIPLINA_ID";
+
+            comandoSelecionarMaterias.Parameters.AddWithValue("@DISCIPLINA_ID", disciplinaId);
+
+            SqlDataReader leitorMaterias = comandoSelecionarMaterias.ExecuteReader();
+
+            List<Materia> materias = new List<Materia>();
+
+            MapeadorMateria mapeadorMateria = new MapeadorMateria();
+
+            while (leitorMaterias.Read())
+            {
+                Materia materia = mapeadorMateria.ConverterRegistro(leitorMaterias);
+                materias.Add(materia);
+            }
+
+            conexaoComBanco.Close();
+
+            return materias;
         }
     }
 }

@@ -13,13 +13,13 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
              @"Data Source=(LocalDb)\MSSqlLocalDB;Initial Catalog=TestesDonaMarianaBD;Integrated Security=True";
 
 
-        public override void ConfigurarParametros(SqlCommand comando, Questao registro)
+        public override void ConfigurarParametros(SqlCommand comando, Questao questao)
         {
-            comando.Parameters.AddWithValue("@ID", registro.id);
-            comando.Parameters.AddWithValue("@ENUNCIADO", registro.enunciado);
-            comando.Parameters.AddWithValue("@DISCIPLINA_ID", registro.disciplina.id);
-            comando.Parameters.AddWithValue("@MATERIA_ID", registro.materia.id);
-            comando.Parameters.AddWithValue("@ALTERNATIVACORRETA_ID", registro.alternativaCorreta?.id);
+            comando.Parameters.AddWithValue("@ID", questao.id);
+            comando.Parameters.AddWithValue("@ENUNCIADO", questao.enunciado);
+            comando.Parameters.AddWithValue("@DISCIPLINA_ID", questao.disciplina.id);
+            comando.Parameters.AddWithValue("@MATERIA_ID", questao.materia.id);
+            comando.Parameters.AddWithValue("@ALTERNATIVACORRETA_ID", questao.alternativaCorreta?.id);
         }
 
         public override Questao ConverterRegistro(SqlDataReader leitor)
@@ -28,17 +28,38 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
             string enunciado = Convert.ToString(leitor["ENUNCIADO"]);
             int disciplinaId = Convert.ToInt32(leitor["DISCIPLINA_ID"]);
             int materiaId = Convert.ToInt32(leitor["MATERIA_ID"]);
-            int? alternativaCorretaId = leitor["ALTERNATIVACORRETA_ID"] != DBNull.Value ? Convert.ToInt32(leitor["ALTERNATIVACORRETA_ID"]) : null;
+            int? alternativaCorretaId = leitor["ALTERNATIVACORRETA_ID"] as int?;
 
             Disciplina disciplina = new RepositorioDisciplinaSql().SelecionarPorId(disciplinaId);
             Materia materia = new RepositorioMateriaSql().SelecionarPorId(materiaId);
             Alternativa alternativaCorreta = alternativaCorretaId.HasValue ? new RepositorioAlternativaSql().SelecionarPorId(alternativaCorretaId.Value) : null;
 
-            Questao questao = new(id, enunciado, disciplina, materia);
-            questao.alternativaCorreta = alternativaCorreta;
-
-            return questao;
+            return new Questao(id, enunciado, disciplina, materia, alternativaCorreta);
         }
+
+        //public override Questao ConverterRegistro(SqlDataReader leitor)
+        //{
+        //    int id = Convert.ToInt32(leitor["QUESTAO_ID"]);
+        //    string enunciado = Convert.ToString(leitor["ENUNCIADO"]);
+
+        //    Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitor);
+        //    Materia materia = new MapeadorMateria().ConverterRegistro(leitor);
+
+        //    int? alternativaCorretaId = leitor["ALTERNATIVACORRETA_ID"] != DBNull.Value ? Convert.ToInt32(leitor["ALTERNATIVACORRETA_ID"]) : (int?)null;
+        //    Alternativa alternativaCorreta = null;
+
+        //    if (alternativaCorretaId != null)
+        //    {
+        //        alternativaCorreta = new MapeadorAlternativa().SelecionarPorId(alternativaCorretaId.Value);
+        //    }
+
+        //    List<Alternativa> alternativas = new RepositorioAlternativaSql().SelecionarAlternativasPorQuestao(id);
+
+        //    Questao questao = new Questao(id, enunciado, disciplina, materia, alternativas);
+        //    questao.alternativaCorreta = alternativaCorreta;
+
+        //    return questao;
+        //}
 
         public List<Questao> SelecionarQuestoesPorTeste(int testeId)
         {

@@ -17,12 +17,21 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
 
         }
 
-        public Materia( int id, string titulo, Disciplina disciplina, string serie)
+        public Materia(int id, string titulo, Disciplina disciplina, string serie)
         {
             this.id = id;
             this.titulo = titulo;
             this.disciplina = disciplina;
             this.serie = serie;
+        }
+
+        public Materia(int id, string titulo, Disciplina disciplina, string serie, List<Questao>? questoes)
+        {
+            this.id = id;
+            this.titulo = titulo;
+            this.disciplina = disciplina;
+            this.serie = serie;
+            this.questoes = questoes;
         }
 
         public override void AtualizarInformacoes(Materia registroAtualizado)

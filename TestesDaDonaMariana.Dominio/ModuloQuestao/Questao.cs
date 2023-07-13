@@ -26,7 +26,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
             this.alternativas = alternativas;
         }
 
-        public Questao(int id, string enunciado, Disciplina disciplina, Materia materia)
+        public Questao(int id, string enunciado, Disciplina disciplina, Materia materia, Alternativa alternativaCorreta)
         {
             this.id = id;
             this.disciplina = disciplina;

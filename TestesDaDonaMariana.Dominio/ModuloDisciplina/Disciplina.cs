@@ -27,6 +27,13 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
             materias = new();
         }
 
+        public Disciplina(int id, string nome, List<Materia> materias)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.materias = materias;
+        }
+
         public override void AtualizarInformacoes(Disciplina registroAtualizado)
         {
             nome = registroAtualizado.nome;

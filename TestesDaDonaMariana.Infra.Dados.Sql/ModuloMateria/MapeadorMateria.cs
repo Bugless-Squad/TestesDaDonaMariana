@@ -1,7 +1,9 @@
 ﻿using System.Data.SqlClient;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 {
@@ -26,7 +28,9 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 
             Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitor);
 
-            return new Materia(id, nome, disciplina, serie);
+            List<Questao> questoes = new RepositorioQuestaoSql().SelecionarQuestoesPorMateria(id);
+
+            return new Materia(id, nome, disciplina, serie, questoes);
         }
 
         public Materia ConverterRegistroComDisciplina(SqlDataReader leitor)
