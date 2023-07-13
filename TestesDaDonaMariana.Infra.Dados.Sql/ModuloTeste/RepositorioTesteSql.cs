@@ -5,9 +5,9 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
     public class RepositorioTesteSql : RepositorioBaseSql<Teste, MapeadorTeste>, IRepositorioTeste
     {
         protected override string sqlInserir => @"INSERT INTO [TBTESTE] 
-                                                ([titulo], [QuantidadeQuestoes], [dataCriacao], [disciplina_id])
+                                                ([titulo], [quantidadeQuestoes], [dataCriacao], [disciplina_id],[matricula_id])
                                               VALUES 
-                                                (@TITULO, @NUMQUESTOES, @DATACRIACAO, @DISCIPLINA_ID);                  
+                                                (@TITULO, @NUMQUESTOES, @DATACRIACAO, @DISCIPLINA_ID, @MATRICULA_ID);                  
                                               SELECT SCOPE_IDENTITY();";
 
         protected override string sqlEditar => @"UPDATE [TBTESTE] 
@@ -15,7 +15,8 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
                                                 [titulo] = @TITULO,
                                                 [QuantidadeQuestoes] = @NUMQUESTOES,
                                                 [dataCriacao] = @DATACRIACAO,
-                                                [disciplina_id] = @DISCIPLINA_ID
+                                                [disciplina_id] = @DISCIPLINA_ID,
+                                                [matricula_id] = @MATRICULA_ID
                                              WHERE
                                                 [id] = @ID";
 
@@ -28,7 +29,8 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
                                                         [titulo] AS TESTE_TITULO,
                                                         [QuantidadeQuestoes] AS TESTE_NUMQUESTOES,
                                                         [dataCriacao] AS TESTE_DATACRIACAO,
-                                                        [disciplina_id] AS DISCIPLINA_ID
+                                                        [disciplina_id] AS DISCIPLINA_ID,
+                                                        [matricula_id] AS MATRICULA_ID
                                                       FROM 
                                                         [TBTESTE]";
 
@@ -38,6 +40,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
                                                         [QuantidadeQuestoes] AS TESTE_NUMQUESTOES,
                                                         [dataCriacao] AS TESTE_DATACRIACAO,
                                                         [disciplina_id] AS DISCIPLINA_ID
+                                                        [matricula_id] AS MATRICULA_ID
                                                       FROM 
                                                         [TBTESTE]
                                                       WHERE 

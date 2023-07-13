@@ -12,7 +12,7 @@ namespace TestesDaDonaMariana.Dominio.ModuloTeste
         public DateTime dataCriacao { get; set; }
         public Disciplina disciplina { get; set; }
         public List<Materia> materias { get; set; }
-        public List<Questao> questoes { get; set; } 
+        public List<Questao> questoes { get; set; }
 
         public Teste()
         {
