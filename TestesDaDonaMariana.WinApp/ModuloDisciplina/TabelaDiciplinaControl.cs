@@ -41,8 +41,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloDiciplina
             {
                 grid.Rows.Add(disciplina.id, disciplina.nome, disciplina.qtdMaterias);
             }
-        }
-
-      
+        }      
     }
 }

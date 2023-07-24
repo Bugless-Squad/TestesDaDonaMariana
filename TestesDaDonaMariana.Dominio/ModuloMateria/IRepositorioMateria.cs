@@ -1,7 +1,9 @@
-﻿namespace TestesDaDonaMariana.Dominio.ModuloMateria
+﻿using TestesDaDonaMariana.Dominio.ModuloQuestao;
+
+namespace TestesDaDonaMariana.Dominio.ModuloMateria
 {
     public interface IRepositorioMateria : IRepositorio<Materia>
     {
-        List<Materia> SelecionarMateriasPorDisciplina(int idDisciplina);
+        Materia SelecionarPorNome(string nome);
     }
 }

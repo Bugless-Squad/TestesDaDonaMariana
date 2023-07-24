@@ -28,8 +28,8 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
             DateTime dataCriacao = Convert.ToDateTime(leitor["TESTE_DATACRIACAO"]);
 
             Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitor);
-            List<Materia> materias = new MapeadorMateria().SelecionarMateriasPorTeste(id);
-            List<Questao> questoes = new MapeadorQuestao().SelecionarQuestoesPorTeste(id);
+            List<Materia> materias = new RepositorioMateriaSql().SelecionarMateriasPorTeste(id);
+            List<Questao> questoes = new RepositorioQuestaoSql().SelecionarQuestoesPorTeste(id);
 
             Teste teste = new Teste();
             teste.id = id;

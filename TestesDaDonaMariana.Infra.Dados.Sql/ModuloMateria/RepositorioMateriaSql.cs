@@ -5,140 +5,208 @@ using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 {
-    public class RepositorioMateriaSql : RepositorioBaseSql<Materia, MapeadorMateria>, IRepositorioMateria
+    public class RepositorioMateriaSql : 
+        RepositorioBaseSql<Materia, MapeadorMateria>, IRepositorioMateria
     {
-        protected override string sqlInserir => @"INSERT INTO[DBO].[TBMATERIA]
+        public RepositorioMateriaSql(string connectionString) : base(connectionString)
+        {
+
+        }        
+
+        protected override string sqlInserir => @"INSERT INTO [dbo].[TBMATERIA]
                                                     (
-                                                        [NOME]
+                                                        [TITULO]
                                                        ,[DISCIPLINA_ID]
                                                        ,[SERIE]
                                                     )
                                                  VALUES
                                                     (
-                                                        @NOME
+                                                        @TITULO
                                                        ,@DISCIPLINA_ID
                                                        ,@SERIE
                                                     );
                                                  SELECT SCOPE_IDENTITY();";
 
-        protected override string sqlEditar => @"UPDATE[TBMATERIA]
+        protected override string sqlEditar => @"UPDATE [dbo].[TBMATERIA]
                                                SET
-                                                   [NOME] = @NOME
+                                                   [TITULO] = @TITULO
                                                   ,[DISCIPLINA_ID] = @DISCIPLINA_ID
                                                   ,[SERIE] = @SERIE
                                              WHERE [ID] = @ID;";
 
-        protected override string sqlExcluir => @"DELETE FROM [TBMATERIA]
+        protected override string sqlExcluir => @"DELETE FROM [dbo].[TBMATERIA]
 	                                                WHERE 
 		                                                [ID] = @ID";
 
         protected override string sqlSelecionarTodos => @"SELECT 
-	                                                        M.[ID]        MATERIA_ID 
-	                                                       ,M.[NOME]      MATERIA_NOME
-	                                                       ,M.[DISCIPLINA_ID]  DISCIPLINA_ID
-                                                           ,M.[SERIE]     MATERIA_SERIE
-                                                           ,D.[NOME]        DISCIPLINA_NOME
+	                                                        M.[ID]             MATERIA_ID 
+	                                                       ,M.[TITULO]         MATERIA_TITULO
+                                                           ,M.[SERIE]          MATERIA_SERIE
+	                                                       ,D.[ID]             DISCIPLINA_ID
+                                                           ,D.[NOME]           DISCIPLINA_NOME
                                                         FROM 
 	                                                        [TBMATERIA] AS M
+
                                                         INNER JOIN [TBDISCIPLINA] AS D
                                                                 ON M.[DISCIPLINA_ID] = D.ID";
 
         protected override string sqlSelecionarPorId => @"SELECT 
-	                                                    M.[ID]        MATERIA_ID 
-	                                                   ,M.[NOME]      MATERIA_NOME
-	                                                   ,M.[DISCIPLINA_ID]  DISCIPLINA_ID
-                                                       ,M.[SERIE]     MATERIA_SERIE
-                                                       ,D.[NOME]      DISCIPLINA_NOME
+	                                                    M.[ID]             MATERIA_ID 
+	                                                   ,M.[TITULO]         MATERIA_TITULO
+                                                       ,M.[SERIE]          MATERIA_SERIE
+	                                                   ,D.[ID]             DISCIPLINA_ID
+                                                       ,D.[NOME]           DISCIPLINA_NOME
                                                     FROM 
 	                                                    [TBMATERIA] AS M
+
                                                     INNER JOIN [TBDISCIPLINA] AS D
                                                             ON M.[DISCIPLINA_ID] = D.ID
                                                     WHERE 
                                                         M.[ID] = @ID";
 
-        public override List<Materia> SelecionarTodos()
-        {
-            List<Materia> materias = base.SelecionarTodos();
+        private string sqlSelecionarPorNome => @"SELECT 
+	                                             M.[ID]             MATERIA_ID 
+	                                            ,M.[TITULO]         MATERIA_TITULO
+                                                ,M.[SERIE]          MATERIA_SERIE
+	                                            ,D.[ID]             DISCIPLINA_ID
+                                                ,D.[NOME]           DISCIPLINA_NOME
 
-            return materias;
+                                            FROM 
+	                                                [TBMATERIA] AS M
+                
+                                                INNER JOIN TBDISCIPLINA AS D                     
+                                                    ON M.DISCIPLINA_ID = D.ID
+
+                                            WHERE
+                                                M.NOME = @NOME";
+
+        public Materia SelecionarPorNome(string nome)
+        {
+            SqlParameter[] parametros = new SqlParameter[] { new SqlParameter("NOME", nome) };
+
+            return base.SelecionarRegistroPorParametro(sqlSelecionarPorNome, parametros);
         }
 
-        public override Materia SelecionarPorId(int id)
-        {
-            Materia materia = base.SelecionarPorId(id);
+        //public List<Materia> SelecionarTodos()
+        //{
+        //    List<Materia> materias = base.SelecionarTodos();
 
-            return materia;
-        }
+        //    return materias;
+        //}
 
-        public List<Materia> SelecionarMateriasPorDisciplina(int idDisciplina)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            conexaoComBanco.Open();
+        //public Materia SelecionarPorId(int id)
+        //{
+        //    Materia materia = base.SelecionarPorId(id);
 
-            SqlCommand comandoSelecionarPorDisciplina = conexaoComBanco.CreateCommand();
-            comandoSelecionarPorDisciplina.CommandText = @"SELECT 
-                                                        [id] AS MATERIA_ID,
-                                                        [nome] AS MATERIA_NOME,
-                                                        [disciplina_id] AS DISCIPLINA_ID,
-                                                        [serie] AS MATERIA_SERIE
-                                                      FROM 
-                                                        [TBMATERIA]
-                                                      WHERE 
-                                                        [disciplina_id] = @DISCIPLINA_ID";
+        //    return materia;
+        //}
 
-            comandoSelecionarPorDisciplina.Parameters.AddWithValue("@DISCIPLINA_ID", idDisciplina);
+        //public List<Materia> SelecionarMateriasPorTeste(int testeId)
+        //{
+        //    SqlConnection conexaoComBanco = new SqlConnection(connectionString);
+        //    conexaoComBanco.Open();
 
-            SqlDataReader leitorMaterias = comandoSelecionarPorDisciplina.ExecuteReader();
+        //    SqlCommand comandoSelecionarPorTeste = conexaoComBanco.CreateCommand();
+        //    comandoSelecionarPorTeste.CommandText = @"SELECT 
+        //                                            M.[ID] AS MATERIA_ID,
+        //                                            M.[TITULO] AS MATERIA_TITULO,
+        //                                            M.[DISCIPLINA_ID] AS DISCIPLINA_ID,
+        //                                            M.[SERIE] AS MATERIA_SERIE
+        //                                          FROM 
+        //                                            [TBMATERIA] AS M
+        //                                          INNER JOIN [TBMATERIA_TESTE] AS MT
+        //                                              ON M.[ID] = MT.[MATERIA_ID]
+        //                                          WHERE 
+        //                                            MT.[TESTE_ID] = @TESTE_ID";
 
-            List<Materia> materias = new();
-            MapeadorMateria mapeador = new();
+        //    comandoSelecionarPorTeste.Parameters.AddWithValue("@TESTE_ID", testeId);
 
-            while (leitorMaterias.Read())
-            {
-                Materia materia = mapeador.ConverterRegistroComDisciplina(leitorMaterias);
-                materias.Add(materia);
-            }
+        //    SqlDataReader leitorMaterias = comandoSelecionarPorTeste.ExecuteReader();
 
-            conexaoComBanco.Close();
+        //    List<Materia> materias = new();
 
-            return materias;
-        }
+        //    MapeadorMateria mapeador = new();
 
-        public List<Questao> SelecionarQuestoesPorMateria(int materiaId)
-        {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
-            conexaoComBanco.Open();
+        //    while (leitorMaterias.Read())
+        //    {
+        //        Materia materia = mapeador.ConverterRegistro(leitorMaterias);
+        //        materias.Add(materia);
+        //    }
 
-            SqlCommand comandoSelecionarQuestoes = conexaoComBanco.CreateCommand();
-            comandoSelecionarQuestoes.CommandText = @"SELECT Q.[ID] ID,
-                                                         Q.[ENUNCIADO],
-                                                         Q.[DISCIPLINA_ID],
-                                                         Q.[MATERIA_ID],
-                                                         Q.[ALTERNATIVACORRETA_ID],
-                                                         D.[NOME] DISCIPLINA_NOME,
-                                                         M.[NOME] MATERIA_NOME
-                                                  FROM [TBQUESTAO] Q
-                                                  INNER JOIN [TBDISCIPLINA] D ON Q.[DISCIPLINA_ID] = D.[ID]
-                                                  INNER JOIN [TBMATERIA] M ON Q.[MATERIA_ID] = M.[ID]
-                                                  WHERE Q.[MATERIA_ID] = @MATERIA_ID";
+        //    conexaoComBanco.Close();
 
-            comandoSelecionarQuestoes.Parameters.AddWithValue("@MATERIA_ID", materiaId);
+        //    return materias;
+        //}
 
-            SqlDataReader leitorQuestoes = comandoSelecionarQuestoes.ExecuteReader();
+        //public List<Materia> SelecionarMateriasPorDisciplina(int idDisciplina)
+        //{
+        //    SqlConnection conexaoComBanco = new SqlConnection(connectionString);
+        //    conexaoComBanco.Open();
 
-            List<Questao> questoes = new List<Questao>();
+        //    SqlCommand comandoSelecionarPorDisciplina = conexaoComBanco.CreateCommand();
+        //    comandoSelecionarPorDisciplina.CommandText = @"SELECT 
+        //                                                [ID] AS MATERIA_ID,
+        //                                                [TITULO] AS MATERIA_TITULO,
+        //                                                [DISCIPLINA_ID] AS DISCIPLINA_ID,
+        //                                                [SERIE] AS MATERIA_SERIE
+        //                                              FROM 
+        //                                                [TBMATERIA]
+        //                                              WHERE 
+        //                                                [DISCIPLINA_ID] = @DISCIPLINA_ID";
 
-            MapeadorQuestao mapeador = new MapeadorQuestao();
+        //    comandoSelecionarPorDisciplina.Parameters.AddWithValue("@DISCIPLINA_ID", idDisciplina);
 
-            while (leitorQuestoes.Read())
-            {
-                Questao questao = mapeador.ConverterRegistro(leitorQuestoes);
-                questoes.Add(questao);
-            }
+        //    SqlDataReader leitorMaterias = comandoSelecionarPorDisciplina.ExecuteReader();
 
-            conexaoComBanco.Close();
+        //    List<Materia> materias = new();
+        //    MapeadorMateria mapeador = new();
 
-            return questoes;
-        }
+        //    while (leitorMaterias.Read())
+        //    {
+        //        Materia materia = mapeador.ConverterRegistroComDisciplina(leitorMaterias);
+        //        materias.Add(materia);
+        //    }
+
+        //    conexaoComBanco.Close();
+
+        //    return materias;
+        //}
+
+        //public  List<Questao> SelecionarQuestoesPorMateria(int materiaId)
+        //{
+        //    SqlConnection conexaoComBanco = new SqlConnection(connectionString);
+        //    conexaoComBanco.Open();
+
+        //    SqlCommand comandoSelecionarQuestoes = conexaoComBanco.CreateCommand();
+        //    comandoSelecionarQuestoes.CommandText = @"SELECT Q.[ID],
+        //                                                 Q.[ENUNCIADO],
+        //                                                 Q.[DISCIPLINA_ID],
+        //                                                 Q.[MATERIA_ID],
+        //                                                 Q.[ALTERNATIVACORRETA_ID],
+        //                                                 D.[NOME] DISCIPLINA_NOME,
+        //                                                 M.[TITULO] MATERIA_TITULO
+        //                                          FROM [TBQUESTAO] AS Q
+        //                                          INNER JOIN [TBDISCIPLINA] AS D ON Q.[DISCIPLINA_ID] = D.[ID]
+        //                                          INNER JOIN [TBMATERIA] AS M ON Q.[MATERIA_ID] = M.[ID]
+        //                                          WHERE Q.[MATERIA_ID] = @MATERIA_ID";
+
+        //    comandoSelecionarQuestoes.Parameters.AddWithValue("@MATERIA_ID", materiaId);
+
+        //    SqlDataReader leitorQuestoes = comandoSelecionarQuestoes.ExecuteReader();
+
+        //    List<Questao> questoes = new List<Questao>();
+
+        //    MapeadorQuestao mapeador = new MapeadorQuestao();
+
+        //    while (leitorQuestoes.Read())
+        //    {
+        //        //Questao questao = mapeador.ConverterRegistroComQuestao(leitorQuestoes);
+        //       // questoes.Add(questao);
+        //    }
+
+        //    conexaoComBanco.Close();
+
+        //    return questoes;
+        //}
     }
 }

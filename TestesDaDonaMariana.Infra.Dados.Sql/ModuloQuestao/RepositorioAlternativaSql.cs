@@ -40,9 +40,10 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
             return alternativas;
         }
+
         public List<Alternativa> SelecionarAlternativasPorQuestao(int questaoId)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(connectionString);
             conexaoComBanco.Open();
 
             SqlCommand comandoSelecionarAlternativas = conexaoComBanco.CreateCommand();
@@ -72,7 +73,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
         public void InserirAlternativasParaQuestao(int questaoId, List<Alternativa> alternativas)
         {
-            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlConnection conexaoComBanco = new SqlConnection(connectionString);
             conexaoComBanco.Open();
 
             foreach (Alternativa alternativa in alternativas)
